@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(Get-ChildItem -Path \"c:\\\\Relisant\\\\BaBookCorner\" -Force)",
+      "Bash(Select-Object -Property Name, PSIsContainer, LastWriteTime)",
+      "Bash(Format-Table -AutoSize)",
+      "PowerShell(Where-Object PSIsContainer -EQ $true)",
+      "Bash(npm run *)",
+      "PowerShell(powershell -ExecutionPolicy Bypass -File \"c:\\\\Relisant\\\\BaBookCorner\\\\install-services.ps1\" 2>&1)",
+      "PowerShell(Get-Service BaBookCorner-Backend, BaBookCorner-Frontend)",
+      "PowerShell(Get-ChildItem \"c:\\\\Relisant\\\\BaBookCorner\\\\.venv\\\\Scripts\\\\\" -ErrorAction SilentlyContinue; Write-Host \"exit: $LASTEXITCODE\")"
+    ]
+  }
+}
