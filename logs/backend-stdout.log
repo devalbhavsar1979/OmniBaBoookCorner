@@ -2,3 +2,273 @@ INFO:     127.0.0.1:50911 - "GET /api/health HTTP/1.1" 200 OK
 INFO:     127.0.0.1:51981 - "GET /api/health HTTP/1.1" 200 OK
 INFO:     127.0.0.1:53242 - "POST /api/v1/auth/login HTTP/1.1" 401 Unauthorized
 INFO:     127.0.0.1:53285 - "OPTIONS /api/v1/auth/login HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57770 - "GET /api/v1 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57770 - "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57771 - "GET /js/main.21516a8b.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57775 - "GET /css/main.a6df357e.css HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57771 - "GET /js/main.21516a8b.js.map HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57775 - "GET /css/main.a6df357e.css.map HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57790 - "GET /favicon.ico HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57791 - "GET /manifest.json HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57792 - "GET /sw.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57902 - "GET /login HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57902 - "GET /sw.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52035 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52036 - "GET /css/main.a6df357e.css HTTP/1.1" 304 Not Modified
+INFO:     127.0.0.1:52035 - "GET /js/main.21516a8b.js HTTP/1.1" 304 Not Modified
+INFO:     127.0.0.1:52035 - "GET /sw.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52036 - "GET /favicon.ico HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52040 - "GET /manifest.json HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52111 - "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52110 - "GET /js/main.21516a8b.js.map HTTP/1.1" 304 Not Modified
+INFO:     127.0.0.1:52110 - "GET /css/main.a6df357e.css.map HTTP/1.1" 304 Not Modified
+INFO:     127.0.0.1:61485 - "GET /manifest.json HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55369 - "GET /manifest.json HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64652 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64653 - "GET /css/main.a6df357e.css HTTP/1.1" 304 Not Modified
+INFO:     127.0.0.1:64652 - "GET /js/main.21516a8b.js HTTP/1.1" 304 Not Modified
+INFO:     127.0.0.1:64652 - "GET /sw.js HTTP/1.1" 200 OK
+INFO:     127.0.0.1:64653 - "GET /favicon.ico HTTP/1.1" 200 OK
+INFO:     127.0.0.1:65470 - "GET /api/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:49659 - "OPTIONS /api/v1/auth/login HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52352 - "GET /api/health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52366 - "GET /api/health HTTP/1.1" 200 OK
+INFO:     10.2.18.2:53372 - "GET /api/health HTTP/1.1" 200 OK
+INFO:     10.2.18.2:53372 - "GET /favicon.ico HTTP/1.1" 200 OK
+INFO:     10.2.18.2:53392 - "OPTIONS /api/v1/auth/login HTTP/1.1" 200 OK
+INFO:     10.2.18.2:53393 - "POST /api/v1/auth/login HTTP/1.1" 500 Internal Server Error
+INFO:     10.2.18.2:53397 - "POST /api/v1/auth/login HTTP/1.1" 500 Internal Server Error
+INFO:     10.2.18.2:53404 - "POST /api/v1/auth/login HTTP/1.1" 500 Internal Server Error
+INFO:     10.2.18.2:53415 - "OPTIONS /api/v1/auth/register HTTP/1.1" 200 OK
+INFO:     10.2.18.2:53416 - "POST /api/v1/auth/register HTTP/1.1" 400 Bad Request
+INFO:     10.2.18.2:53423 - "POST /api/v1/auth/login HTTP/1.1" 500 Internal Server Error
+INFO:     10.2.18.2:53429 - "POST /api/v1/auth/login HTTP/1.1" 500 Internal Server Error
+INFO:     10.2.18.2:53440 - "POST /api/v1/auth/register HTTP/1.1" 400 Bad Request
+INFO:     10.2.18.2:53444 - "POST /api/v1/auth/register HTTP/1.1" 500 Internal Server Error
+INFO:     10.2.18.2:53484 - "POST /api/v1/auth/register HTTP/1.1" 500 Internal Server Error
+INFO:     10.2.18.2:53490 - "POST /api/v1/auth/register HTTP/1.1" 500 Internal Server Error
+INFO:     10.2.18.2:53567 - "POST /api/v1/auth/register HTTP/1.1" 201 Created
+INFO:     10.2.18.2:53575 - "POST /api/v1/auth/login HTTP/1.1" 200 OK
+INFO:     10.2.18.2:53575 - "OPTIONS /api/v1/dashboard HTTP/1.1" 200 OK
+INFO:     10.2.18.2:53576 - "GET /api/v1/dashboard HTTP/1.1" 200 OK
+INFO:     10.2.18.2:61574 - "GET / HTTP/1.1" 200 OK
+INFO:     10.2.18.2:9682 - "GET /favicon.ico HTTP/1.1" 200 OK
+INFO:     10.2.18.2:12418 - "OPTIONS /api/v1/auth/login HTTP/1.1" 200 OK
+INFO:     10.2.18.2:12418 - "POST /api/v1/auth/login HTTP/1.1" 200 OK
+INFO:     10.2.18.2:12418 - "OPTIONS /api/v1/dashboard HTTP/1.1" 200 OK
+INFO:     10.2.18.2:12418 - "GET /api/v1/dashboard HTTP/1.1" 200 OK
+INFO:     10.2.18.2:12939 - "POST /api/v1/auth/login HTTP/1.1" 401 Unauthorized
+INFO:     10.2.18.2:12657 - "POST /api/v1/auth/login HTTP/1.1" 200 OK
+INFO:     10.2.18.2:12657 - "GET /api/v1/dashboard HTTP/1.1" 200 OK
+INFO:     10.2.18.2:12706 - "OPTIONS /api/v1/requests?page=1&page_size=15 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:12706 - "GET /api/v1/requests?page=1&page_size=15 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:12707 - "GET /api/v1/dashboard HTTP/1.1" 200 OK
+INFO:     10.2.18.2:12754 - "POST /api/v1/auth/login HTTP/1.1" 200 OK
+INFO:     10.2.18.2:12754 - "GET /api/v1/dashboard HTTP/1.1" 200 OK
+INFO:     10.2.18.2:12755 - "OPTIONS /api/v1/books?search=&genre=&language=&page=1&page_size=12 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:12755 - "GET /api/v1/books?search=&genre=&language=&page=1&page_size=12 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:12755 - "GET /c03d8aad-cbec-4c4a-9687-c3775928298e.jpg HTTP/1.1" 200 OK
+INFO:     10.2.18.2:12757 - "GET /6d5fec75-1fd5-4278-8519-af4820e22bd1.jpg HTTP/1.1" 200 OK
+INFO:     10.2.18.2:12761 - "GET /88819f72-dc39-46a9-8d67-4c63477dbf90.jpg HTTP/1.1" 200 OK
+INFO:     10.2.18.2:12760 - "GET /862c5f9b-2809-450f-a7fe-366132354325.jpg HTTP/1.1" 200 OK
+INFO:     10.2.18.2:12758 - "GET /0d912455-7662-4e3b-af90-fd4ef50639f0.jpg HTTP/1.1" 200 OK
+INFO:     10.2.18.2:12762 - "GET /68f49af2-77fd-4c7d-8d29-8fd26c52762f.jpg HTTP/1.1" 200 OK
+INFO:     10.2.18.2:12757 - "GET /4df79cac-382c-4f6e-8553-886df77f79a7.jpg HTTP/1.1" 200 OK
+INFO:     10.2.18.2:12761 - "GET /11697ee9-f32a-465b-9393-afde067aa2b9.jpg HTTP/1.1" 200 OK
+INFO:     10.2.18.2:12757 - "GET /api/v1/requests?page=1&page_size=15 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:12757 - "GET /7c65b8a7-c6c5-44d0-8553-d08b0b9eb6bd.jpg HTTP/1.1" 200 OK
+INFO:     10.2.18.2:12760 - "GET /api/v1/dashboard HTTP/1.1" 200 OK
+INFO:     10.2.18.2:12763 - "POST /api/v1/auth/login HTTP/1.1" 200 OK
+INFO:     10.2.18.2:12763 - "GET /api/v1/dashboard HTTP/1.1" 200 OK
+INFO:     10.2.18.2:12764 - "GET /api/v1/requests?page=1&page_size=15 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:12766 - "GET /api/v1/dashboard HTTP/1.1" 200 OK
+INFO:     10.2.18.2:12913 - "OPTIONS /api/v1/libraries?search=&city=&page=1&page_size=12 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:12913 - "GET /api/v1/libraries?search=&city=&page=1&page_size=12 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:12916 - "OPTIONS /api/v1/books?search=&genre=&language=&page=1&page_size=12&library_id=2 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:12915 - "OPTIONS /api/v1/libraries/mine HTTP/1.1" 200 OK
+INFO:     10.2.18.2:12916 - "GET /api/v1/books?search=&genre=&language=&page=1&page_size=12&library_id=2 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:12915 - "GET /api/v1/libraries/mine HTTP/1.1" 200 OK
+INFO:     10.2.18.2:14402 - "GET /api/v1/dashboard HTTP/1.1" 200 OK
+INFO:     10.2.18.2:22442 - "OPTIONS /api/v1/auth/login HTTP/1.1" 200 OK
+INFO:     10.2.18.2:22442 - "POST /api/v1/auth/login HTTP/1.1" 200 OK
+INFO:     10.2.18.2:22442 - "OPTIONS /api/v1/dashboard HTTP/1.1" 200 OK
+INFO:     10.2.18.2:22442 - "GET /api/v1/dashboard HTTP/1.1" 200 OK
+INFO:     10.2.18.2:22443 - "POST /api/v1/auth/login HTTP/1.1" 401 Unauthorized
+INFO:     10.2.18.2:22433 - "POST /api/v1/auth/login HTTP/1.1" 200 OK
+INFO:     10.2.18.2:22433 - "GET /api/v1/dashboard HTTP/1.1" 200 OK
+INFO:     10.2.18.2:26884 - "POST /api/v1/auth/login HTTP/1.1" 200 OK
+INFO:     10.2.18.2:26884 - "GET /api/v1/dashboard HTTP/1.1" 200 OK
+INFO:     10.2.18.2:22437 - "OPTIONS /api/v1/libraries?search=&city=&page=1&page_size=12 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:22437 - "GET /api/v1/libraries?search=&city=&page=1&page_size=12 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:22433 - "OPTIONS /api/v1/books?search=&genre=&language=&page=1&page_size=12&library_id=2 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:22433 - "GET /api/v1/books?search=&genre=&language=&page=1&page_size=12&library_id=2 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:45495 - "OPTIONS /api/v1/dashboard HTTP/1.1" 200 OK
+INFO:     10.2.18.2:45495 - "GET /api/v1/dashboard HTTP/1.1" 200 OK
+INFO:     10.2.18.2:45496 - "OPTIONS /api/v1/libraries?search=&city=&page=1&page_size=12 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:45496 - "GET /api/v1/libraries?search=&city=&page=1&page_size=12 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:45496 - "OPTIONS /api/v1/books?search=&genre=&language=&page=1&page_size=12 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:45496 - "GET /api/v1/books?search=&genre=&language=&page=1&page_size=12 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:45497 - "OPTIONS /api/v1/requests?page=1&page_size=15 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:45497 - "GET /api/v1/requests?page=1&page_size=15 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:45633 - "OPTIONS /api/v1/auth/login HTTP/1.1" 200 OK
+INFO:     10.2.18.2:45633 - "POST /api/v1/auth/login HTTP/1.1" 200 OK
+INFO:     10.2.18.2:45633 - "GET /api/v1/dashboard HTTP/1.1" 200 OK
+INFO:     10.2.18.2:45634 - "GET /api/v1/requests?page=1&page_size=15 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:55894 - "POST / HTTP/1.1" 405 Method Not Allowed
+INFO:     10.2.18.2:55926 - "POST /_next HTTP/1.1" 405 Method Not Allowed
+INFO:     10.2.18.2:55936 - "POST /api HTTP/1.1" 405 Method Not Allowed
+INFO:     10.2.18.2:55944 - "POST /_next/server HTTP/1.1" 405 Method Not Allowed
+INFO:     10.2.18.2:55956 - "POST /app HTTP/1.1" 405 Method Not Allowed
+INFO:     10.2.18.2:55958 - "POST /api/route HTTP/1.1" 405 Method Not Allowed
+INFO:     10.2.18.2:60928 - "GET / HTTP/1.1" 200 OK
+INFO:     10.2.18.2:50106 - "GET / HTTP/1.1" 200 OK
+INFO:     10.2.18.2:50110 - "GET /favicon.ico HTTP/1.1" 200 OK
+INFO:     10.2.18.2:62914 - "GET /metrics HTTP/1.1" 200 OK
+INFO:     10.2.18.2:31548 - "GET / HTTP/1.1" 200 OK
+INFO:     10.2.18.2:48322 - "GET /favicon.ico HTTP/1.1" 200 OK
+INFO:     10.2.18.2:57218 - "GET / HTTP/1.1" 200 OK
+INFO:     10.2.18.2:59784 - "GET / HTTP/1.1" 200 OK
+INFO:     10.2.18.2:59792 - "GET /favicon.ico HTTP/1.1" 200 OK
+INFO:     10.2.18.2:59796 - "GET /icon-192.png HTTP/1.1" 200 OK
+INFO:     10.2.18.2:59844 - "GET /wiki HTTP/1.1" 200 OK
+INFO:     10.2.18.2:59846 - "GET /favicon.ico HTTP/1.1" 200 OK
+INFO:     10.2.18.2:59870 - "GET /icon-192.png HTTP/1.1" 200 OK
+INFO:     10.2.18.2:59914 - "GET /i_w767mnbz5 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:62988 - "GET /favicon.ico HTTP/1.1" 200 OK
+INFO:     10.2.18.2:63002 - "GET /icon-192.png HTTP/1.1" 200 OK
+INFO:     10.2.18.2:54349 - "OPTIONS /api/v1/auth/login HTTP/1.1" 200 OK
+INFO:     10.2.18.2:54356 - "POST /api/v1/auth/login HTTP/1.1" 401 Unauthorized
+INFO:     10.2.18.2:54371 - "POST /api/v1/auth/login HTTP/1.1" 401 Unauthorized
+INFO:     10.2.18.2:54382 - "POST /api/v1/auth/login HTTP/1.1" 401 Unauthorized
+INFO:     10.2.18.2:54394 - "POST /api/v1/auth/login HTTP/1.1" 401 Unauthorized
+INFO:     10.2.18.2:54414 - "POST /api/v1/auth/login HTTP/1.1" 200 OK
+INFO:     10.2.18.2:54414 - "OPTIONS /api/v1/dashboard HTTP/1.1" 200 OK
+INFO:     10.2.18.2:54417 - "GET /api/v1/dashboard HTTP/1.1" 200 OK
+INFO:     10.2.18.2:54433 - "OPTIONS /api/v1/requests?page=1&page_size=15 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:54434 - "GET /api/v1/requests?page=1&page_size=15 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:60912 - "GET / HTTP/1.1" 200 OK
+INFO:     10.2.18.2:40968 - "GET / HTTP/1.1" 200 OK
+INFO:     10.2.18.2:65104 - "OPTIONS /api/v1/auth/login HTTP/1.1" 400 Bad Request
+INFO:     10.2.18.2:65111 - "OPTIONS /api/v1/auth/login HTTP/1.1" 400 Bad Request
+INFO:     10.2.18.2:65112 - "OPTIONS /api/v1/auth/login HTTP/1.1" 400 Bad Request
+INFO:     10.2.18.2:65124 - "OPTIONS /api/v1/auth/register HTTP/1.1" 400 Bad Request
+INFO:     10.2.18.2:41143 - "GET / HTTP/1.1" 200 OK
+INFO:     10.2.18.2:51563 - "GET /favicon.ico HTTP/1.1" 200 OK
+INFO:     10.2.18.2:43280 - "OPTIONS /api/v1/auth/login HTTP/1.1" 400 Bad Request
+INFO:     10.2.18.2:43290 - "OPTIONS /api/v1/auth/login HTTP/1.1" 400 Bad Request
+INFO:     10.2.18.2:43296 - "OPTIONS /api/v1/auth/login HTTP/1.1" 400 Bad Request
+INFO:     10.2.18.2:43298 - "OPTIONS /api/v1/auth/login HTTP/1.1" 400 Bad Request
+INFO:     10.2.18.2:43312 - "OPTIONS /api/v1/auth/login HTTP/1.1" 200 OK
+INFO:     10.2.18.2:43312 - "POST /api/v1/auth/login HTTP/1.1" 200 OK
+INFO:     10.2.18.2:43312 - "OPTIONS /api/v1/dashboard HTTP/1.1" 200 OK
+INFO:     10.2.18.2:43314 - "GET /api/v1/dashboard HTTP/1.1" 200 OK
+INFO:     10.2.18.2:43340 - "GET /api/v1/dashboard HTTP/1.1" 200 OK
+INFO:     10.2.18.2:38254 - "OPTIONS /api/v1/auth/login HTTP/1.1" 400 Bad Request
+INFO:     10.2.18.2:54926 - "OPTIONS /api/v1/auth/login HTTP/1.1" 200 OK
+INFO:     10.2.18.2:54926 - "POST /api/v1/auth/login HTTP/1.1" 200 OK
+INFO:     10.2.18.2:54926 - "OPTIONS /api/v1/dashboard HTTP/1.1" 200 OK
+INFO:     10.2.18.2:54938 - "GET /api/v1/dashboard HTTP/1.1" 200 OK
+INFO:     10.2.18.2:52036 - "GET /api/v1/dashboard HTTP/1.1" 200 OK
+INFO:     10.2.18.2:47348 - "OPTIONS /api/v1/libraries?search=&city=&page=1&page_size=12 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:47358 - "GET /api/v1/libraries?search=&city=&page=1&page_size=12 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:33060 - "OPTIONS /api/v1/auth/login HTTP/1.1" 400 Bad Request
+INFO:     10.2.18.2:62460 - "GET / HTTP/1.1" 200 OK
+INFO:     10.2.18.2:50070 - "GET / HTTP/1.1" 200 OK
+INFO:     10.2.18.2:50076 - "GET /favicon.ico HTTP/1.1" 200 OK
+INFO:     10.2.18.2:34062 - "GET / HTTP/1.1" 200 OK
+INFO:     10.2.18.2:9280 - "GET /favicon.ico HTTP/1.1" 200 OK
+INFO:     10.2.18.2:58226 - "GET /metrics HTTP/1.1" 200 OK
+INFO:     10.2.18.2:39428 - "OPTIONS /api/v1/dashboard HTTP/1.1" 200 OK
+INFO:     10.2.18.2:39428 - "GET /api/v1/dashboard HTTP/1.1" 200 OK
+INFO:     10.2.18.2:39428 - "GET /api/v1/dashboard HTTP/1.1" 200 OK
+INFO:     10.2.18.2:11540 - "OPTIONS /api/v1/auth/login HTTP/1.1" 200 OK
+INFO:     10.2.18.2:11540 - "POST /api/v1/auth/login HTTP/1.1" 200 OK
+INFO:     10.2.18.2:11540 - "OPTIONS /api/v1/dashboard HTTP/1.1" 200 OK
+INFO:     10.2.18.2:11544 - "GET /api/v1/dashboard HTTP/1.1" 200 OK
+INFO:     10.2.18.2:11553 - "OPTIONS /api/v1/requests?page=1&page_size=15 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:11553 - "GET /api/v1/requests?page=1&page_size=15 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:7068 - "GET / HTTP/1.1" 200 OK
+INFO:     10.2.18.2:7088 - "GET /favicon.ico HTTP/1.1" 200 OK
+INFO:     10.2.18.2:7104 - "GET /icon-192.png HTTP/1.1" 200 OK
+INFO:     10.2.18.2:62047 - "GET /.well-known/security.txt HTTP/1.1" 200 OK
+INFO:     10.2.18.2:57744 - "GET /favicon.ico HTTP/1.1" 200 OK
+INFO:     10.2.18.2:57766 - "GET /icon-192.png HTTP/1.1" 200 OK
+INFO:     10.2.18.2:57802 - "GET /zcgaqrkzbwe7loh7 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:57836 - "GET /favicon.ico HTTP/1.1" 200 OK
+INFO:     10.2.18.2:12426 - "GET /icon-192.png HTTP/1.1" 200 OK
+INFO:     10.2.18.2:51896 - "OPTIONS /api/v1/dashboard HTTP/1.1" 200 OK
+INFO:     10.2.18.2:51896 - "GET /api/v1/dashboard HTTP/1.1" 401 Unauthorized
+INFO:     10.2.18.2:35792 - "GET / HTTP/1.1" 200 OK
+INFO:     10.2.18.2:57892 - "OPTIONS /api/v1/auth/login HTTP/1.1" 200 OK
+INFO:     10.2.18.2:57892 - "POST /api/v1/auth/login HTTP/1.1" 401 Unauthorized
+INFO:     10.2.18.2:57896 - "POST /api/v1/auth/login HTTP/1.1" 200 OK
+INFO:     10.2.18.2:57896 - "OPTIONS /api/v1/dashboard HTTP/1.1" 200 OK
+INFO:     10.2.18.2:57900 - "GET /api/v1/dashboard HTTP/1.1" 200 OK
+INFO:     10.2.18.2:57901 - "OPTIONS /api/v1/libraries?search=&city=&page=1&page_size=12 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:57900 - "GET /api/v1/libraries?search=&city=&page=1&page_size=12 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:57900 - "GET /api/v1/dashboard HTTP/1.1" 200 OK
+INFO:     10.2.18.2:57901 - "OPTIONS /api/v1/libraries/mine HTTP/1.1" 200 OK
+INFO:     10.2.18.2:57900 - "OPTIONS /api/v1/books?search=&genre=&language=&page=1&page_size=12 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:57901 - "GET /api/v1/libraries/mine HTTP/1.1" 200 OK
+INFO:     10.2.18.2:57900 - "GET /api/v1/books?search=&genre=&language=&page=1&page_size=12 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:57900 - "GET /6d5fec75-1fd5-4278-8519-af4820e22bd1.jpg HTTP/1.1" 304 Not Modified
+INFO:     10.2.18.2:57901 - "GET /862c5f9b-2809-450f-a7fe-366132354325.jpg HTTP/1.1" 304 Not Modified
+INFO:     10.2.18.2:57904 - "GET /4df79cac-382c-4f6e-8553-886df77f79a7.jpg HTTP/1.1" 304 Not Modified
+INFO:     10.2.18.2:57902 - "GET /0d912455-7662-4e3b-af90-fd4ef50639f0.jpg HTTP/1.1" 304 Not Modified
+INFO:     10.2.18.2:57903 - "GET /68f49af2-77fd-4c7d-8d29-8fd26c52762f.jpg HTTP/1.1" 304 Not Modified
+INFO:     10.2.18.2:57905 - "GET /7c65b8a7-c6c5-44d0-8553-d08b0b9eb6bd.jpg HTTP/1.1" 304 Not Modified
+INFO:     10.2.18.2:57901 - "GET /11697ee9-f32a-465b-9393-afde067aa2b9.jpg HTTP/1.1" 304 Not Modified
+INFO:     10.2.18.2:57900 - "OPTIONS /api/v1/requests?page=1&page_size=15 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:57900 - "GET /api/v1/requests?page=1&page_size=15 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:57906 - "GET /api/v1/books?search=&genre=&language=&page=1&page_size=12 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:57907 - "GET /api/v1/libraries/mine HTTP/1.1" 200 OK
+INFO:     10.2.18.2:57908 - "GET /api/v1/dashboard HTTP/1.1" 200 OK
+INFO:     10.2.18.2:57908 - "GET /api/v1/libraries?search=&city=&page=1&page_size=12 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:57908 - "GET /api/v1/dashboard HTTP/1.1" 200 OK
+INFO:     10.2.18.2:64591 - "OPTIONS /api/v1/dashboard HTTP/1.1" 200 OK
+INFO:     10.2.18.2:64591 - "GET /api/v1/dashboard HTTP/1.1" 200 OK
+INFO:     10.2.18.2:64592 - "OPTIONS /api/v1/libraries?search=&city=&page=1&page_size=12 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:64592 - "GET /api/v1/libraries?search=&city=&page=1&page_size=12 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:64594 - "OPTIONS /api/v1/books?search=&genre=&language=&page=1&page_size=12&library_id=2 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:64593 - "OPTIONS /api/v1/libraries/mine HTTP/1.1" 200 OK
+INFO:     10.2.18.2:64593 - "GET /api/v1/libraries/mine HTTP/1.1" 200 OK
+INFO:     10.2.18.2:64594 - "GET /api/v1/books?search=&genre=&language=&page=1&page_size=12&library_id=2 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:64595 - "OPTIONS /api/v1/requests?page=1&page_size=15 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:64595 - "GET /api/v1/requests?page=1&page_size=15 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:63880 - "GET / HTTP/1.1" 200 OK
+INFO:     10.2.18.2:39356 - "GET / HTTP/1.1" 200 OK
+INFO:     10.2.18.2:44310 - "GET / HTTP/1.1" 200 OK
+INFO:     10.2.18.2:58490 - "GET /metrics HTTP/1.1" 200 OK
+INFO:     10.2.18.2:8036 - "GET / HTTP/1.1" 200 OK
+INFO:     10.2.18.2:33795 - "GET /favicon.ico HTTP/1.1" 200 OK
+INFO:     10.2.18.2:52264 - "GET / HTTP/1.1" 200 OK
+INFO:     10.2.18.2:52278 - "GET /favicon.ico HTTP/1.1" 200 OK
+INFO:     10.2.18.2:52294 - "GET /icon-192.png HTTP/1.1" 200 OK
+INFO:     10.2.18.2:34880 - "GET /robots.txt HTTP/1.1" 200 OK
+INFO:     10.2.18.2:34896 - "GET /favicon.ico HTTP/1.1" 200 OK
+INFO:     10.2.18.2:34912 - "GET /icon-192.png HTTP/1.1" 200 OK
+INFO:     10.2.18.2:39242 - "GET /5dxqm_903 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:39256 - "GET /favicon.ico HTTP/1.1" 200 OK
+INFO:     10.2.18.2:39264 - "GET /icon-192.png HTTP/1.1" 200 OK
+INFO:     10.2.18.2:60670 - "OPTIONS /api/v1/requests?page=1&page_size=15 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:60670 - "GET /api/v1/requests?page=1&page_size=15 HTTP/1.1" 401 Unauthorized
+INFO:     10.2.18.2:63916 - "GET / HTTP/1.1" 200 OK
+INFO:     10.2.18.2:12626 - "GET / HTTP/1.1" 200 OK
+INFO:     10.2.18.2:27340 - "GET /favicon.ico HTTP/1.1" 200 OK
+INFO:     10.2.18.2:38298 - "GET / HTTP/1.1" 200 OK
+INFO:     10.2.18.2:57118 - "GET / HTTP/1.1" 200 OK
+INFO:     10.2.18.2:8442 - "GET / HTTP/1.1" 200 OK
+INFO:     10.2.18.2:8466 - "GET /favicon.ico HTTP/1.1" 200 OK
+INFO:     10.2.18.2:49058 - "GET /icon-192.png HTTP/1.1" 200 OK
+INFO:     10.2.18.2:13206 - "GET /login HTTP/1.1" 200 OK
+INFO:     10.2.18.2:13210 - "GET /favicon.ico HTTP/1.1" 200 OK
+INFO:     10.2.18.2:13212 - "GET /icon-192.png HTTP/1.1" 200 OK
+INFO:     10.2.18.2:51030 - "GET /13fcn53mma HTTP/1.1" 200 OK
+INFO:     10.2.18.2:51046 - "GET /favicon.ico HTTP/1.1" 200 OK
+INFO:     10.2.18.2:53916 - "GET /icon-192.png HTTP/1.1" 200 OK
+INFO:     10.2.18.2:38904 - "GET / HTTP/1.1" 200 OK
+INFO:     10.2.18.2:62791 - "OPTIONS /api/v1/dashboard HTTP/1.1" 200 OK
+INFO:     10.2.18.2:62791 - "GET /api/v1/dashboard HTTP/1.1" 401 Unauthorized
+INFO:     10.2.18.2:65032 - "GET / HTTP/1.1" 200 OK
+INFO:     10.2.18.2:49348 - "GET / HTTP/1.1" 200 OK
+INFO:     10.2.18.2:36574 - "GET / HTTP/1.1" 200 OK
