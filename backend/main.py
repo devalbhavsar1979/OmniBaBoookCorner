@@ -7,7 +7,7 @@ from fastapi.staticfiles import StaticFiles
 
 from config.settings import get_settings
 from config.database import engine, Base
-from routers import auth_router, library_router, book_router, request_router, dashboard_router
+from routers import auth_router, library_router, book_router, request_router, dashboard_router, user_router
 from starlette.middleware.cors import CORSMiddleware
 
 
@@ -78,6 +78,7 @@ app.include_router(library_router, prefix=API_PREFIX)
 app.include_router(book_router, prefix=API_PREFIX)
 app.include_router(request_router, prefix=API_PREFIX)
 app.include_router(dashboard_router, prefix=API_PREFIX)
+app.include_router(user_router, prefix=API_PREFIX)
 
 # ── Static file serving for uploaded images ───────────────────────────────────
 app.mount("/uploads", StaticFiles(directory=settings.UPLOAD_DIR), name="uploads")

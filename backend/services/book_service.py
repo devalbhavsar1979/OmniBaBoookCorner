@@ -2,11 +2,12 @@ import os
 import uuid
 import logging
 import aiofiles
+from datetime import datetime
 from typing import Optional
 from sqlalchemy.orm import Session
 from fastapi import HTTPException, UploadFile
 
-from models.models import Book, Library, User, UserRole, BookStatus
+from models.models import Book, BookRequest, Library, User, UserRole, BookStatus
 from schemas.schemas import BookCreate, BookUpdate
 from config.settings import get_settings
 
@@ -156,9 +157,9 @@ def delete_book(db: Session, book_id: int, owner: User) -> None:
 
 
 def issue_book(db: Session, book_id: int, payload, owner: User):
-    """Issue a book to a reader. Creates a BookRequest and marks book as ISSUED.
+    """Issue a book directly to a reader. Creates a BookRequest and marks book as ISSUED.
 
-    payload: BookRequestCreate (has book_id, delivery_address, delivery_notes)
+    payload: BookIssueRequest (has reader_id, delivery_address)
     """
     # Fetch book
     book = db.query(Book).filter(Book.id == book_id).with_for_update().first()
@@ -174,15 +175,16 @@ def issue_book(db: Session, book_id: int, payload, owner: User):
     if book.status != BookStatus.AVAILABLE:
         raise HTTPException(status_code=400, detail="Book is not available for issuing")
 
-    # Validate reader exists
-    reader = db.query(User).filter(User.id == payload.book_id and False).first()
-    # Note: payload.book_id exists but the reader id will be provided via payload.reader_id when called by router
-    # We'll attempt to read reader_id attribute safely
+    # Validate reader exists and is an active reader
     reader_id = getattr(payload, 'reader_id', None)
     if not reader_id:
         raise HTTPException(status_code=400, detail="reader_id is required")
 
-    reader = db.query(User).filter(User.id == reader_id, User.is_active == True).first()
+    reader = db.query(User).filter(
+        User.id == reader_id,
+        User.role == UserRole.READER,
+        User.is_active == True,
+    ).first()
     if not reader:
         raise HTTPException(status_code=404, detail="Reader not found")
 

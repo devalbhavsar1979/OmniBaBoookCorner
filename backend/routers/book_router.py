@@ -6,7 +6,7 @@ from schemas.schemas import BookOut, PaginatedResponse
 from services import book_service
 from routers.dependencies import get_current_user, require_role
 from models.models import User, UserRole, BookStatus
-from schemas.schemas import BookRequestCreate, BookRequestOut
+from schemas.schemas import BookIssueRequest, BookRequestOut
 
 router = APIRouter(prefix="/books", tags=["Books"])
 
@@ -101,10 +101,10 @@ def delete_book(
 @router.post("/{book_id}/issue", response_model=BookRequestOut)
 def issue_book(
     book_id: int,
-    payload: BookRequestCreate,
+    payload: BookIssueRequest,
     db: Session = Depends(get_db),
     current_user: User = Depends(require_role(UserRole.OWNER)),
 ):
-    """Issue a book to a reader (owner only). Creates a BookRequest and updates book status to ISSUED."""
+    """Issue a book directly to a reader (owner only). Creates a BookRequest and updates book status to ISSUED."""
     # service will perform permission checks (owner of library)
     return book_service.issue_book(db, book_id, payload, current_user)
