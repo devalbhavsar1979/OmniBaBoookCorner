@@ -140,6 +140,12 @@ class BookRequestCreate(BaseModel):
     delivery_notes: Optional[str] = None
 
 
+class BookIssueRequest(BaseModel):
+    reader_id: int
+    delivery_address: str
+    delivery_notes: Optional[str] = None
+
+
 class BookRequestOut(BaseModel):
     id: int
     book_id: int

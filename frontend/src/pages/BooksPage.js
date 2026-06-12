@@ -3,6 +3,7 @@ import { bookApi, libraryApi, requestApi, getImageUrl } from '../services/api';
 import { useAuth } from '../context/AuthContext';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Spinner, Modal, Pagination, EmptyState, Alert, StatusBadge, ConfirmModal } from '../components/common';
+import UserSearchPopup from '../components/UserSearchPopup';
 
 const GENRES = ['Fiction', 'Non-Fiction', 'Science', 'History', 'Biography', 'Self-Help', 'Children', 'Poetry', 'Philosophy', 'Religion', 'Technology', 'Other'];
 const LANGUAGES = ['English', 'Gujarati', 'Hindi', 'Marathi', 'Bengali', 'Tamil', 'Telugu', 'Kannada', 'Urdu', 'Other'];
@@ -181,6 +182,7 @@ export default function BooksPage() {
   const [editBook, setEditBook] = useState(null);
   const [deleteBook, setDeleteBook] = useState(null);
   const [requestBook, setRequestBook] = useState(null);
+  const [issueBook, setIssueBook] = useState(null);
   const [viewBook, setViewBook] = useState(null);
 
   const PAGE_SIZE = 12;
@@ -331,6 +333,11 @@ export default function BooksPage() {
                           Request
                         </button>
                       )}
+                      {isOwner && book.status === 'AVAILABLE' && (
+                        <button className="btn btn-warning btn-sm" onClick={() => setIssueBook(book)}>
+                          Issue
+                        </button>
+                      )}
                       {isOwner && (
                         <>
                           <button className="btn btn-secondary btn-sm" onClick={() => setEditBook(book)}>Edit</button>
@@ -384,6 +391,12 @@ export default function BooksPage() {
       {requestBook && (
         <Modal title="Request Book" onClose={() => setRequestBook(null)}>
           <RequestModal book={requestBook} onClose={() => setRequestBook(null)} onRequested={load} />
+        </Modal>
+      )}
+
+      {issueBook && (
+        <Modal title="Issue Book" onClose={() => setIssueBook(null)}>
+          <UserSearchPopup book={issueBook} onClose={() => setIssueBook(null)} onIssued={load} />
         </Modal>
       )}
 

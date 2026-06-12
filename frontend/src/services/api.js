@@ -67,6 +67,7 @@ export const bookApi = {
       headers: { 'Content-Type': 'multipart/form-data' },
     }),
   delete: (id) => api.delete(`/books/${id}`),
+  issue: (id, data) => api.post(`/books/${id}/issue`, data),
 };
 
 // ── Requests ──────────────────────────────────────────────────────────────────

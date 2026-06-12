@@ -153,3 +153,55 @@ def delete_book(db: Session, book_id: int, owner: User) -> None:
         raise HTTPException(status_code=400, detail="Cannot delete a book that is currently in use")
     db.delete(book)
     db.commit()
+
+
+def issue_book(db: Session, book_id: int, payload, owner: User):
+    """Issue a book to a reader. Creates a BookRequest and marks book as ISSUED.
+
+    payload: BookRequestCreate (has book_id, delivery_address, delivery_notes)
+    """
+    # Fetch book
+    book = db.query(Book).filter(Book.id == book_id).with_for_update().first()
+    if not book:
+        raise HTTPException(status_code=404, detail="Book not found")
+
+    # Verify owner owns the library
+    lib = db.query(Library).filter(Library.id == book.library_id, Library.is_active == True).first()
+    if not lib or lib.owner_id != owner.id:
+        raise HTTPException(status_code=403, detail="Not authorized for this library")
+
+    # Only allow issuing when book is AVAILABLE (you can extend this logic)
+    if book.status != BookStatus.AVAILABLE:
+        raise HTTPException(status_code=400, detail="Book is not available for issuing")
+
+    # Validate reader exists
+    reader = db.query(User).filter(User.id == payload.book_id and False).first()
+    # Note: payload.book_id exists but the reader id will be provided via payload.reader_id when called by router
+    # We'll attempt to read reader_id attribute safely
+    reader_id = getattr(payload, 'reader_id', None)
+    if not reader_id:
+        raise HTTPException(status_code=400, detail="reader_id is required")
+
+    reader = db.query(User).filter(User.id == reader_id, User.is_active == True).first()
+    if not reader:
+        raise HTTPException(status_code=404, detail="Reader not found")
+
+    # Create BookRequest
+    br = BookRequest(
+        book_id=book.id,
+        reader_id=reader.id,
+        volunteer_id=None,
+        delivery_address=payload.delivery_address,
+        delivery_notes=getattr(payload, 'delivery_notes', None),
+        status=BookStatus.ISSUED,
+        issued_at=datetime.utcnow(),
+    )
+    db.add(br)
+
+    # Update book status
+    book.status = BookStatus.ISSUED
+
+    db.commit()
+    db.refresh(br)
+    db.refresh(book)
+    return br
