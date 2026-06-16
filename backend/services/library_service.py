@@ -38,9 +38,10 @@ def get_libraries(
     total = query.count()
     items = query.offset((page - 1) * page_size).limit(page_size).all()
 
-    # attach book counts
+    # attach book counts and owner name
     for lib in items:
         lib.book_count = db.query(func.count(Book.id)).filter(Book.library_id == lib.id).scalar()
+        lib.owner_name = lib.owner.full_name if lib.owner else None
 
     return items, total
 
@@ -50,6 +51,7 @@ def get_library_by_id(db: Session, library_id: int) -> Library:
     if not lib:
         raise HTTPException(status_code=404, detail="Library not found")
     lib.book_count = db.query(func.count(Book.id)).filter(Book.library_id == lib.id).scalar()
+    lib.owner_name = lib.owner.full_name if lib.owner else None
     return lib
 
 
@@ -57,6 +59,7 @@ def get_my_libraries(db: Session, owner: User) -> list[Library]:
     libs = db.query(Library).filter(Library.owner_id == owner.id).all()
     for lib in libs:
         lib.book_count = db.query(func.count(Book.id)).filter(Book.library_id == lib.id).scalar()
+        lib.owner_name = lib.owner.full_name if lib.owner else None
     return libs
 
 

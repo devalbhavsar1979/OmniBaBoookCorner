@@ -7,7 +7,7 @@ const STAT_META = [
   { key: 'total_libraries', label: 'Libraries',  icon: '🏛️', color: '#1E4D8C' },
   { key: 'total_books',     label: 'Books',      icon: '📚', color: '#2E8B57' },
   { key: 'total_requests',  label: 'Requests',   icon: '📋', color: '#0F766E' },
-  { key: 'total_users',     label: 'Members',    icon: '👥', color: '#7C3AED' },
+  { key: 'total_users',     label: 'Readers',    icon: '👥', color: '#7C3AED' },
 ];
 
 function BarChart({ data, labelKey, countKey, color = '#1E4D8C' }) {
@@ -83,7 +83,12 @@ export default function DashboardPage() {
     <>
       <div className="page-header">
         <h2>Dashboard</h2>
-        <p>Welcome back, {user?.full_name} — here's your network overview</p>
+        <p>
+          Welcome back, {user?.full_name} —{' '}
+          {user?.role === 'OWNER'
+            ? "here's an overview of your libraries"
+            : "here's your network overview"}
+        </p>
       </div>
 
       <div className="page-content">

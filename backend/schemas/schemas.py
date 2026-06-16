@@ -86,6 +86,7 @@ class LibraryOut(BaseModel):
     contact_email: Optional[str]
     contact_phone: Optional[str]
     owner_id: int
+    owner_name: Optional[str] = None
     is_active: bool
     created_at: datetime
     book_count: Optional[int] = 0
@@ -122,6 +123,9 @@ class BookOut(BaseModel):
     back_image: Optional[str]
     status: BookStatus
     library_id: int
+    library_name: Optional[str] = None
+    library_owner_name: Optional[str] = None
+    issued_to_reader_name: Optional[str] = None
     created_at: datetime
     updated_at: datetime
 

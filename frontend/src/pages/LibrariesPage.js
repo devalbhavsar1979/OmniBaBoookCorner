@@ -200,6 +200,11 @@ export default function LibrariesPage() {
                     <p style={{ fontSize: '0.8rem', color: 'var(--muted)', marginBottom: 8 }}>
                       {lib.city}, {lib.state}
                     </p>
+                    {lib.owner_name && (
+                      <p style={{ fontSize: '0.8rem', color: 'var(--charcoal)', marginBottom: 8 }}>
+                        👤 Owner: {lib.owner_name}
+                      </p>
+                    )}
                     {lib.description && (
                       <p style={{ fontSize: '0.85rem', color: 'var(--charcoal)', marginBottom: 10, flex: 1 }}>
                         {lib.description}

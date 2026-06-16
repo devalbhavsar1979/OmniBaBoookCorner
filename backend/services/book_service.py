@@ -135,13 +135,34 @@ def get_books(
 
     total = query.count()
     items = query.offset((page - 1) * page_size).limit(page_size).all()
+    _attach_display_fields(db, items)
     return items, total
+
+
+def _attach_display_fields(db: Session, books: list) -> None:
+    """Attach library_name, library_owner_name and (if issued) issued_to_reader_name."""
+    for book in books:
+        lib = book.library
+        book.library_name = lib.name if lib else None
+        book.library_owner_name = lib.owner.full_name if (lib and lib.owner) else None
+
+        book.issued_to_reader_name = None
+        if book.status == BookStatus.ISSUED:
+            active_request = (
+                db.query(BookRequest)
+                .filter(BookRequest.book_id == book.id, BookRequest.status == BookStatus.ISSUED)
+                .order_by(BookRequest.issued_at.desc())
+                .first()
+            )
+            if active_request and active_request.reader:
+                book.issued_to_reader_name = active_request.reader.full_name
 
 
 def get_book_by_id(db: Session, book_id: int) -> Book:
     book = db.query(Book).filter(Book.id == book_id).first()
     if not book:
         raise HTTPException(status_code=404, detail="Book not found")
+    _attach_display_fields(db, [book])
     return book
 
 

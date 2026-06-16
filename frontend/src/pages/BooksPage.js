@@ -317,6 +317,17 @@ export default function BooksPage() {
                   <div className="book-card-body">
                     <div className="book-card-title">{book.title}</div>
                     <div className="book-card-author">by {book.author}</div>
+                    {book.library_name && (
+                      <div style={{ fontSize: '0.75rem', color: 'var(--muted)', marginTop: 2 }}>
+                        🏛️ {book.library_name}
+                        {book.library_owner_name && <> — Owner: {book.library_owner_name}</>}
+                      </div>
+                    )}
+                    {book.status === 'ISSUED' && book.issued_to_reader_name && (
+                      <div style={{ fontSize: '0.75rem', color: 'var(--muted)', marginTop: 2 }}>
+                        📖 Issued to: {book.issued_to_reader_name}
+                      </div>
+                    )}
                     <div className="book-card-meta">
                       <span className="book-card-tag">{book.genre}</span>
                       <span className="book-card-tag">{book.language}</span>
