@@ -538,7 +538,7 @@ tbody tr:hover { background: var(--surface); }
   height: 180px;
   background: var(--grad-card);
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   overflow: hidden;
   position: relative;
@@ -548,6 +548,7 @@ tbody tr:hover { background: var(--surface); }
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: top;
 }
 
 .book-card-image .no-image {

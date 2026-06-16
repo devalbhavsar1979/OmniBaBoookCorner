@@ -156,9 +156,10 @@ function RequestModal({ book, onClose, onRequested }) {
 }
 
 export default function BooksPage() {
-  const { user, isRole } = useAuth();
+  const { user, isRole, isSuperAdmin } = useAuth();
   const isOwner = isRole('OWNER');
   const isReader = isRole('READER');
+  const canManage = isOwner || isSuperAdmin;
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -221,10 +222,10 @@ export default function BooksPage() {
   useEffect(() => { load(); }, [load]);
 
   useEffect(() => {
-    if (isOwner) {
+    if (canManage) {
       libraryApi.mine().then((res) => setMyLibraries(res.data)).catch(console.error);
     }
-  }, [isOwner]);
+  }, [canManage]);
 
   const handleDelete = async () => {
     try {
@@ -247,7 +248,7 @@ export default function BooksPage() {
               {activeLibraryName ? ` in ${activeLibraryName}` : ' across all libraries'}
             </p>
           </div>
-          {isOwner && myLibraries.length > 0 && (
+          {canManage && myLibraries.length > 0 && (
             <button className="btn btn-primary" onClick={() => setShowAdd(true)}>
               + Add Book
             </button>
@@ -344,12 +345,12 @@ export default function BooksPage() {
                           Request
                         </button>
                       )}
-                      {isOwner && book.status === 'AVAILABLE' && (
+                      {canManage && book.status === 'AVAILABLE' && (
                         <button className="btn btn-warning btn-sm" onClick={() => setIssueBook(book)}>
                           Issue
                         </button>
                       )}
-                      {isOwner && (
+                      {canManage && (
                         <>
                           <button className="btn btn-secondary btn-sm" onClick={() => setEditBook(book)}>Edit</button>
                           <button className="btn btn-danger btn-sm" onClick={() => setDeleteBook(book)}>Del</button>

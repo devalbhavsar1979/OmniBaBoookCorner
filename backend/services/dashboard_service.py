@@ -14,9 +14,7 @@ def get_dashboard_stats(db: Session, current_user: User) -> DashboardStats:
     - "total_users" (displayed as "Readers") always shows the count of all
       registered, active Readers in the system, regardless of role.
     """
-    is_owner = current_user.role == UserRole.OWNER
-
-    book_query = db.query(Book)
+    is_owner = current_user.role == UserRole.OWNER    book_query = db.query(Book)
     request_query = db.query(BookRequest)
 
     if is_owner:

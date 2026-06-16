@@ -37,7 +37,7 @@ def _check_library_owner(db: Session, library_id: int, owner: User) -> Library:
     lib = db.query(Library).filter(Library.id == library_id, Library.is_active == True).first()
     if not lib:
         raise HTTPException(status_code=404, detail="Library not found")
-    if lib.owner_id != owner.id:
+    if owner.role != UserRole.SUPER_ADMIN and lib.owner_id != owner.id:
         raise HTTPException(status_code=403, detail="Not authorized for this library")
     return lib
 

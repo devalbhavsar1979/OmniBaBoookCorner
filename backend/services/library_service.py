@@ -11,7 +11,7 @@ logger = logging.getLogger(__name__)
 
 
 def create_library(db: Session, payload: LibraryCreate, owner: User) -> Library:
-    if owner.role != UserRole.OWNER:
+    if owner.role not in (UserRole.OWNER, UserRole.SUPER_ADMIN):
         raise HTTPException(status_code=403, detail="Only Library Owners can create libraries")
     lib = Library(**payload.model_dump(), owner_id=owner.id)
     db.add(lib)
@@ -56,7 +56,10 @@ def get_library_by_id(db: Session, library_id: int) -> Library:
 
 
 def get_my_libraries(db: Session, owner: User) -> list[Library]:
-    libs = db.query(Library).filter(Library.owner_id == owner.id).all()
+    if owner.role == UserRole.SUPER_ADMIN:
+        libs = db.query(Library).filter(Library.is_active == True).all()
+    else:
+        libs = db.query(Library).filter(Library.owner_id == owner.id).all()
     for lib in libs:
         lib.book_count = db.query(func.count(Book.id)).filter(Book.library_id == lib.id).scalar()
         lib.owner_name = lib.owner.full_name if lib.owner else None
@@ -67,7 +70,7 @@ def update_library(db: Session, library_id: int, payload: LibraryUpdate, owner: 
     lib = db.query(Library).filter(Library.id == library_id).first()
     if not lib:
         raise HTTPException(status_code=404, detail="Library not found")
-    if lib.owner_id != owner.id:
+    if owner.role != UserRole.SUPER_ADMIN and lib.owner_id != owner.id:
         raise HTTPException(status_code=403, detail="Not authorized to update this library")
 
     for field, value in payload.model_dump(exclude_unset=True).items():
@@ -82,7 +85,7 @@ def delete_library(db: Session, library_id: int, owner: User) -> None:
     lib = db.query(Library).filter(Library.id == library_id).first()
     if not lib:
         raise HTTPException(status_code=404, detail="Library not found")
-    if lib.owner_id != owner.id:
+    if owner.role != UserRole.SUPER_ADMIN and lib.owner_id != owner.id:
         raise HTTPException(status_code=403, detail="Not authorized")
     lib.is_active = False
     db.commit()

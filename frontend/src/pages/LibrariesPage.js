@@ -74,6 +74,8 @@ function LibraryForm({ initial = BLANK, onSubmit, loading, error }) {
 export default function LibrariesPage() {
   const { user, isRole } = useAuth();
   const isOwner = isRole('OWNER');
+  const { isSuperAdmin } = useAuth();
+  const canManage = isOwner || isSuperAdmin;
   const navigate = useNavigate();
 
   const [libraries, setLibraries] = useState([]);
@@ -160,9 +162,9 @@ export default function LibrariesPage() {
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
           <div>
             <h2>Libraries</h2>
-            <p>{total} {total === 1 ? 'library' : 'libraries'} {isOwner ? 'in your network' : 'in the network'}</p>
+            <p>{total} {total === 1 ? 'library' : 'libraries'} {canManage ? 'in your network' : 'in the network'}</p>
           </div>
-          {isOwner && (
+          {canManage && (
             <button className="btn btn-primary" onClick={() => { setFormError(''); setShowCreate(true); }}>
               + New Library
             </button>
@@ -244,7 +246,7 @@ export default function LibrariesPage() {
                       >
                         📚 View Books
                       </button>
-                      {isOwner && lib.owner_id === user.id && (
+                      {(isSuperAdmin || (isOwner && lib.owner_id === user.id)) && (
                         <>
                           <button className="btn btn-secondary btn-sm" onClick={() => { setFormError(''); setEditLib(lib); }}>
                             Edit
