@@ -9,10 +9,10 @@ from config.database import Base
 
 
 class UserRole(str, enum.Enum):
+    SUPER_ADMIN = "SUPER_ADMIN"
     OWNER = "OWNER"
     READER = "READER"
     VOLUNTEER = "VOLUNTEER"
-
 
 class BookStatus(str, enum.Enum):
     AVAILABLE = "AVAILABLE"

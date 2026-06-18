@@ -41,9 +41,10 @@ export function AuthProvider({ children }) {
   }, []);
 
   const isRole = useCallback((role) => user?.role === role, [user]);
+  const isSuperAdmin = user?.role === 'SUPER_ADMIN';
 
   return (
-    <AuthContext.Provider value={{ user, loading, login, register, logout, isRole }}>
+    <AuthContext.Provider value={{ user, loading, login, register, logout, isRole, isSuperAdmin }}>
       {children}
     </AuthContext.Provider>
   );

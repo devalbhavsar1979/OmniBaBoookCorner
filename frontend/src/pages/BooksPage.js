@@ -307,56 +307,58 @@ export default function BooksPage() {
         ) : (
           <>
             <div className="card-grid">
-              {books.map((book) => (
+              {books.map((book, idx) => (
                 <div key={book.id} className="book-card">
-                  <div className="book-card-image">
-                    {book.front_image
-                      ? <img src={getImageUrl(book.front_image)} alt={book.title} />
-                      : <span className="no-image">B</span>
-                    }
+                  <div className={`book-card-top${idx % 2 === 1 ? ' book-card-top-reverse' : ''}`}>
+                    <div className="book-card-body">
+                      <div className="book-card-title">{book.title}</div>
+                      <div className="book-card-author">by {book.author}</div>
+                      {book.library_name && (
+                        <div style={{ fontSize: '0.75rem', color: 'var(--muted)', marginTop: 2 }}>
+                          🏛️ {book.library_name}
+                          {book.library_owner_name && <> — Owner: {book.library_owner_name}</>}
+                        </div>
+                      )}
+                      {book.status === 'ISSUED' && book.issued_to_reader_name && (
+                        <div style={{ fontSize: '0.75rem', color: 'var(--muted)', marginTop: 2 }}>
+                          📖 Issued to: {book.issued_to_reader_name}
+                        </div>
+                      )}
+                      <div className="book-card-meta">
+                        <span className="book-card-tag">{book.genre}</span>
+                        <span className="book-card-tag">{book.language}</span>
+                      </div>
+                      <div>
+                        <StatusBadge status={book.status} />
+                      </div>
+                    </div>
+                    <div className="book-card-image">
+                      {book.front_image
+                        ? <img src={getImageUrl(book.front_image)} alt={book.title} />
+                        : <span className="no-image">B</span>
+                      }
+                    </div>
                   </div>
-                  <div className="book-card-body">
-                    <div className="book-card-title">{book.title}</div>
-                    <div className="book-card-author">by {book.author}</div>
-                    {book.library_name && (
-                      <div style={{ fontSize: '0.75rem', color: 'var(--muted)', marginTop: 2 }}>
-                        🏛️ {book.library_name}
-                        {book.library_owner_name && <> — Owner: {book.library_owner_name}</>}
-                      </div>
-                    )}
-                    {book.status === 'ISSUED' && book.issued_to_reader_name && (
-                      <div style={{ fontSize: '0.75rem', color: 'var(--muted)', marginTop: 2 }}>
-                        📖 Issued to: {book.issued_to_reader_name}
-                      </div>
-                    )}
-                    <div className="book-card-meta">
-                      <span className="book-card-tag">{book.genre}</span>
-                      <span className="book-card-tag">{book.language}</span>
-                    </div>
-                    <div style={{ marginBottom: 12 }}>
-                      <StatusBadge status={book.status} />
-                    </div>
-                    <div className="book-card-actions">
-                      <button className="btn btn-secondary btn-sm" onClick={() => setViewBook(book)}>
-                        Details
+                  <div className="book-card-actions">
+                    <button className="btn btn-secondary btn-sm" onClick={() => setViewBook(book)}>
+                      Details
+                    </button>
+                    {isReader && book.status === 'AVAILABLE' && (
+                      <button className="btn btn-primary btn-sm" onClick={() => setRequestBook(book)}>
+                        Request
                       </button>
-                      {isReader && book.status === 'AVAILABLE' && (
-                        <button className="btn btn-primary btn-sm" onClick={() => setRequestBook(book)}>
-                          Request
-                        </button>
-                      )}
-                      {canManage && book.status === 'AVAILABLE' && (
-                        <button className="btn btn-warning btn-sm" onClick={() => setIssueBook(book)}>
-                          Issue
-                        </button>
-                      )}
-                      {canManage && (
-                        <>
-                          <button className="btn btn-secondary btn-sm" onClick={() => setEditBook(book)}>Edit</button>
-                          <button className="btn btn-danger btn-sm" onClick={() => setDeleteBook(book)}>Del</button>
-                        </>
-                      )}
-                    </div>
+                    )}
+                    {canManage && book.status === 'AVAILABLE' && (
+                      <button className="btn btn-warning btn-sm" onClick={() => setIssueBook(book)}>
+                        Issue
+                      </button>
+                    )}
+                    {canManage && (
+                      <>
+                        <button className="btn btn-secondary btn-sm" onClick={() => setEditBook(book)}>Edit</button>
+                        <button className="btn btn-danger btn-sm" onClick={() => setDeleteBook(book)}>Del</button>
+                      </>
+                    )}
                   </div>
                 </div>
               ))}

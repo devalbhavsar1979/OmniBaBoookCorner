@@ -4,10 +4,10 @@ import { useAuth } from '../context/AuthContext';
 import logoImg from '../logo.png';
 
 const NAV_ITEMS = [
-  { to: '/dashboard', label: 'Dashboard',  icon: '📊', roles: ['OWNER','READER','VOLUNTEER'] },
-  { to: '/libraries', label: 'Libraries',  icon: '🏛️', roles: ['OWNER','READER','VOLUNTEER'] },
-  { to: '/books',     label: 'Books',      icon: '📚', roles: ['OWNER','READER','VOLUNTEER'] },
-  { to: '/requests',  label: 'Requests',   icon: '📋', roles: ['OWNER','READER','VOLUNTEER'] },
+  { to: '/dashboard', label: 'Dashboard',  icon: '📊', roles: ['SUPER_ADMIN','OWNER','READER','VOLUNTEER'] },
+  { to: '/libraries', label: 'Libraries',  icon: '🏛️', roles: ['SUPER_ADMIN','OWNER','READER','VOLUNTEER'] },
+  { to: '/books',     label: 'Books',      icon: '📚', roles: ['SUPER_ADMIN','OWNER','READER','VOLUNTEER'] },
+  { to: '/requests',  label: 'Requests',   icon: '📋', roles: ['SUPER_ADMIN','OWNER','READER','VOLUNTEER'] },
 ];
 
 function isMobileDevice() {
@@ -23,6 +23,7 @@ export default function Layout() {
   const navigate = useNavigate();
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [collapsed, setCollapsed] = useState(() => localStorage.getItem('sidebarCollapsed') === '1');
 
   useEffect(() => {
     const check = () => setIsMobile(isMobileDevice());
@@ -31,11 +32,18 @@ export default function Layout() {
     return () => window.removeEventListener('resize', check);
   }, []);
 
+  const toggleCollapsed = () => {
+    setCollapsed(prev => {
+      localStorage.setItem('sidebarCollapsed', !prev ? '1' : '0');
+      return !prev;
+    });
+  };
+
   const handleLogout = () => { logout(); navigate('/login'); };
   const visibleNav = NAV_ITEMS.filter(n => n.roles.includes(user?.role));
   const closeSidebar = () => setSidebarOpen(false);
 
-  const roleColors = { OWNER: '#7DD3FC', READER: '#86EFAC', VOLUNTEER: '#FCA5A5' };
+  const roleColors = { SUPER_ADMIN: '#FBBF24', OWNER: '#7DD3FC', READER: '#86EFAC', VOLUNTEER: '#FCA5A5' };
   const roleColor = roleColors[user?.role] || 'rgba(255,255,255,0.5)';
 
   return (
@@ -58,7 +66,7 @@ export default function Layout() {
 
       {/* Sidebar */}
       <aside
-        className="sidebar"
+        className={`sidebar${!isMobile && collapsed ? ' sidebar-collapsed' : ''}`}
         style={isMobile
           ? { transform: sidebarOpen ? 'translateX(0)' : 'translateX(-100%)' }
           : { transform: 'translateX(0)' }
@@ -66,12 +74,19 @@ export default function Layout() {
       >
         <div className="sidebar-logo">
           <img src={logoImg} alt="Ba Book Corner logo" />
-          <div className="sidebar-logo-text">
-            <h1>Ba Book Corner</h1>
-            <span>Ba Foundation</span>
-          </div>
+          {(!collapsed || isMobile) && (
+            <div className="sidebar-logo-text">
+              <h1>Ba Book Corner</h1>
+              <span>Ba Foundation</span>
+            </div>
+          )}
           {isMobile && (
             <button className="sidebar-close" onClick={closeSidebar} style={{ display: 'flex' }}>✕</button>
+          )}
+          {!isMobile && (
+            <button className="sidebar-collapse-btn" onClick={toggleCollapsed} title={collapsed ? 'Expand sidebar' : 'Collapse sidebar'}>
+              {collapsed ? '»' : '«'}
+            </button>
           )}
         </div>
 
@@ -82,19 +97,24 @@ export default function Layout() {
               to={item.to}
               className={({ isActive }) => isActive ? 'active' : ''}
               onClick={closeSidebar}
+              title={collapsed && !isMobile ? item.label : undefined}
             >
               <span className="nav-icon">{item.icon}</span>
-              {item.label}
+              {(!collapsed || isMobile) && item.label}
             </NavLink>
           ))}
         </nav>
 
         <div className="sidebar-user">
           <div className="sidebar-user-inner">
-            <div className="name">{user?.full_name}</div>
-            <div className="role" style={{ color: roleColor }}>{user?.role}</div>
-            <button className="logout-btn" onClick={handleLogout}>
-              <span>⎋</span> Sign out
+            {(!collapsed || isMobile) && (
+              <>
+                <div className="name">{user?.full_name}</div>
+                <div className="role" style={{ color: roleColor }}>{user?.role}</div>
+              </>
+            )}
+            <button className="logout-btn" onClick={handleLogout} title={collapsed && !isMobile ? 'Sign out' : undefined}>
+              <span>⎋</span> {(!collapsed || isMobile) && 'Sign out'}
             </button>
           </div>
         </div>
@@ -103,7 +123,10 @@ export default function Layout() {
       {/* Main content */}
       <main
         className="main-content"
-        style={isMobile ? { marginLeft: 0, paddingTop: '56px', paddingBottom: '64px' } : { marginLeft: '256px' }}
+        style={isMobile
+          ? { marginLeft: 0, paddingTop: '56px', paddingBottom: '64px' }
+          : { marginLeft: collapsed ? '72px' : '256px' }
+        }
       >
         <Outlet />
       </main>

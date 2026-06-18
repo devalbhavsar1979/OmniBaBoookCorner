@@ -85,6 +85,7 @@ def get_requests(
     elif user.role == UserRole.OWNER:
         # Owners see requests for books in their libraries
         query = query.join(Book).join(Library).filter(Library.owner_id == user.id)
+    # SUPER_ADMIN: no filter — sees all requests across all libraries
 
     if status:
         query = query.filter(BookRequest.status == status)
@@ -114,6 +115,7 @@ def get_request_by_id(db: Session, request_id: int, user: User) -> BookRequest:
         lib = db.query(Library).filter(Library.id == book.library_id).first()
         if lib.owner_id != user.id:
             raise HTTPException(status_code=403, detail="Not authorized")
+    # SUPER_ADMIN: can view any request, no additional check needed
 
     return req
 
@@ -159,6 +161,10 @@ def advance_request_status(
         lib = db.query(Library).filter(Library.id == book.library_id).first()
         if lib.owner_id != user.id:
             raise HTTPException(status_code=403, detail="Not your library")
+        new_status = OWNER_TRANSITIONS.get(current)
+
+    elif user.role == UserRole.SUPER_ADMIN:
+        # Super admin can perform the same transitions an owner could, on any library
         new_status = OWNER_TRANSITIONS.get(current)
 
     elif user.role == UserRole.READER:
