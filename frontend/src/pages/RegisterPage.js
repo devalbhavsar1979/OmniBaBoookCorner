@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { Alert } from '../components/common';
 
 export default function RegisterPage() {
   const { register, loading } = useAuth();
-  const navigate = useNavigate();
   const [form, setForm] = useState({
     full_name: '',
     email: '',
@@ -14,22 +13,41 @@ export default function RegisterPage() {
     role: 'READER',
   });
   const [error, setError] = useState('');
-  const [success, setSuccess] = useState('');
+  const [submitted, setSubmitted] = useState(false);
 
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
-    setSuccess('');
     try {
       await register(form);
-      setSuccess('Account created! Redirecting to login…');
-      setTimeout(() => navigate('/login'), 1500);
+      setSubmitted(true);
     } catch (err) {
       setError(err.response?.data?.detail || 'Registration failed.');
     }
   };
+
+  if (submitted) {
+    return (
+      <div className="auth-page">
+        <div className="auth-card" style={{ textAlign: 'center' }}>
+          <div style={{ fontSize: '3rem', marginBottom: 16 }}>⏳</div>
+          <h2 style={{ marginBottom: 8 }}>Registration Submitted!</h2>
+          <p style={{ color: 'var(--muted)', marginBottom: 24, lineHeight: 1.6 }}>
+            Your account request has been received and is <strong>pending approval</strong> by the Super Admin.
+            You will be able to log in once your account is approved.
+          </p>
+          <p style={{ fontSize: '0.85rem', color: 'var(--muted)', marginBottom: 24 }}>
+            Registered as: <strong>{form.full_name}</strong> ({form.role})
+          </p>
+          <Link to="/login" className="btn btn-primary" style={{ display: 'inline-block' }}>
+            Back to Login
+          </Link>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="auth-page">
@@ -39,7 +57,6 @@ export default function RegisterPage() {
           <p>Create your account</p>
         </div>
         <Alert type="error" message={error} />
-        <Alert type="success" message={success} />
         <form onSubmit={handleSubmit}>
           <div className="form-group">
             <label>Full Name</label>
@@ -95,7 +112,7 @@ export default function RegisterPage() {
             </select>
           </div>
           <button className="btn btn-primary" type="submit" disabled={loading} style={{ width: '100%', marginTop: 8 }}>
-            {loading ? 'Creating account…' : 'Create Account'}
+            {loading ? 'Submitting…' : 'Register'}
           </button>
         </form>
         <p style={{ textAlign: 'center', marginTop: 20, fontSize: '0.875rem', color: 'var(--muted)' }}>

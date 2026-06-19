@@ -1116,3 +1116,14 @@ ConnectionResetError: [WinError 10054] An existing connection was forcibly close
 WARNING:  Invalid HTTP request received.
 WARNING:  Invalid HTTP request received.
 INFO:     Shutting down
+INFO:     Started server process [4384]
+INFO:     Waiting for application startup.
+2026-06-18 20:48:18,548 [INFO] main: Starting Ba Boook Corner API...
+2026-06-18 20:48:18,603 [INFO] main: Database tables ensured. Upload dir ready.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:1000 (Press CTRL+C to quit)
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+2026-06-18 21:23:01,829 [INFO] main: Shutting down Ba Boook Corner API.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [4384]

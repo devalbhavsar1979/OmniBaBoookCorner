@@ -35,7 +35,8 @@ class User(Base):
     phone = Column(String(20), nullable=True)
     hashed_password = Column(String(255), nullable=False)
     role = Column(SAEnum(UserRole), nullable=False)
-    is_active = Column(Boolean, default=True)
+    is_active = Column(Boolean, default=False)
+    is_approved = Column(Boolean, default=False)
     created_at = Column(DateTime, default=datetime.utcnow)
     updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
 

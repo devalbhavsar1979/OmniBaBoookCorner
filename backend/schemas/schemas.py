@@ -39,6 +39,20 @@ class UserOut(BaseModel):
     phone: Optional[str]
     role: UserRole
     is_active: bool
+    is_approved: bool = False
+    created_at: datetime
+
+    model_config = {"from_attributes": True}
+
+
+class UserApprovalOut(BaseModel):
+    id: int
+    full_name: str
+    email: str
+    phone: Optional[str]
+    role: UserRole
+    is_active: bool
+    is_approved: bool
     created_at: datetime
 
     model_config = {"from_attributes": True}

@@ -8,6 +8,7 @@ import DashboardPage from './pages/DashboardPage';
 import LibrariesPage from './pages/LibrariesPage';
 import BooksPage from './pages/BooksPage';
 import RequestsPage from './pages/RequestsPage';
+import PendingApprovalsPage from './pages/PendingApprovalsPage';
 
 function PrivateRoute({ children }) {
   const { user } = useAuth();
@@ -32,6 +33,7 @@ export default function App() {
             <Route path="libraries" element={<LibrariesPage />} />
             <Route path="books" element={<BooksPage />} />
             <Route path="requests" element={<RequestsPage />} />
+            <Route path="approvals" element={<PendingApprovalsPage />} />
           </Route>
           <Route path="*" element={<Navigate to="/dashboard" replace />} />
         </Routes>

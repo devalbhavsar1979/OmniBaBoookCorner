@@ -8,6 +8,7 @@ const NAV_ITEMS = [
   { to: '/libraries', label: 'Libraries',  icon: '🏛️', roles: ['SUPER_ADMIN','OWNER','READER','VOLUNTEER'] },
   { to: '/books',     label: 'Books',      icon: '📚', roles: ['SUPER_ADMIN','OWNER','READER','VOLUNTEER'] },
   { to: '/requests',  label: 'Requests',   icon: '📋', roles: ['SUPER_ADMIN','OWNER','READER','VOLUNTEER'] },
+  { to: '/approvals', label: 'Approvals',  icon: '✅', roles: ['SUPER_ADMIN'] },
 ];
 
 function isMobileDevice() {
