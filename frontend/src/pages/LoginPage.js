@@ -16,8 +16,8 @@ export default function LoginPage() {
     e.preventDefault();
     setError('');
     try {
-      await login(form.email, form.password);
-      navigate('/dashboard');
+      const userData = await login(form.email, form.password);
+      navigate(userData.role === 'READER' ? '/books' : '/dashboard');
     } catch (err) {
       setError(err.response?.data?.detail || 'Login failed. Please check your credentials.');
     }

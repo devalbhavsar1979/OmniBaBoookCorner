@@ -129,7 +129,12 @@ def get_books(
     if genre:
         query = query.filter(Book.genre.ilike(f"%{genre}%"))
     if language:
-        query = query.filter(Book.language.ilike(f"%{language}%"))
+        langs = [l.strip() for l in language.split(',') if l.strip()]
+        if len(langs) == 1:
+            query = query.filter(Book.language.ilike(f"%{langs[0]}%"))
+        elif len(langs) > 1:
+            from sqlalchemy import or_ as _or
+            query = query.filter(_or(*[Book.language.ilike(f"%{l}%") for l in langs]))
     if status:
         query = query.filter(Book.status == status)
 

@@ -6,7 +6,7 @@ import { Spinner, Modal, Pagination, EmptyState, Alert, StatusBadge, ConfirmModa
 import UserSearchPopup from '../components/UserSearchPopup';
 
 const GENRES = ['Fiction', 'Non-Fiction', 'Science', 'History', 'Biography', 'Self-Help', 'Children', 'Poetry', 'Philosophy', 'Religion', 'Technology', 'Other'];
-const LANGUAGES = ['English', 'Gujarati', 'Hindi', 'Marathi', 'Bengali', 'Tamil', 'Telugu', 'Kannada', 'Urdu', 'Other'];
+const LANGUAGES = ['English', 'Gujarati', 'Hindi'];
 
 function BookFormModal({ libraryId, libraries, initial, onClose, onSaved }) {
   const isEdit = !!initial;
@@ -173,7 +173,7 @@ export default function BooksPage() {
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState('');
   const [genre, setGenre] = useState('');
-  const [language, setLanguage] = useState('');
+  const [language, setLanguage] = useState([]);
   const [activeLibraryId, setActiveLibraryId] = useState(urlLibraryId);
   const [activeLibraryName, setActiveLibraryName] = useState(urlLibraryName);
   const [loading, setLoading] = useState(true);
@@ -207,7 +207,8 @@ export default function BooksPage() {
   const load = useCallback(async () => {
     setLoading(true);
     try {
-      const params = { search, genre, language, page, page_size: PAGE_SIZE };
+      const params = { search, genre, page, page_size: PAGE_SIZE };
+      if (language.length > 0) params.language = language.join(',');
       if (activeLibraryId) params.library_id = activeLibraryId;
       const res = await bookApi.list(params);
       setBooks(res.data.items);
@@ -296,10 +297,24 @@ export default function BooksPage() {
             <option value="">All Genres</option>
             {GENRES.map((g) => <option key={g}>{g}</option>)}
           </select>
-          <select className="form-control" value={language} onChange={(e) => { setLanguage(e.target.value); setPage(1); }} style={{ maxWidth: 160 }}>
-            <option value="">All Languages</option>
-            {LANGUAGES.map((l) => <option key={l}>{l}</option>)}
-          </select>
+          <div className="language-checkboxes">
+            <span className="language-checkboxes-label">Language:</span>
+            {LANGUAGES.map((l) => (
+              <label key={l} className="language-checkbox-item">
+                <input
+                  type="checkbox"
+                  checked={language.includes(l)}
+                  onChange={(e) => {
+                    setPage(1);
+                    setLanguage((prev) =>
+                      e.target.checked ? [...prev, l] : prev.filter((x) => x !== l)
+                    );
+                  }}
+                />
+                {l}
+              </label>
+            ))}
+          </div>
         </div>
 
         {loading ? <Spinner /> : books.length === 0 ? (
@@ -319,7 +334,7 @@ export default function BooksPage() {
                           {book.library_owner_name && <> — Owner: {book.library_owner_name}</>}
                         </div>
                       )}
-                      {book.status === 'ISSUED' && book.issued_to_reader_name && (
+                      {!isReader && book.status === 'ISSUED' && book.issued_to_reader_name && (
                         <div style={{ fontSize: '0.75rem', color: 'var(--muted)', marginTop: 2 }}>
                           📖 Issued to: {book.issued_to_reader_name}
                         </div>
@@ -329,7 +344,7 @@ export default function BooksPage() {
                         <span className="book-card-tag">{book.language}</span>
                       </div>
                       <div>
-                        <StatusBadge status={book.status} />
+                        <StatusBadge status={isReader ? (book.status === 'AVAILABLE' ? 'AVAILABLE' : 'ISSUED') : book.status} />
                       </div>
                     </div>
                     <div className="book-card-image">

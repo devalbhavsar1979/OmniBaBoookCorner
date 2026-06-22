@@ -1127,3 +1127,282 @@ INFO:     Waiting for application shutdown.
 2026-06-18 21:23:01,829 [INFO] main: Shutting down Ba Boook Corner API.
 INFO:     Application shutdown complete.
 INFO:     Finished server process [4384]
+INFO:     Started server process [15692]
+INFO:     Waiting for application startup.
+2026-06-18 21:23:04,472 [INFO] main: Starting Ba Boook Corner API...
+2026-06-18 21:23:04,859 [INFO] main: Database tables ensured. Upload dir ready.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:1000 (Press CTRL+C to quit)
+2026-06-18 21:23:55,236 [INFO] services.auth_service: New user registered: testreader@mymail.com as UserRole.READER (approved=False)
+2026-06-18 21:24:57,666 [INFO] services.auth_service: New user registered: testlibrarian@mymail.com as UserRole.OWNER (approved=False)
+2026-06-18 21:25:25,587 [INFO] services.auth_service: New user registered: testvolunteer@mymail.com as UserRole.VOLUNTEER (approved=False)
+c:\Relisant\BaBookCorner\backend\services\book_service.py:121: SAWarning: Coercing Subquery object into a select() for use in IN(); please pass a select() construct explicitly
+  query = query.filter(Book.library_id.in_(owner_library_ids))
+2026-06-18 21:33:58,617 [ERROR] asyncio: Exception in callback _ProactorBasePipeTransport._call_connection_lost()
+handle: <Handle _ProactorBasePipeTransport._call_connection_lost()>
+Traceback (most recent call last):
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\Python313\Lib\asyncio\events.py", line 89, in _run
+    self._context.run(self._callback, *self._args)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\Python313\Lib\asyncio\proactor_events.py", line 165, in _call_connection_lost
+    self._sock.shutdown(socket.SHUT_RDWR)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+2026-06-19 04:00:29,216 [INFO] services.auth_service: New user registered: testlibrarian1@mymail.com as UserRole.OWNER (approved=False)
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+2026-06-19 19:20:38,506 [INFO] services.book_service: Book created: Krishnayan  in library 6
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+2026-06-19 20:24:07,272 [ERROR] asyncio: Exception in callback _ProactorBasePipeTransport._call_connection_lost()
+handle: <Handle _ProactorBasePipeTransport._call_connection_lost()>
+Traceback (most recent call last):
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\Python313\Lib\asyncio\events.py", line 89, in _run
+    self._context.run(self._callback, *self._args)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\Python313\Lib\asyncio\proactor_events.py", line 165, in _call_connection_lost
+    self._sock.shutdown(socket.SHUT_RDWR)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host
+2026-06-19 20:24:45,384 [ERROR] asyncio: Exception in callback _ProactorBasePipeTransport._call_connection_lost()
+handle: <Handle _ProactorBasePipeTransport._call_connection_lost()>
+Traceback (most recent call last):
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\Python313\Lib\asyncio\events.py", line 89, in _run
+    self._context.run(self._callback, *self._args)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\Python313\Lib\asyncio\proactor_events.py", line 165, in _call_connection_lost
+    self._sock.shutdown(socket.SHUT_RDWR)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host
+2026-06-19 20:25:35,867 [ERROR] asyncio: Exception in callback _ProactorBasePipeTransport._call_connection_lost()
+handle: <Handle _ProactorBasePipeTransport._call_connection_lost()>
+Traceback (most recent call last):
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\Python313\Lib\asyncio\events.py", line 89, in _run
+    self._context.run(self._callback, *self._args)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\Python313\Lib\asyncio\proactor_events.py", line 165, in _call_connection_lost
+    self._sock.shutdown(socket.SHUT_RDWR)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+2026-06-19 22:26:03,154 [INFO] services.auth_service: New user registered: mymail@gmail.com as UserRole.READER (approved=False)
+2026-06-19 22:41:13,879 [INFO] services.request_service: Book request created: book 15 by reader 21
+2026-06-19 22:41:17,198 [INFO] services.email_service: Status email sent to mymail@gmail.com for request 14 \u2192 REQUESTED
+2026-06-19 22:43:03,981 [INFO] services.request_service: Request 14 advanced: BookStatus.REQUESTED \u2192 BookStatus.REQUEST_ACCEPTED by user 5
+2026-06-19 22:43:05,738 [INFO] services.request_service: Request 14 advanced: BookStatus.REQUEST_ACCEPTED \u2192 BookStatus.VOLUNTEER_PICKED by user 5
+2026-06-19 22:43:07,116 [INFO] services.email_service: Status email sent to mymail@gmail.com for request 14 \u2192 REQUEST_ACCEPTED
+2026-06-19 22:43:08,820 [INFO] services.email_service: Status email sent to mymail@gmail.com for request 14 \u2192 VOLUNTEER_PICKED
+2026-06-19 22:43:50,959 [INFO] services.request_service: Request 14 advanced: BookStatus.VOLUNTEER_PICKED \u2192 BookStatus.VOLUNTEER_DELIVERED by user 5
+2026-06-19 22:43:54,080 [INFO] services.email_service: Status email sent to mymail@gmail.com for request 14 \u2192 VOLUNTEER_DELIVERED
+2026-06-19 22:57:36,010 [ERROR] asyncio: Exception in callback _ProactorBasePipeTransport._call_connection_lost()
+handle: <Handle _ProactorBasePipeTransport._call_connection_lost()>
+Traceback (most recent call last):
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\Python313\Lib\asyncio\events.py", line 89, in _run
+    self._context.run(self._callback, *self._args)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\Python313\Lib\asyncio\proactor_events.py", line 165, in _call_connection_lost
+    self._sock.shutdown(socket.SHUT_RDWR)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host
+2026-06-19 22:58:29,024 [ERROR] asyncio: Exception in callback _ProactorBasePipeTransport._call_connection_lost()
+handle: <Handle _ProactorBasePipeTransport._call_connection_lost()>
+Traceback (most recent call last):
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\Python313\Lib\asyncio\events.py", line 89, in _run
+    self._context.run(self._callback, *self._args)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\Python313\Lib\asyncio\proactor_events.py", line 165, in _call_connection_lost
+    self._sock.shutdown(socket.SHUT_RDWR)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host
+2026-06-19 22:59:04,751 [INFO] services.request_service: Request 11 advanced: BookStatus.VOLUNTEER_DELIVERED \u2192 BookStatus.ISSUED by user 3
+2026-06-19 22:59:08,259 [INFO] services.email_service: Status email sent to reader@mymail.com for request 11 \u2192 ISSUED
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+2026-06-19 23:36:15,046 [INFO] services.book_service: Book created: Krishnayan in library 6
+2026-06-19 23:41:23,391 [INFO] services.book_service: Book created: Saurashtra ni Rasdhara in library 6
+2026-06-19 23:42:15,199 [INFO] services.request_service: Book request created: book 41 by reader 21
+2026-06-19 23:42:17,601 [ERROR] asyncio: Exception in callback _ProactorBasePipeTransport._call_connection_lost()
+handle: <Handle _ProactorBasePipeTransport._call_connection_lost()>
+Traceback (most recent call last):
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\Python313\Lib\asyncio\events.py", line 89, in _run
+    self._context.run(self._callback, *self._args)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\Python313\Lib\asyncio\proactor_events.py", line 165, in _call_connection_lost
+    self._sock.shutdown(socket.SHUT_RDWR)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host
+2026-06-19 23:42:18,291 [INFO] services.email_service: Status email sent to mymail@gmail.com for request 16 \u2192 REQUESTED
+2026-06-19 23:42:25,273 [INFO] services.request_service: Request 16 advanced: BookStatus.REQUESTED \u2192 BookStatus.REQUEST_ACCEPTED by user 5
+2026-06-19 23:42:28,384 [INFO] services.email_service: Status email sent to mymail@gmail.com for request 16 \u2192 REQUEST_ACCEPTED
+2026-06-19 23:42:40,943 [INFO] services.request_service: Request 16 advanced: BookStatus.REQUEST_ACCEPTED \u2192 BookStatus.VOLUNTEER_PICKED by user 5
+2026-06-19 23:42:44,113 [INFO] services.email_service: Status email sent to mymail@gmail.com for request 16 \u2192 VOLUNTEER_PICKED
+2026-06-19 23:42:44,884 [INFO] services.request_service: Request 16 advanced: BookStatus.VOLUNTEER_PICKED \u2192 BookStatus.VOLUNTEER_DELIVERED by user 5
+2026-06-19 23:42:47,954 [INFO] services.email_service: Status email sent to mymail@gmail.com for request 16 \u2192 VOLUNTEER_DELIVERED
+2026-06-19 23:42:59,135 [ERROR] asyncio: Exception in callback _ProactorBasePipeTransport._call_connection_lost()
+handle: <Handle _ProactorBasePipeTransport._call_connection_lost()>
+Traceback (most recent call last):
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\Python313\Lib\asyncio\events.py", line 89, in _run
+    self._context.run(self._callback, *self._args)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\Python313\Lib\asyncio\proactor_events.py", line 165, in _call_connection_lost
+    self._sock.shutdown(socket.SHUT_RDWR)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host
+2026-06-19 23:43:01,084 [ERROR] asyncio: Exception in callback _ProactorBasePipeTransport._call_connection_lost()
+handle: <Handle _ProactorBasePipeTransport._call_connection_lost()>
+Traceback (most recent call last):
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\Python313\Lib\asyncio\events.py", line 89, in _run
+    self._context.run(self._callback, *self._args)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\Python313\Lib\asyncio\proactor_events.py", line 165, in _call_connection_lost
+    self._sock.shutdown(socket.SHUT_RDWR)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host
+2026-06-19 23:44:25,644 [INFO] services.request_service: Request 16 advanced: BookStatus.VOLUNTEER_DELIVERED \u2192 BookStatus.ISSUED by user 12
+2026-06-19 23:44:28,777 [INFO] services.email_service: Status email sent to mymail@gmail.com for request 16 \u2192 ISSUED
+WARNING:  Invalid HTTP request received.
+2026-06-19 23:44:58,720 [INFO] services.request_service: Request 15 advanced: BookStatus.ISSUED \u2192 BookStatus.RETURN_REQUESTED by user 21
+2026-06-19 23:45:01,844 [INFO] services.email_service: Status email sent to mymail@gmail.com for request 15 \u2192 RETURN_REQUESTED
+WARNING:  Invalid HTTP request received.
+2026-06-19 23:48:23,140 [INFO] services.request_service: Request 16 advanced: BookStatus.ISSUED \u2192 BookStatus.RETURN_REQUESTED by user 21
+2026-06-19 23:48:26,277 [INFO] services.email_service: Status email sent to mymail@gmail.com for request 16 \u2192 RETURN_REQUESTED
+2026-06-19 23:48:54,383 [INFO] services.request_service: Request 16 advanced: BookStatus.RETURN_REQUESTED \u2192 BookStatus.RETURN_PICKED by user 5
+2026-06-19 23:48:57,534 [INFO] services.email_service: Status email sent to mymail@gmail.com for request 16 \u2192 RETURN_PICKED
+2026-06-19 23:49:11,105 [INFO] services.request_service: Request 16 advanced: BookStatus.RETURN_PICKED \u2192 BookStatus.RETURN_DELIVERED by user 5
+2026-06-19 23:49:14,267 [INFO] services.email_service: Status email sent to mymail@gmail.com for request 16 \u2192 RETURN_DELIVERED
+2026-06-19 23:49:42,187 [INFO] services.request_service: Request 16 advanced: BookStatus.RETURN_DELIVERED \u2192 BookStatus.AVAILABLE by user 12
+2026-06-19 23:49:45,347 [INFO] services.email_service: Status email sent to mymail@gmail.com for request 16 \u2192 AVAILABLE
+2026-06-19 23:58:05,823 [INFO] services.book_service: Book created: The Best Of Ruskin Bond in library 8
+2026-06-20 04:08:08,286 [INFO] services.book_service: Book created: Divaswapna  in library 6
+2026-06-20 04:33:08,686 [INFO] services.auth_service: New user registered: ashish.pathak11@gmail.com as UserRole.READER (approved=False)
+2026-06-20 04:34:35,829 [INFO] services.request_service: Book request created: book 43 by reader 22
+2026-06-20 04:34:39,551 [INFO] services.email_service: Status email sent to ashish.pathak11@gmail.com for request 17 \u2192 REQUESTED
+2026-06-20 04:35:42,154 [INFO] services.request_service: Book request created: book 41 by reader 22
+2026-06-20 04:35:45,267 [INFO] services.email_service: Status email sent to ashish.pathak11@gmail.com for request 18 \u2192 REQUESTED
+2026-06-20 04:37:56,133 [INFO] services.request_service: Request 17 advanced: BookStatus.REQUESTED \u2192 BookStatus.REQUEST_ACCEPTED by user 5
+2026-06-20 04:37:59,387 [INFO] services.email_service: Status email sent to ashish.pathak11@gmail.com for request 17 \u2192 REQUEST_ACCEPTED
+2026-06-20 04:38:35,716 [INFO] services.request_service: Request 17 advanced: BookStatus.REQUEST_ACCEPTED \u2192 BookStatus.VOLUNTEER_PICKED by user 5
+2026-06-20 04:38:37,128 [INFO] services.request_service: Request 17 advanced: BookStatus.VOLUNTEER_PICKED \u2192 BookStatus.VOLUNTEER_DELIVERED by user 5
+2026-06-20 04:38:38,852 [INFO] services.email_service: Status email sent to ashish.pathak11@gmail.com for request 17 \u2192 VOLUNTEER_PICKED
+2026-06-20 04:38:40,276 [INFO] services.email_service: Status email sent to ashish.pathak11@gmail.com for request 17 \u2192 VOLUNTEER_DELIVERED
+2026-06-20 04:41:53,078 [INFO] services.request_service: Request 17 advanced: BookStatus.VOLUNTEER_DELIVERED \u2192 BookStatus.ISSUED by user 12
+2026-06-20 04:41:56,262 [INFO] services.email_service: Status email sent to ashish.pathak11@gmail.com for request 17 \u2192 ISSUED
+2026-06-20 04:42:20,697 [INFO] services.request_service: Request 17 advanced: BookStatus.ISSUED \u2192 BookStatus.RETURN_REQUESTED by user 22
+2026-06-20 04:42:23,939 [INFO] services.email_service: Status email sent to ashish.pathak11@gmail.com for request 17 \u2192 RETURN_REQUESTED
+2026-06-20 04:43:49,543 [INFO] services.request_service: Request 17 advanced: BookStatus.RETURN_REQUESTED \u2192 BookStatus.RETURN_PICKED by user 5
+2026-06-20 04:43:52,637 [INFO] services.email_service: Status email sent to ashish.pathak11@gmail.com for request 17 \u2192 RETURN_PICKED
+2026-06-20 04:44:24,075 [INFO] services.request_service: Request 17 advanced: BookStatus.RETURN_PICKED \u2192 BookStatus.RETURN_DELIVERED by user 5
+2026-06-20 04:44:27,230 [INFO] services.email_service: Status email sent to ashish.pathak11@gmail.com for request 17 \u2192 RETURN_DELIVERED
+2026-06-20 04:45:17,277 [INFO] services.request_service: Request 17 advanced: BookStatus.RETURN_DELIVERED \u2192 BookStatus.AVAILABLE by user 12
+2026-06-20 04:45:20,386 [INFO] services.email_service: Status email sent to ashish.pathak11@gmail.com for request 17 \u2192 AVAILABLE
+2026-06-20 04:46:27,665 [INFO] services.request_service: Request 19 advanced: BookStatus.ISSUED \u2192 BookStatus.RETURN_REQUESTED by user 22
+2026-06-20 04:46:30,758 [INFO] services.email_service: Status email sent to ashish.pathak11@gmail.com for request 19 \u2192 RETURN_REQUESTED
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+2026-06-20 05:43:41,059 [INFO] main: Shutting down Ba Boook Corner API.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [15692]
+INFO:     Started server process [18968]
+INFO:     Waiting for application startup.
+2026-06-20 05:43:43,110 [INFO] main: Starting Ba Boook Corner API...
+2026-06-20 05:43:43,136 [INFO] main: Database tables ensured. Upload dir ready.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:1000 (Press CTRL+C to quit)
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+2026-06-20 05:51:35,492 [INFO] main: Shutting down Ba Boook Corner API.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [18968]
+INFO:     Started server process [23748]
+INFO:     Waiting for application startup.
+2026-06-20 05:51:36,736 [INFO] main: Starting Ba Boook Corner API...
+2026-06-20 05:51:36,768 [INFO] main: Database tables ensured. Upload dir ready.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:1000 (Press CTRL+C to quit)
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+2026-06-20 05:58:09,173 [INFO] main: Shutting down Ba Boook Corner API.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [23748]
+INFO:     Started server process [12184]
+INFO:     Waiting for application startup.
+2026-06-20 05:58:11,446 [INFO] main: Starting Ba Boook Corner API...
+2026-06-20 05:58:11,532 [INFO] main: Database tables ensured. Upload dir ready.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:1000 (Press CTRL+C to quit)
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+2026-06-20 06:01:35,503 [INFO] main: Shutting down Ba Boook Corner API.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [12184]
+INFO:     Started server process [11796]
+INFO:     Waiting for application startup.
+2026-06-20 06:01:38,670 [INFO] main: Starting Ba Boook Corner API...
+2026-06-20 06:01:38,819 [INFO] main: Database tables ensured. Upload dir ready.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:1000 (Press CTRL+C to quit)
+2026-06-20 07:11:37,598 [INFO] services.book_service: Book created: War Of Lanka in library 6
+2026-06-20 07:12:49,184 [INFO] services.book_service: Book created: Raavan : Enemy of Aryavarta in library 6
+2026-06-20 07:13:42,692 [INFO] services.book_service: Book created: Sita : Warrior of Mithila in library 6
+2026-06-20 07:15:01,969 [INFO] services.book_service: Book created: Ram - Scion of Ikshvaku in library 4
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+2026-06-20 07:28:30,418 [INFO] services.book_service: Book created:  Kalki - Avatar Of Vishnu (Book 1) in library 6
+2026-06-20 09:39:29,191 [INFO] services.book_service: Book created: Kalki: Eye of Brahma (Book 2) in library 6
+2026-06-20 21:07:58,066 [ERROR] asyncio: Exception in callback _ProactorBasePipeTransport._call_connection_lost()
+handle: <Handle _ProactorBasePipeTransport._call_connection_lost()>
+Traceback (most recent call last):
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\Python313\Lib\asyncio\events.py", line 89, in _run
+    self._context.run(self._callback, *self._args)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\Python313\Lib\asyncio\proactor_events.py", line 165, in _call_connection_lost
+    self._sock.shutdown(socket.SHUT_RDWR)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host
+2026-06-20 21:08:14,068 [ERROR] asyncio: Exception in callback _ProactorBasePipeTransport._call_connection_lost()
+handle: <Handle _ProactorBasePipeTransport._call_connection_lost()>
+Traceback (most recent call last):
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\Python313\Lib\asyncio\events.py", line 89, in _run
+    self._context.run(self._callback, *self._args)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\Python313\Lib\asyncio\proactor_events.py", line 165, in _call_connection_lost
+    self._sock.shutdown(socket.SHUT_RDWR)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+2026-06-21 03:48:35,897 [INFO] services.book_service: Book created: Kalki: Sword of Shiva (Book 3) in library 6
+2026-06-21 03:50:55,120 [INFO] services.book_service: Book created: Krishna: The Man & His Philosophy in library 6
+2026-06-21 03:52:35,752 [INFO] services.book_service: Book created: Death: An Inside Story in library 6
+2026-06-21 03:53:39,382 [INFO] services.book_service: Book created: Chanakay's Chant in library 6
+2026-06-21 03:54:41,397 [INFO] services.book_service: Book created: The Krishna Key in library 6
+2026-06-21 03:57:39,233 [INFO] services.book_service: Book created: How The Bamboo Got Its Bounty in library 6
+2026-06-21 04:05:12,589 [INFO] services.book_service: Book created: How the Mango got its Magic in library 6
+2026-06-21 04:07:18,772 [INFO] services.book_service: Book created: How the Sea Became Solty in library 6
+2026-06-21 04:08:33,749 [INFO] services.book_service: Book created: How The Onion Got Its Layer in library 6
+2026-06-21 04:09:50,059 [INFO] services.book_service: Book created: How The Earth Gots Its Beauty in library 6
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+2026-06-21 20:54:38,565 [INFO] main: Shutting down Ba Boook Corner API.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [11796]

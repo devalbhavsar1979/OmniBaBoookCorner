@@ -17,7 +17,13 @@ function PrivateRoute({ children }) {
 
 function PublicRoute({ children }) {
   const { user } = useAuth();
-  return !user ? children : <Navigate to="/dashboard" replace />;
+  if (!user) return children;
+  return <Navigate to={user.role === 'READER' ? '/books' : '/dashboard'} replace />;
+}
+
+function DefaultRedirect() {
+  const { user } = useAuth();
+  return <Navigate to={user?.role === 'READER' ? '/books' : '/dashboard'} replace />;
 }
 
 export default function App() {
@@ -28,14 +34,14 @@ export default function App() {
           <Route path="/login" element={<PublicRoute><LoginPage /></PublicRoute>} />
           <Route path="/register" element={<PublicRoute><RegisterPage /></PublicRoute>} />
           <Route path="/" element={<PrivateRoute><Layout /></PrivateRoute>}>
-            <Route index element={<Navigate to="/dashboard" replace />} />
+            <Route index element={<DefaultRedirect />} />
             <Route path="dashboard" element={<DashboardPage />} />
             <Route path="libraries" element={<LibrariesPage />} />
             <Route path="books" element={<BooksPage />} />
             <Route path="requests" element={<RequestsPage />} />
             <Route path="approvals" element={<PendingApprovalsPage />} />
           </Route>
-          <Route path="*" element={<Navigate to="/dashboard" replace />} />
+          <Route path="*" element={<DefaultRedirect />} />
         </Routes>
       </BrowserRouter>
     </AuthProvider>
