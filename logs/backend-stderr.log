@@ -1406,3 +1406,254 @@ INFO:     Waiting for application shutdown.
 2026-06-21 20:54:38,565 [INFO] main: Shutting down Ba Boook Corner API.
 INFO:     Application shutdown complete.
 INFO:     Finished server process [11796]
+INFO:     Started server process [12316]
+INFO:     Waiting for application startup.
+2026-06-21 20:54:42,758 [INFO] main: Starting Ba Boook Corner API...
+2026-06-21 20:54:42,829 [INFO] main: Database tables ensured. Upload dir ready.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:1000 (Press CTRL+C to quit)
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+2026-06-21 21:21:03,534 [INFO] main: Shutting down Ba Boook Corner API.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [12316]
+INFO:     Started server process [9356]
+INFO:     Waiting for application startup.
+2026-06-21 21:21:07,646 [INFO] main: Starting Ba Boook Corner API...
+2026-06-21 21:21:07,686 [INFO] main: Database tables ensured. Upload dir ready.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:1000 (Press CTRL+C to quit)
+2026-06-21 21:22:15,384 [INFO] services.auth_service: New user registered: testreader2@mymail.com as UserRole.READER (approved=False)
+2026-06-21 21:40:31,971 [ERROR] asyncio: Exception in callback _ProactorBasePipeTransport._call_connection_lost()
+handle: <Handle _ProactorBasePipeTransport._call_connection_lost()>
+Traceback (most recent call last):
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\Python313\Lib\asyncio\events.py", line 89, in _run
+    self._context.run(self._callback, *self._args)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\Python313\Lib\asyncio\proactor_events.py", line 165, in _call_connection_lost
+    self._sock.shutdown(socket.SHUT_RDWR)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+2026-06-21 22:15:22,755 [ERROR] asyncio: Exception in callback _ProactorBasePipeTransport._call_connection_lost()
+handle: <Handle _ProactorBasePipeTransport._call_connection_lost()>
+Traceback (most recent call last):
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\Python313\Lib\asyncio\events.py", line 89, in _run
+    self._context.run(self._callback, *self._args)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\Python313\Lib\asyncio\proactor_events.py", line 165, in _call_connection_lost
+    self._sock.shutdown(socket.SHUT_RDWR)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host
+2026-06-21 22:16:01,542 [ERROR] asyncio: Exception in callback _ProactorBasePipeTransport._call_connection_lost()
+handle: <Handle _ProactorBasePipeTransport._call_connection_lost()>
+Traceback (most recent call last):
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\Python313\Lib\asyncio\events.py", line 89, in _run
+    self._context.run(self._callback, *self._args)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\Python313\Lib\asyncio\proactor_events.py", line 165, in _call_connection_lost
+    self._sock.shutdown(socket.SHUT_RDWR)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+2026-06-22 22:05:36,787 [ERROR] asyncio: Exception in callback _ProactorBasePipeTransport._call_connection_lost()
+handle: <Handle _ProactorBasePipeTransport._call_connection_lost()>
+Traceback (most recent call last):
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\Python313\Lib\asyncio\events.py", line 89, in _run
+    self._context.run(self._callback, *self._args)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\Python313\Lib\asyncio\proactor_events.py", line 165, in _call_connection_lost
+    self._sock.shutdown(socket.SHUT_RDWR)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host
+2026-06-22 22:06:23,644 [ERROR] asyncio: Exception in callback _ProactorBasePipeTransport._call_connection_lost()
+handle: <Handle _ProactorBasePipeTransport._call_connection_lost()>
+Traceback (most recent call last):
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\Python313\Lib\asyncio\events.py", line 89, in _run
+    self._context.run(self._callback, *self._args)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\Python313\Lib\asyncio\proactor_events.py", line 165, in _call_connection_lost
+    self._sock.shutdown(socket.SHUT_RDWR)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+2026-06-23 18:12:25,062 [INFO] services.book_service: Book created: Samudrantike in library 6
+2026-06-23 18:12:49,985 [INFO] services.book_service: Book created: Tatvamasi in library 6
+2026-06-23 18:13:10,754 [INFO] services.book_service: Book created: Pratishruti in library 6
+2026-06-23 18:13:31,889 [INFO] services.book_service: Book created: Atarapi in library 6
+2026-06-23 18:13:53,182 [INFO] services.book_service: Book created: Na Iti in library 6
+2026-06-23 18:14:35,147 [INFO] services.book_service: Book created: Antrikshana Aagiya in library 6
+2026-06-23 18:16:05,077 [INFO] services.book_service: Book created: Akupar in library 6
+2026-06-23 18:16:24,543 [INFO] services.book_service: Book created: Agni Kanya in library 6
+2026-06-23 18:16:45,972 [INFO] services.book_service: Book created: Tilor in library 6
+2026-06-23 18:27:48,625 [INFO] services.book_service: Book created: Coffee Stories  in library 6
+2026-06-23 18:28:16,576 [INFO] services.book_service: Book created: Mahotu in library 6
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+2026-06-23 21:22:09,046 [ERROR] asyncio: Exception in callback _ProactorBasePipeTransport._call_connection_lost()
+handle: <Handle _ProactorBasePipeTransport._call_connection_lost()>
+Traceback (most recent call last):
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\Python313\Lib\asyncio\events.py", line 89, in _run
+    self._context.run(self._callback, *self._args)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\Python313\Lib\asyncio\proactor_events.py", line 165, in _call_connection_lost
+    self._sock.shutdown(socket.SHUT_RDWR)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host
+2026-06-23 21:23:32,563 [ERROR] asyncio: Exception in callback _ProactorBasePipeTransport._call_connection_lost()
+handle: <Handle _ProactorBasePipeTransport._call_connection_lost()>
+Traceback (most recent call last):
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\Python313\Lib\asyncio\events.py", line 89, in _run
+    self._context.run(self._callback, *self._args)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\Python313\Lib\asyncio\proactor_events.py", line 165, in _call_connection_lost
+    self._sock.shutdown(socket.SHUT_RDWR)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+2026-06-25 00:39:27,615 [INFO] services.request_service: Book request created: book 48 by reader 4
+2026-06-25 00:39:31,462 [INFO] services.email_service: Status email sent to reader@mymail.com for request 20 \u2192 REQUESTED
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+2026-06-25 19:55:52,170 [INFO] services.book_service: Book created: Satory in library 6
+2026-06-25 19:56:11,899 [INFO] services.book_service: Book created: Expiry Date in library 6
+2026-06-25 19:56:36,865 [INFO] services.book_service: Book created: Aene Mrutyu N Kaho in library 6
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+2026-06-25 20:27:40,618 [INFO] services.book_service: Book created: Second Thoughts in library 6
+2026-06-25 20:27:56,454 [INFO] services.book_service: Book created: Sapiens in library 6
+2026-06-25 20:28:14,680 [INFO] services.book_service: Book created: Diary of wimpy kid - the getaway in library 6
+2026-06-25 20:28:33,003 [INFO] services.book_service: Book created: Stories of wisdom in library 6
+2026-06-25 20:28:53,927 [INFO] services.book_service: Book created: Rumble in the Jungle in library 6
+2026-06-25 20:29:12,830 [INFO] services.book_service: Book created: Atomic Habits in library 6
+2026-06-25 20:29:32,992 [INFO] services.book_service: Book created: Orbit (\u0a93\u0ab0\u0aac\u0abf\u0a9f ) in library 6
+2026-06-25 21:29:41,155 [INFO] services.book_service: Book created: Himalay No Pravas in library 8
+2026-06-25 21:32:38,501 [INFO] services.book_service: Book created: The Blue Umbrella  in library 8
+2026-06-25 21:34:14,651 [INFO] services.book_service: Book created: Exam warrior  in library 8
+2026-06-25 21:36:14,763 [INFO] services.book_service: Book created: Diwaswapna  in library 8
+2026-06-25 21:40:36,178 [INFO] services.book_service: Book created: Detox The Mind in library 8
+2026-06-25 21:42:42,525 [INFO] services.book_service: Book created: Stop Overthinking  in library 8
+2026-06-25 21:44:55,547 [INFO] services.book_service: Book created: What is meditation  in library 8
+2026-06-25 21:47:41,959 [INFO] services.book_service: Book created: Freedom From the know  in library 8
+2026-06-25 21:50:36,940 [INFO] services.book_service: Book created: Strategic Mindset in library 8
+2026-06-25 21:53:33,645 [INFO] services.book_service: Book created: Powerful Focus in library 8
+2026-06-25 21:56:48,741 [INFO] services.book_service: Book created: Immediate Action in library 8
+2026-06-25 21:59:15,024 [INFO] services.book_service: Book created: Moved By Love in library 8
+2026-06-25 22:03:34,082 [INFO] services.book_service: Book created: Talks on the Gita in library 8
+2026-06-25 22:28:19,576 [ERROR] asyncio: Exception in callback _ProactorBasePipeTransport._call_connection_lost()
+handle: <Handle _ProactorBasePipeTransport._call_connection_lost()>
+Traceback (most recent call last):
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\Python313\Lib\asyncio\events.py", line 89, in _run
+    self._context.run(self._callback, *self._args)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\Python313\Lib\asyncio\proactor_events.py", line 165, in _call_connection_lost
+    self._sock.shutdown(socket.SHUT_RDWR)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host
+2026-06-25 22:29:45,257 [ERROR] asyncio: Exception in callback _ProactorBasePipeTransport._call_connection_lost()
+handle: <Handle _ProactorBasePipeTransport._call_connection_lost()>
+Traceback (most recent call last):
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\Python313\Lib\asyncio\events.py", line 89, in _run
+    self._context.run(self._callback, *self._args)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\Python313\Lib\asyncio\proactor_events.py", line 165, in _call_connection_lost
+    self._sock.shutdown(socket.SHUT_RDWR)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+2026-06-25 23:07:07,177 [ERROR] asyncio: Exception in callback _ProactorBasePipeTransport._call_connection_lost()
+handle: <Handle _ProactorBasePipeTransport._call_connection_lost()>
+Traceback (most recent call last):
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\Python313\Lib\asyncio\events.py", line 89, in _run
+    self._context.run(self._callback, *self._args)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\Python313\Lib\asyncio\proactor_events.py", line 165, in _call_connection_lost
+    self._sock.shutdown(socket.SHUT_RDWR)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+2026-06-26 09:02:26,634 [INFO] main: Shutting down Ba Boook Corner API.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [9356]
+INFO:     Started server process [10804]
+INFO:     Waiting for application startup.
+2026-06-26 09:02:32,624 [INFO] main: Starting Ba Boook Corner API...
+2026-06-26 09:02:32,733 [INFO] main: Database tables ensured. Upload dir ready.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:1000 (Press CTRL+C to quit)
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+2026-06-26 09:31:55,386 [INFO] main: Shutting down Ba Boook Corner API.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [10804]
+INFO:     Started server process [20716]
+INFO:     Waiting for application startup.
+2026-06-26 09:31:58,740 [INFO] main: Starting Ba Boook Corner API...
+2026-06-26 09:31:58,794 [INFO] main: Database tables ensured. Upload dir ready.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:1000 (Press CTRL+C to quit)
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+2026-06-26 09:33:47,108 [INFO] main: Shutting down Ba Boook Corner API.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [20716]

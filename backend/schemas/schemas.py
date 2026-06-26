@@ -11,6 +11,10 @@ class UserRegister(BaseModel):
     email: EmailStr
     password: str
     phone: Optional[str] = None
+    address_line: Optional[str] = None
+    city: Optional[str] = None
+    state: Optional[str] = None
+    pincode: Optional[str] = None
     role: UserRole
 
     @field_validator("password")
@@ -37,6 +41,12 @@ class UserOut(BaseModel):
     full_name: str
     email: str
     phone: Optional[str]
+    address_line: Optional[str] = None
+    city: Optional[str] = None
+    state: Optional[str] = None
+    pincode: Optional[str] = None
+    latitude: Optional[float] = None
+    longitude: Optional[float] = None
     role: UserRole
     is_active: bool
     is_approved: bool = False
@@ -50,6 +60,10 @@ class UserApprovalOut(BaseModel):
     full_name: str
     email: str
     phone: Optional[str]
+    address_line: Optional[str] = None
+    city: Optional[str] = None
+    state: Optional[str] = None
+    pincode: Optional[str] = None
     role: UserRole
     is_active: bool
     is_approved: bool

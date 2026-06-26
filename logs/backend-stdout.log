@@ -1960,3 +1960,540 @@ INFO:     10.2.18.2:15220 - "POST /api/v1/auth/login HTTP/1.1" 200 OK
 INFO:     10.2.18.2:15220 - "GET /api/v1/dashboard HTTP/1.1" 200 OK
 INFO:     10.2.18.2:15220 - "OPTIONS /api/v1/libraries?search=&city=&page=1&page_size=12 HTTP/1.1" 200 OK
 INFO:     10.2.18.2:8985 - "GET /api/v1/libraries?search=&city=&page=1&page_size=12 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:18806 - "POST /api/v1/auth/login HTTP/1.1" 200 OK
+INFO:     10.2.18.2:18806 - "OPTIONS /api/v1/books?search=&genre=&page=1&page_size=12 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:32341 - "GET /api/v1/books?search=&genre=&page=1&page_size=12 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:33115 - "GET /e23c7908-e3c9-4203-ab8a-9d456ee88d75.jpeg HTTP/1.1" 200 OK
+INFO:     10.2.18.2:13796 - "GET /81637945-9191-43f7-8e91-dcdef3b7a51a.jpg HTTP/1.1" 304 Not Modified
+INFO:     10.2.18.2:24603 - "GET /edcd01bb-5e6e-471c-8efe-7811301553d0.jpg HTTP/1.1" 304 Not Modified
+INFO:     10.2.18.2:23493 - "GET /55835bf7-a96c-4b3f-a778-7ffa38134f40.jpeg HTTP/1.1" 304 Not Modified
+INFO:     10.2.18.2:30426 - "GET /b93ec2ab-b21c-4305-9792-55097918e72e.jpg HTTP/1.1" 304 Not Modified
+INFO:     10.2.18.2:21609 - "GET /8fe5df70-3304-4d5f-99a1-859d7e2e5310.jpeg HTTP/1.1" 304 Not Modified
+INFO:     10.2.18.2:23493 - "GET /ec895048-1380-40ab-8e28-437e8407ff60.jpg HTTP/1.1" 304 Not Modified
+INFO:     10.2.18.2:21609 - "GET /9e41ab1d-4e25-45e4-a2f4-ba4f583df809.jpeg HTTP/1.1" 304 Not Modified
+INFO:     10.2.18.2:13796 - "GET /679eafbf-35e6-4deb-8058-8c833a3eaa4c.jpg HTTP/1.1" 304 Not Modified
+INFO:     10.2.18.2:24603 - "GET /10562ec3-e271-4619-8b6b-bdac857294ff.jpg HTTP/1.1" 200 OK
+INFO:     10.2.18.2:30426 - "GET /89a9c763-c4ab-4a9b-8ab8-c6ae8def064c.jpg HTTP/1.1" 304 Not Modified
+INFO:     10.2.18.2:23493 - "GET /64a26780-4496-4bed-8d06-3bcdba94e40c.jpg HTTP/1.1" 304 Not Modified
+INFO:     10.2.18.2:13284 - "OPTIONS /api/v1/books?search=&genre=&page=1&page_size=12 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:17321 - "GET /api/v1/books?search=&genre=&page=1&page_size=12 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:27719 - "OPTIONS /api/v1/books?search=&genre=&page=2&page_size=12 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:11284 - "GET /api/v1/books?search=&genre=&page=2&page_size=12 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:20495 - "GET /26dbdfb6-e491-49c5-af9d-a882c1340e58.jpg HTTP/1.1" 304 Not Modified
+INFO:     10.2.18.2:13828 - "GET /969ec9c8-d75e-4c67-a0ec-e01d5780ce60.jpg HTTP/1.1" 304 Not Modified
+INFO:     10.2.18.2:11591 - "GET /1a58ac4e-8cfa-46b2-9d65-b05da2c5796b.jpg HTTP/1.1" 200 OK
+INFO:     10.2.18.2:26514 - "GET /b1ea3d6a-a64f-4a35-9aac-5d627af6d58c.jpeg HTTP/1.1" 200 OK
+INFO:     10.2.18.2:20495 - "GET /e2e859b6-4604-4c23-bf7a-1f16db81857e.jpeg HTTP/1.1" 304 Not Modified
+INFO:     10.2.18.2:30511 - "GET /7d054a7a-36f8-44b6-a4cd-c2f4f2b8723f.jpeg HTTP/1.1" 200 OK
+INFO:     10.2.18.2:12271 - "GET /e2771c7d-3c75-40d8-871f-acb2e72add80.jpeg HTTP/1.1" 200 OK
+INFO:     10.2.18.2:13828 - "GET /031f54b0-3732-4c12-8a1a-4e479d0c1b15.jpeg HTTP/1.1" 200 OK
+INFO:     10.2.18.2:22307 - "OPTIONS /api/v1/libraries?search=&city=&page=1&page_size=12 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:63707 - "GET /api/v1/libraries?search=&city=&page=1&page_size=12 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:63707 - "OPTIONS /api/v1/requests?page=1&page_size=15 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:16511 - "GET /api/v1/requests?page=1&page_size=15 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:16511 - "OPTIONS /api/v1/dashboard HTTP/1.1" 200 OK
+INFO:     10.2.18.2:19979 - "GET /api/v1/dashboard HTTP/1.1" 200 OK
+INFO:     10.2.18.2:6894 - "OPTIONS /api/v1/books?search=&genre=&page=1&page_size=12 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:20819 - "GET /api/v1/books?search=&genre=&page=1&page_size=12 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:32504 - "OPTIONS /api/v1/auth/register HTTP/1.1" 200 OK
+INFO:     10.2.18.2:11209 - "POST /api/v1/auth/register HTTP/1.1" 201 Created
+INFO:     10.2.18.2:6263 - "OPTIONS /api/v1/auth/login HTTP/1.1" 200 OK
+INFO:     10.2.18.2:62028 - "POST /api/v1/auth/login HTTP/1.1" 200 OK
+INFO:     10.2.18.2:62028 - "OPTIONS /api/v1/dashboard HTTP/1.1" 200 OK
+INFO:     10.2.18.2:18604 - "GET /api/v1/dashboard HTTP/1.1" 200 OK
+INFO:     10.2.18.2:18604 - "OPTIONS /api/v1/users/pending HTTP/1.1" 200 OK
+INFO:     10.2.18.2:7144 - "GET /api/v1/users/pending HTTP/1.1" 200 OK
+INFO:     10.2.18.2:63596 - "GET / HTTP/1.1" 200 OK
+INFO:     10.2.18.2:15448 - "GET / HTTP/1.1" 200 OK
+INFO:     10.2.18.2:39098 - "GET / HTTP/1.1" 200 OK
+INFO:     10.2.18.2:14498 - "GET / HTTP/1.1" 200 OK
+INFO:     10.2.18.2:41052 - "GET / HTTP/1.1" 200 OK
+INFO:     10.2.18.2:42554 - "GET / HTTP/1.1" 200 OK
+INFO:     10.2.18.2:42562 - "GET /favicon.ico HTTP/1.1" 200 OK
+INFO:     10.2.18.2:65315 - "GET /icon-192.png HTTP/1.1" 200 OK
+INFO:     10.2.18.2:41574 - "GET /login HTTP/1.1" 200 OK
+INFO:     10.2.18.2:41578 - "GET /favicon.ico HTTP/1.1" 200 OK
+INFO:     10.2.18.2:41588 - "GET /icon-192.png HTTP/1.1" 200 OK
+INFO:     10.2.18.2:63382 - "GET /ms6yzv3pqnag6t7f HTTP/1.1" 200 OK
+INFO:     10.2.18.2:63406 - "GET /favicon.ico HTTP/1.1" 200 OK
+INFO:     10.2.18.2:63420 - "GET /icon-192.png HTTP/1.1" 200 OK
+INFO:     10.2.18.2:54497 - "GET / HTTP/1.1" 200 OK
+INFO:     10.2.18.2:41205 - "GET /favicon.ico HTTP/1.1" 200 OK
+INFO:     10.2.18.2:51975 - "GET /icon-192.png HTTP/1.1" 200 OK
+INFO:     10.2.18.2:56034 - "GET / HTTP/1.1" 200 OK
+INFO:     10.2.18.2:57185 - "GET / HTTP/1.1" 200 OK
+INFO:     10.2.18.2:34203 - "GET /favicon.ico HTTP/1.1" 200 OK
+INFO:     10.2.18.2:48604 - "GET / HTTP/1.1" 200 OK
+INFO:     10.2.18.2:23862 - "GET / HTTP/1.1" 200 OK
+INFO:     10.2.18.2:31538 - "GET / HTTP/1.1" 200 OK
+INFO:     10.2.18.2:30081 - "GET /favicon.ico HTTP/1.1" 200 OK
+INFO:     10.2.18.2:40736 - "GET / HTTP/1.1" 200 OK
+INFO:     10.2.18.2:40742 - "GET /favicon.ico HTTP/1.1" 200 OK
+INFO:     10.2.18.2:57250 - "GET / HTTP/1.1" 200 OK
+INFO:     10.2.18.2:58310 - "GET / HTTP/1.1" 200 OK
+INFO:     10.2.18.2:39986 - "GET / HTTP/1.1" 200 OK
+INFO:     10.2.18.2:17262 - "GET / HTTP/1.1" 200 OK
+INFO:     10.2.18.2:5997 - "OPTIONS /api/v1/dashboard HTTP/1.1" 200 OK
+INFO:     10.2.18.2:5997 - "GET /api/v1/dashboard HTTP/1.1" 401 Unauthorized
+INFO:     10.2.18.2:12283 - "OPTIONS /api/v1/auth/login HTTP/1.1" 200 OK
+INFO:     10.2.18.2:12283 - "POST /api/v1/auth/login HTTP/1.1" 200 OK
+INFO:     10.2.18.2:12283 - "GET /api/v1/dashboard HTTP/1.1" 200 OK
+INFO:     10.2.18.2:12283 - "OPTIONS /api/v1/users/pending HTTP/1.1" 200 OK
+INFO:     10.2.18.2:12283 - "GET /api/v1/users/pending HTTP/1.1" 200 OK
+INFO:     10.2.18.2:28047 - "OPTIONS /api/v1/users/23/approve HTTP/1.1" 200 OK
+INFO:     10.2.18.2:28047 - "POST /api/v1/users/23/approve HTTP/1.1" 200 OK
+INFO:     10.2.18.2:28047 - "GET /api/v1/users/pending HTTP/1.1" 200 OK
+INFO:     10.2.18.2:28047 - "OPTIONS /api/v1/libraries?search=&city=&page=1&page_size=12 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:28047 - "GET /api/v1/libraries?search=&city=&page=1&page_size=12 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:28047 - "GET /api/v1/dashboard HTTP/1.1" 200 OK
+INFO:     10.2.18.2:28047 - "GET /api/v1/libraries?search=&city=&page=1&page_size=12 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:40252 - "GET / HTTP/1.1" 200 OK
+INFO:     10.2.18.2:14010 - "GET / HTTP/1.1" 200 OK
+INFO:     10.2.18.2:62434 - "GET / HTTP/1.1" 200 OK
+INFO:     10.2.18.2:23364 - "GET / HTTP/1.1" 200 OK
+INFO:     10.2.18.2:23392 - "GET /favicon.ico HTTP/1.1" 200 OK
+INFO:     10.2.18.2:23394 - "GET /icon-192.png HTTP/1.1" 200 OK
+INFO:     10.2.18.2:23372 - "GET /sitemap.xml HTTP/1.1" 200 OK
+INFO:     10.2.18.2:23376 - "GET /favicon.ico HTTP/1.1" 200 OK
+INFO:     10.2.18.2:23380 - "GET /icon-192.png HTTP/1.1" 200 OK
+INFO:     10.2.18.2:23400 - "GET /n99ppqal043 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:23408 - "GET /favicon.ico HTTP/1.1" 200 OK
+INFO:     10.2.18.2:23416 - "GET /icon-192.png HTTP/1.1" 200 OK
+INFO:     10.2.18.2:27897 - "OPTIONS /api/v1/dashboard HTTP/1.1" 200 OK
+INFO:     10.2.18.2:31060 - "GET /api/v1/dashboard HTTP/1.1" 401 Unauthorized
+INFO:     10.2.18.2:20660 - "OPTIONS /api/v1/auth/login HTTP/1.1" 200 OK
+INFO:     10.2.18.2:22498 - "POST /api/v1/auth/login HTTP/1.1" 200 OK
+INFO:     10.2.18.2:22498 - "GET /api/v1/dashboard HTTP/1.1" 200 OK
+INFO:     10.2.18.2:27665 - "OPTIONS /api/v1/books?search=&genre=&page=1&page_size=12 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:7584 - "OPTIONS /api/v1/libraries/mine HTTP/1.1" 200 OK
+INFO:     10.2.18.2:8397 - "GET /api/v1/libraries/mine HTTP/1.1" 200 OK
+INFO:     10.2.18.2:31338 - "GET /api/v1/books?search=&genre=&page=1&page_size=12 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:13793 - "GET /e23c7908-e3c9-4203-ab8a-9d456ee88d75.jpeg HTTP/1.1" 304 Not Modified
+INFO:     10.2.18.2:61495 - "GET /81637945-9191-43f7-8e91-dcdef3b7a51a.jpg HTTP/1.1" 304 Not Modified
+INFO:     10.2.18.2:12417 - "GET /8fe5df70-3304-4d5f-99a1-859d7e2e5310.jpeg HTTP/1.1" 304 Not Modified
+INFO:     10.2.18.2:6279 - "GET /55835bf7-a96c-4b3f-a778-7ffa38134f40.jpeg HTTP/1.1" 304 Not Modified
+INFO:     10.2.18.2:65084 - "GET /b93ec2ab-b21c-4305-9792-55097918e72e.jpg HTTP/1.1" 304 Not Modified
+INFO:     10.2.18.2:10224 - "GET /edcd01bb-5e6e-471c-8efe-7811301553d0.jpg HTTP/1.1" 304 Not Modified
+INFO:     10.2.18.2:13793 - "GET /10562ec3-e271-4619-8b6b-bdac857294ff.jpg HTTP/1.1" 304 Not Modified
+INFO:     10.2.18.2:65084 - "GET /ec895048-1380-40ab-8e28-437e8407ff60.jpg HTTP/1.1" 304 Not Modified
+INFO:     10.2.18.2:61495 - "GET /9e41ab1d-4e25-45e4-a2f4-ba4f583df809.jpeg HTTP/1.1" 304 Not Modified
+INFO:     10.2.18.2:12417 - "GET /89a9c763-c4ab-4a9b-8ab8-c6ae8def064c.jpg HTTP/1.1" 304 Not Modified
+INFO:     10.2.18.2:10224 - "GET /64a26780-4496-4bed-8d06-3bcdba94e40c.jpg HTTP/1.1" 304 Not Modified
+INFO:     10.2.18.2:6279 - "GET /679eafbf-35e6-4deb-8058-8c833a3eaa4c.jpg HTTP/1.1" 304 Not Modified
+INFO:     10.2.18.2:63563 - "OPTIONS /api/v1/books/library/6 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:6430 - "POST /api/v1/books/library/6 HTTP/1.1" 201 Created
+INFO:     10.2.18.2:6430 - "GET /api/v1/books?search=&genre=&page=1&page_size=12 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:30047 - "POST /api/v1/books/library/6 HTTP/1.1" 201 Created
+INFO:     10.2.18.2:30047 - "GET /api/v1/books?search=&genre=&page=1&page_size=12 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:19049 - "POST /api/v1/books/library/6 HTTP/1.1" 201 Created
+INFO:     10.2.18.2:19049 - "GET /api/v1/books?search=&genre=&page=1&page_size=12 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:17653 - "POST /api/v1/books/library/6 HTTP/1.1" 201 Created
+INFO:     10.2.18.2:17653 - "GET /api/v1/books?search=&genre=&page=1&page_size=12 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:19297 - "POST /api/v1/books/library/6 HTTP/1.1" 201 Created
+INFO:     10.2.18.2:19297 - "GET /api/v1/books?search=&genre=&page=1&page_size=12 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:5216 - "POST /api/v1/books/library/6 HTTP/1.1" 201 Created
+INFO:     10.2.18.2:5216 - "GET /api/v1/books?search=&genre=&page=1&page_size=12 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:33258 - "POST /api/v1/books/library/6 HTTP/1.1" 201 Created
+INFO:     10.2.18.2:33258 - "GET /api/v1/books?search=&genre=&page=1&page_size=12 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:29462 - "POST /api/v1/books/library/6 HTTP/1.1" 201 Created
+INFO:     10.2.18.2:29462 - "GET /api/v1/books?search=&genre=&page=1&page_size=12 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:20230 - "POST /api/v1/books/library/6 HTTP/1.1" 201 Created
+INFO:     10.2.18.2:20230 - "GET /api/v1/books?search=&genre=&page=1&page_size=12 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:20230 - "OPTIONS /api/v1/libraries?search=&city=&page=1&page_size=12 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:23529 - "GET /api/v1/libraries?search=&city=&page=1&page_size=12 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:32199 - "GET /api/v1/libraries/mine HTTP/1.1" 200 OK
+INFO:     10.2.18.2:10565 - "GET /api/v1/books?search=&genre=&page=1&page_size=12 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:32199 - "GET /api/v1/libraries?search=&city=&page=1&page_size=12 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:32199 - "OPTIONS /api/v1/dashboard HTTP/1.1" 200 OK
+INFO:     10.2.18.2:10565 - "GET /api/v1/dashboard HTTP/1.1" 200 OK
+INFO:     10.2.18.2:10565 - "GET /api/v1/books?search=&genre=&page=1&page_size=12 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:26098 - "GET /api/v1/libraries/mine HTTP/1.1" 200 OK
+INFO:     10.2.18.2:26098 - "OPTIONS /api/v1/books?search=&genre=&page=1&page_size=12&language=Gujarati HTTP/1.1" 200 OK
+INFO:     10.2.18.2:10565 - "GET /api/v1/books?search=&genre=&page=1&page_size=12&language=Gujarati HTTP/1.1" 200 OK
+INFO:     10.2.18.2:17570 - "GET /4e4aebd6-3ff7-4200-9c64-c62f306a896d.jpg HTTP/1.1" 200 OK
+INFO:     10.2.18.2:21748 - "GET /041c5f66-49ee-4763-90fa-b8496cc069b2.jpg HTTP/1.1" 200 OK
+INFO:     10.2.18.2:5633 - "GET /4d89357b-f4be-4f78-9535-b535769e5bfd.jpg HTTP/1.1" 200 OK
+INFO:     10.2.18.2:17692 - "GET /719a0c52-8398-48ee-8198-04e4ae7539b3.jpg HTTP/1.1" 200 OK
+INFO:     10.2.18.2:21180 - "GET /2b62d852-b403-4510-a6b0-30015c1cc37f.jpg HTTP/1.1" 200 OK
+INFO:     10.2.18.2:13309 - "GET /600f8ed5-bc56-40f9-a753-9864680d4985.jpg HTTP/1.1" 200 OK
+INFO:     10.2.18.2:17692 - "GET /0fac39ff-835b-4bce-b22a-de0c4b7ef5d0.jpg HTTP/1.1" 200 OK
+INFO:     10.2.18.2:21748 - "GET /55b06417-cdc5-4a37-9ddf-e20ada494d43.jpg HTTP/1.1" 200 OK
+INFO:     10.2.18.2:13309 - "GET /a105d87b-a470-4336-acbc-890825f6a0d4.jpg HTTP/1.1" 200 OK
+INFO:     10.2.18.2:30865 - "OPTIONS /api/v1/books?search=&genre=&page=1&page_size=12&language=Gujarati,English HTTP/1.1" 200 OK
+INFO:     10.2.18.2:27230 - "GET /api/v1/books?search=&genre=&page=1&page_size=12&language=Gujarati,English HTTP/1.1" 200 OK
+INFO:     10.2.18.2:27230 - "OPTIONS /api/v1/books?search=&genre=&page=1&page_size=12&language=English HTTP/1.1" 200 OK
+INFO:     10.2.18.2:21334 - "GET /api/v1/books?search=&genre=&page=1&page_size=12&language=English HTTP/1.1" 200 OK
+INFO:     10.2.18.2:61754 - "GET /26dbdfb6-e491-49c5-af9d-a882c1340e58.jpg HTTP/1.1" 304 Not Modified
+INFO:     10.2.18.2:62270 - "GET /969ec9c8-d75e-4c67-a0ec-e01d5780ce60.jpg HTTP/1.1" 304 Not Modified
+INFO:     10.2.18.2:21334 - "OPTIONS /api/v1/books?search=&genre=&page=1&page_size=12&language=English,Hindi HTTP/1.1" 200 OK
+INFO:     10.2.18.2:64704 - "GET /api/v1/books?search=&genre=&page=1&page_size=12&language=English,Hindi HTTP/1.1" 200 OK
+INFO:     10.2.18.2:64704 - "OPTIONS /api/v1/books?search=&genre=&page=1&page_size=12&language=Hindi HTTP/1.1" 200 OK
+INFO:     10.2.18.2:16027 - "GET /api/v1/books?search=&genre=&page=1&page_size=12&language=Hindi HTTP/1.1" 200 OK
+INFO:     10.2.18.2:62270 - "GET /e2e859b6-4604-4c23-bf7a-1f16db81857e.jpeg HTTP/1.1" 304 Not Modified
+INFO:     10.2.18.2:21966 - "OPTIONS /api/v1/books/library/6 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:24712 - "POST /api/v1/books/library/6 HTTP/1.1" 201 Created
+INFO:     10.2.18.2:24712 - "GET /api/v1/books?search=&genre=&page=1&page_size=12&language=Hindi HTTP/1.1" 200 OK
+INFO:     10.2.18.2:24566 - "POST /api/v1/books/library/6 HTTP/1.1" 201 Created
+INFO:     10.2.18.2:24566 - "GET /api/v1/books?search=&genre=&page=1&page_size=12&language=Hindi HTTP/1.1" 200 OK
+INFO:     10.2.18.2:24524 - "OPTIONS /api/v1/dashboard HTTP/1.1" 200 OK
+INFO:     10.2.18.2:13737 - "GET /api/v1/dashboard HTTP/1.1" 200 OK
+INFO:     10.2.18.2:30534 - "GET / HTTP/1.1" 200 OK
+INFO:     10.2.18.2:34870 - "GET / HTTP/1.1" 200 OK
+INFO:     10.2.18.2:56672 - "GET / HTTP/1.1" 200 OK
+INFO:     10.2.18.2:43199 - "GET /favicon.ico HTTP/1.1" 200 OK
+INFO:     10.2.18.2:52006 - "GET / HTTP/1.1" 200 OK
+INFO:     10.2.18.2:13140 - "OPTIONS /api/v1/dashboard HTTP/1.1" 200 OK
+INFO:     10.2.18.2:13140 - "GET /api/v1/dashboard HTTP/1.1" 200 OK
+INFO:     10.2.18.2:13141 - "OPTIONS /api/v1/users/pending HTTP/1.1" 200 OK
+INFO:     10.2.18.2:13141 - "GET /api/v1/users/pending HTTP/1.1" 200 OK
+INFO:     10.2.18.2:13120 - "GET /api/v1/dashboard HTTP/1.1" 200 OK
+INFO:     10.2.18.2:6964 - "GET / HTTP/1.1" 200 OK
+INFO:     10.2.18.2:48730 - "GET /favicon.ico HTTP/1.1" 200 OK
+INFO:     10.2.18.2:37428 - "GET /.well-known/security.txt HTTP/1.1" 200 OK
+INFO:     10.2.18.2:15376 - "GET /icon-192.png HTTP/1.1" 200 OK
+INFO:     10.2.18.2:15398 - "GET /b3civ2qpnlqck HTTP/1.1" 200 OK
+INFO:     10.2.18.2:15410 - "GET /favicon.ico HTTP/1.1" 200 OK
+INFO:     10.2.18.2:46298 - "GET /icon-192.png HTTP/1.1" 200 OK
+INFO:     10.2.18.2:42829 - "GET / HTTP/1.1" 200 OK
+INFO:     10.2.18.2:13942 - "GET / HTTP/1.1" 200 OK
+INFO:     10.2.18.2:54080 - "GET / HTTP/1.1" 200 OK
+INFO:     10.2.18.2:19244 - "GET / HTTP/1.1" 200 OK
+INFO:     10.2.18.2:7146 - "GET / HTTP/1.1" 200 OK
+INFO:     10.2.18.2:14014 - "GET / HTTP/1.1" 200 OK
+INFO:     10.2.18.2:14030 - "GET /favicon.ico HTTP/1.1" 200 OK
+INFO:     10.2.18.2:39720 - "GET /icon-192.png HTTP/1.1" 200 OK
+INFO:     10.2.18.2:5736 - "GET /security.txt HTTP/1.1" 200 OK
+INFO:     10.2.18.2:5746 - "GET /favicon.ico HTTP/1.1" 200 OK
+INFO:     10.2.18.2:48208 - "GET /icon-192.png HTTP/1.1" 200 OK
+INFO:     10.2.18.2:48220 - "GET /ily7l8ksxwht_ HTTP/1.1" 200 OK
+INFO:     10.2.18.2:48230 - "GET /favicon.ico HTTP/1.1" 200 OK
+INFO:     10.2.18.2:47206 - "GET /icon-192.png HTTP/1.1" 200 OK
+INFO:     10.2.18.2:38900 - "GET / HTTP/1.1" 200 OK
+INFO:     10.2.18.2:38916 - "GET /favicon.ico HTTP/1.1" 200 OK
+INFO:     10.2.18.2:31744 - "GET / HTTP/1.1" 200 OK
+INFO:     10.2.18.2:31760 - "GET / HTTP/1.1" 200 OK
+INFO:     10.2.18.2:25441 - "OPTIONS /api/v1/dashboard HTTP/1.1" 200 OK
+INFO:     10.2.18.2:25441 - "GET /api/v1/dashboard HTTP/1.1" 401 Unauthorized
+INFO:     10.2.18.2:25446 - "OPTIONS /api/v1/auth/login HTTP/1.1" 200 OK
+INFO:     10.2.18.2:25446 - "POST /api/v1/auth/login HTTP/1.1" 200 OK
+INFO:     10.2.18.2:25446 - "GET /api/v1/dashboard HTTP/1.1" 200 OK
+INFO:     10.2.18.2:25448 - "OPTIONS /api/v1/libraries/mine HTTP/1.1" 200 OK
+INFO:     10.2.18.2:25449 - "OPTIONS /api/v1/books?search=&genre=&page=1&page_size=12 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:25448 - "GET /api/v1/libraries/mine HTTP/1.1" 200 OK
+INFO:     10.2.18.2:25449 - "GET /api/v1/books?search=&genre=&page=1&page_size=12 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:25449 - "GET /e23c7908-e3c9-4203-ab8a-9d456ee88d75.jpeg HTTP/1.1" 304 Not Modified
+INFO:     10.2.18.2:25448 - "GET /8fe5df70-3304-4d5f-99a1-859d7e2e5310.jpeg HTTP/1.1" 304 Not Modified
+INFO:     10.2.18.2:25450 - "GET /81637945-9191-43f7-8e91-dcdef3b7a51a.jpg HTTP/1.1" 304 Not Modified
+INFO:     10.2.18.2:25452 - "GET /edcd01bb-5e6e-471c-8efe-7811301553d0.jpg HTTP/1.1" 304 Not Modified
+INFO:     10.2.18.2:25455 - "GET /b93ec2ab-b21c-4305-9792-55097918e72e.jpg HTTP/1.1" 304 Not Modified
+INFO:     10.2.18.2:25451 - "GET /55835bf7-a96c-4b3f-a778-7ffa38134f40.jpeg HTTP/1.1" 304 Not Modified
+INFO:     10.2.18.2:25449 - "GET /ec895048-1380-40ab-8e28-437e8407ff60.jpg HTTP/1.1" 304 Not Modified
+INFO:     10.2.18.2:25448 - "GET /9e41ab1d-4e25-45e4-a2f4-ba4f583df809.jpeg HTTP/1.1" 304 Not Modified
+INFO:     10.2.18.2:25450 - "GET /679eafbf-35e6-4deb-8058-8c833a3eaa4c.jpg HTTP/1.1" 304 Not Modified
+INFO:     10.2.18.2:25452 - "GET /10562ec3-e271-4619-8b6b-bdac857294ff.jpg HTTP/1.1" 304 Not Modified
+INFO:     10.2.18.2:25455 - "GET /89a9c763-c4ab-4a9b-8ab8-c6ae8def064c.jpg HTTP/1.1" 304 Not Modified
+INFO:     10.2.18.2:25451 - "GET /64a26780-4496-4bed-8d06-3bcdba94e40c.jpg HTTP/1.1" 304 Not Modified
+INFO:     10.2.18.2:25448 - "OPTIONS /api/v1/libraries?search=&city=&page=1&page_size=12 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:25448 - "GET /api/v1/libraries?search=&city=&page=1&page_size=12 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:25441 - "OPTIONS /api/v1/requests?page=1&page_size=15 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:25441 - "GET /api/v1/requests?page=1&page_size=15 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:25442 - "GET /api/v1/libraries?search=&city=&page=1&page_size=12 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:25443 - "GET /api/v1/libraries/mine HTTP/1.1" 200 OK
+INFO:     10.2.18.2:25445 - "OPTIONS /api/v1/books?search=&genre=&page=1&page_size=12&library_id=8 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:25445 - "GET /api/v1/books?search=&genre=&page=1&page_size=12&library_id=8 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:27636 - "GET / HTTP/1.1" 200 OK
+INFO:     10.2.18.2:38885 - "GET /favicon.ico HTTP/1.1" 200 OK
+INFO:     10.2.18.2:42595 - "OPTIONS /api/v1/books?search=&genre=&page=1&page_size=12 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:42595 - "GET /api/v1/books?search=&genre=&page=1&page_size=12 HTTP/1.1" 401 Unauthorized
+INFO:     10.2.18.2:42601 - "OPTIONS /api/v1/auth/login HTTP/1.1" 200 OK
+INFO:     10.2.18.2:42601 - "POST /api/v1/auth/login HTTP/1.1" 200 OK
+INFO:     10.2.18.2:42601 - "GET /api/v1/books?search=&genre=&page=1&page_size=12 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:42559 - "GET /e23c7908-e3c9-4203-ab8a-9d456ee88d75.jpeg HTTP/1.1" 200 OK
+INFO:     10.2.18.2:42561 - "GET /8fe5df70-3304-4d5f-99a1-859d7e2e5310.jpeg HTTP/1.1" 200 OK
+INFO:     10.2.18.2:42563 - "GET /55835bf7-a96c-4b3f-a778-7ffa38134f40.jpeg HTTP/1.1" 200 OK
+INFO:     10.2.18.2:42565 - "GET /81637945-9191-43f7-8e91-dcdef3b7a51a.jpg HTTP/1.1" 200 OK
+INFO:     10.2.18.2:42569 - "GET /edcd01bb-5e6e-471c-8efe-7811301553d0.jpg HTTP/1.1" 200 OK
+INFO:     10.2.18.2:42567 - "GET /b93ec2ab-b21c-4305-9792-55097918e72e.jpg HTTP/1.1" 200 OK
+INFO:     10.2.18.2:42559 - "GET /10562ec3-e271-4619-8b6b-bdac857294ff.jpg HTTP/1.1" 200 OK
+INFO:     10.2.18.2:42563 - "GET /ec895048-1380-40ab-8e28-437e8407ff60.jpg HTTP/1.1" 200 OK
+INFO:     10.2.18.2:42565 - "GET /9e41ab1d-4e25-45e4-a2f4-ba4f583df809.jpeg HTTP/1.1" 200 OK
+INFO:     10.2.18.2:42563 - "GET /679eafbf-35e6-4deb-8058-8c833a3eaa4c.jpg HTTP/1.1" 200 OK
+INFO:     10.2.18.2:42569 - "GET /89a9c763-c4ab-4a9b-8ab8-c6ae8def064c.jpg HTTP/1.1" 200 OK
+INFO:     10.2.18.2:42567 - "GET /64a26780-4496-4bed-8d06-3bcdba94e40c.jpg HTTP/1.1" 200 OK
+INFO:     10.2.18.2:42557 - "OPTIONS /api/v1/requests HTTP/1.1" 200 OK
+INFO:     10.2.18.2:42557 - "POST /api/v1/requests HTTP/1.1" 201 Created
+INFO:     10.2.18.2:42557 - "GET /api/v1/books?search=&genre=&page=1&page_size=12 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:42577 - "GET /26dbdfb6-e491-49c5-af9d-a882c1340e58.jpg HTTP/1.1" 200 OK
+INFO:     10.2.18.2:42575 - "OPTIONS /api/v1/books?search=&genre=&page=2&page_size=12 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:42575 - "GET /api/v1/books?search=&genre=&page=2&page_size=12 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:42585 - "GET /7d054a7a-36f8-44b6-a4cd-c2f4f2b8723f.jpeg HTTP/1.1" 200 OK
+INFO:     10.2.18.2:42583 - "GET /1a58ac4e-8cfa-46b2-9d65-b05da2c5796b.jpg HTTP/1.1" 200 OK
+INFO:     10.2.18.2:42587 - "GET /969ec9c8-d75e-4c67-a0ec-e01d5780ce60.jpg HTTP/1.1" 200 OK
+INFO:     10.2.18.2:42591 - "GET /b1ea3d6a-a64f-4a35-9aac-5d627af6d58c.jpeg HTTP/1.1" 200 OK
+INFO:     10.2.18.2:42593 - "GET /031f54b0-3732-4c12-8a1a-4e479d0c1b15.jpeg HTTP/1.1" 200 OK
+INFO:     10.2.18.2:42589 - "GET /e2771c7d-3c75-40d8-871f-acb2e72add80.jpeg HTTP/1.1" 200 OK
+INFO:     10.2.18.2:42583 - "GET /041c5f66-49ee-4763-90fa-b8496cc069b2.jpg HTTP/1.1" 200 OK
+INFO:     10.2.18.2:42587 - "GET /4e4aebd6-3ff7-4200-9c64-c62f306a896d.jpg HTTP/1.1" 200 OK
+INFO:     10.2.18.2:42585 - "GET /719a0c52-8398-48ee-8198-04e4ae7539b3.jpg HTTP/1.1" 200 OK
+INFO:     10.2.18.2:42591 - "GET /4d89357b-f4be-4f78-9535-b535769e5bfd.jpg HTTP/1.1" 200 OK
+INFO:     10.2.18.2:42589 - "GET /600f8ed5-bc56-40f9-a753-9864680d4985.jpg HTTP/1.1" 200 OK
+INFO:     10.2.18.2:42583 - "GET /2b62d852-b403-4510-a6b0-30015c1cc37f.jpg HTTP/1.1" 200 OK
+INFO:     10.2.18.2:42581 - "OPTIONS /api/v1/requests?page=1&page_size=15 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:42581 - "GET /api/v1/requests?page=1&page_size=15 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:42597 - "GET /api/v1/books?search=&genre=&page=1&page_size=12 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:43479 - "OPTIONS /api/v1/dashboard HTTP/1.1" 200 OK
+INFO:     10.2.18.2:43479 - "GET /api/v1/dashboard HTTP/1.1" 200 OK
+INFO:     10.2.18.2:43489 - "OPTIONS /api/v1/libraries/mine HTTP/1.1" 200 OK
+INFO:     10.2.18.2:43490 - "OPTIONS /api/v1/books?search=&genre=&page=1&page_size=12 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:43490 - "GET /api/v1/books?search=&genre=&page=1&page_size=12 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:43490 - "GET /26dbdfb6-e491-49c5-af9d-a882c1340e58.jpg HTTP/1.1" 304 Not Modified
+INFO:     10.2.18.2:43489 - "GET /api/v1/libraries/mine HTTP/1.1" 200 OK
+INFO:     10.2.18.2:43713 - "OPTIONS /api/v1/requests?page=1&page_size=15 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:43713 - "GET /api/v1/requests?page=1&page_size=15 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:58262 - "GET / HTTP/1.1" 200 OK
+INFO:     10.2.18.2:8686 - "GET / HTTP/1.1" 200 OK
+INFO:     10.2.18.2:41144 - "GET /favicon.ico HTTP/1.1" 200 OK
+INFO:     10.2.18.2:41176 - "GET /icon-192.png HTTP/1.1" 200 OK
+INFO:     10.2.18.2:34534 - "GET /sitemap.xml HTTP/1.1" 200 OK
+INFO:     10.2.18.2:34548 - "GET /favicon.ico HTTP/1.1" 200 OK
+INFO:     10.2.18.2:58784 - "GET /mykupx98n3 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:58794 - "GET /favicon.ico HTTP/1.1" 200 OK
+INFO:     10.2.18.2:58798 - "GET /icon-192.png HTTP/1.1" 200 OK
+INFO:     10.2.18.2:59330 - "GET /metrics HTTP/1.1" 200 OK
+INFO:     10.2.18.2:22809 - "OPTIONS /api/v1/dashboard HTTP/1.1" 200 OK
+INFO:     10.2.18.2:65299 - "GET /api/v1/dashboard HTTP/1.1" 401 Unauthorized
+INFO:     10.2.18.2:19627 - "OPTIONS /api/v1/auth/login HTTP/1.1" 200 OK
+INFO:     10.2.18.2:23530 - "POST /api/v1/auth/login HTTP/1.1" 200 OK
+INFO:     10.2.18.2:23530 - "GET /api/v1/dashboard HTTP/1.1" 200 OK
+INFO:     10.2.18.2:30862 - "OPTIONS /api/v1/users/pending HTTP/1.1" 200 OK
+INFO:     10.2.18.2:18534 - "GET /api/v1/users/pending HTTP/1.1" 200 OK
+INFO:     10.2.18.2:24745 - "OPTIONS /api/v1/dashboard HTTP/1.1" 200 OK
+INFO:     10.2.18.2:19652 - "GET /api/v1/dashboard HTTP/1.1" 200 OK
+INFO:     10.2.18.2:19652 - "OPTIONS /api/v1/libraries?search=&city=&page=1&page_size=12 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:19266 - "GET /api/v1/libraries?search=&city=&page=1&page_size=12 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:19266 - "OPTIONS /api/v1/books?search=&genre=&page=1&page_size=12 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:29964 - "OPTIONS /api/v1/libraries/mine HTTP/1.1" 200 OK
+INFO:     10.2.18.2:62679 - "GET /api/v1/books?search=&genre=&page=1&page_size=12 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:32301 - "GET /api/v1/libraries/mine HTTP/1.1" 200 OK
+INFO:     10.2.18.2:24359 - "GET /e23c7908-e3c9-4203-ab8a-9d456ee88d75.jpeg HTTP/1.1" 200 OK
+INFO:     10.2.18.2:17692 - "GET /55835bf7-a96c-4b3f-a778-7ffa38134f40.jpeg HTTP/1.1" 200 OK
+INFO:     10.2.18.2:8849 - "GET /81637945-9191-43f7-8e91-dcdef3b7a51a.jpg HTTP/1.1" 200 OK
+INFO:     10.2.18.2:5307 - "GET /edcd01bb-5e6e-471c-8efe-7811301553d0.jpg HTTP/1.1" 200 OK
+INFO:     10.2.18.2:13224 - "GET /8fe5df70-3304-4d5f-99a1-859d7e2e5310.jpeg HTTP/1.1" 200 OK
+INFO:     10.2.18.2:8982 - "GET /b93ec2ab-b21c-4305-9792-55097918e72e.jpg HTTP/1.1" 200 OK
+INFO:     10.2.18.2:24359 - "GET /10562ec3-e271-4619-8b6b-bdac857294ff.jpg HTTP/1.1" 200 OK
+INFO:     10.2.18.2:17692 - "GET /9e41ab1d-4e25-45e4-a2f4-ba4f583df809.jpeg HTTP/1.1" 200 OK
+INFO:     10.2.18.2:8849 - "GET /679eafbf-35e6-4deb-8058-8c833a3eaa4c.jpg HTTP/1.1" 200 OK
+INFO:     10.2.18.2:17692 - "GET /89a9c763-c4ab-4a9b-8ab8-c6ae8def064c.jpg HTTP/1.1" 200 OK
+INFO:     10.2.18.2:8849 - "GET /64a26780-4496-4bed-8d06-3bcdba94e40c.jpg HTTP/1.1" 200 OK
+INFO:     10.2.18.2:24359 - "GET /26dbdfb6-e491-49c5-af9d-a882c1340e58.jpg HTTP/1.1" 200 OK
+INFO:     10.2.18.2:16214 - "OPTIONS /api/v1/books/library/6 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:15084 - "POST /api/v1/books/library/6 HTTP/1.1" 201 Created
+INFO:     10.2.18.2:15084 - "GET /api/v1/books?search=&genre=&page=1&page_size=12 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:20451 - "POST /api/v1/books/library/6 HTTP/1.1" 201 Created
+INFO:     10.2.18.2:20451 - "GET /api/v1/books?search=&genre=&page=1&page_size=12 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:17120 - "POST /api/v1/books/library/6 HTTP/1.1" 201 Created
+INFO:     10.2.18.2:17120 - "GET /api/v1/books?search=&genre=&page=1&page_size=12 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:11400 - "OPTIONS /api/v1/books?search=&genre=&page=2&page_size=12 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:24473 - "GET /api/v1/books?search=&genre=&page=2&page_size=12 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:28034 - "GET /969ec9c8-d75e-4c67-a0ec-e01d5780ce60.jpg HTTP/1.1" 200 OK
+INFO:     10.2.18.2:15967 - "GET /1a58ac4e-8cfa-46b2-9d65-b05da2c5796b.jpg HTTP/1.1" 200 OK
+INFO:     10.2.18.2:10615 - "GET /e2771c7d-3c75-40d8-871f-acb2e72add80.jpeg HTTP/1.1" 200 OK
+INFO:     10.2.18.2:61991 - "GET /7d054a7a-36f8-44b6-a4cd-c2f4f2b8723f.jpeg HTTP/1.1" 200 OK
+INFO:     10.2.18.2:12940 - "GET /031f54b0-3732-4c12-8a1a-4e479d0c1b15.jpeg HTTP/1.1" 200 OK
+INFO:     10.2.18.2:9031 - "GET /b1ea3d6a-a64f-4a35-9aac-5d627af6d58c.jpeg HTTP/1.1" 200 OK
+INFO:     10.2.18.2:28034 - "GET /041c5f66-49ee-4763-90fa-b8496cc069b2.jpg HTTP/1.1" 200 OK
+INFO:     10.2.18.2:15967 - "GET /4e4aebd6-3ff7-4200-9c64-c62f306a896d.jpg HTTP/1.1" 200 OK
+INFO:     10.2.18.2:28034 - "GET /719a0c52-8398-48ee-8198-04e4ae7539b3.jpg HTTP/1.1" 200 OK
+INFO:     10.2.18.2:10615 - "GET /600f8ed5-bc56-40f9-a753-9864680d4985.jpg HTTP/1.1" 200 OK
+INFO:     10.2.18.2:28034 - "GET /2b62d852-b403-4510-a6b0-30015c1cc37f.jpg HTTP/1.1" 200 OK
+INFO:     10.2.18.2:9031 - "GET /4d89357b-f4be-4f78-9535-b535769e5bfd.jpg HTTP/1.1" 200 OK
+INFO:     10.2.18.2:31465 - "OPTIONS /api/v1/books?search=&genre=&page=3&page_size=12 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:23345 - "GET /api/v1/books?search=&genre=&page=3&page_size=12 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:18511 - "GET /55b06417-cdc5-4a37-9ddf-e20ada494d43.jpg HTTP/1.1" 200 OK
+INFO:     10.2.18.2:32795 - "GET /0fac39ff-835b-4bce-b22a-de0c4b7ef5d0.jpg HTTP/1.1" 200 OK
+INFO:     10.2.18.2:15659 - "GET /a105d87b-a470-4336-acbc-890825f6a0d4.jpg HTTP/1.1" 200 OK
+INFO:     10.2.18.2:18099 - "GET /89766e9b-1d04-46ae-9fa6-28add3d4b22d.jpg HTTP/1.1" 200 OK
+INFO:     10.2.18.2:10327 - "GET /cac82e20-fa7d-4956-8e15-a70659749589.jpg HTTP/1.1" 200 OK
+INFO:     10.2.18.2:10116 - "GET /ec895048-1380-40ab-8e28-437e8407ff60.jpg HTTP/1.1" 200 OK
+INFO:     10.2.18.2:10327 - "GET /5a81697b-43ba-4bc8-9a72-5701ddb3e9da.jpg HTTP/1.1" 200 OK
+INFO:     10.2.18.2:18511 - "GET /e2e859b6-4604-4c23-bf7a-1f16db81857e.jpeg HTTP/1.1" 200 OK
+INFO:     10.2.18.2:10327 - "GET /2be6421e-c6de-4566-a78f-0cfbeb3e5700.jpg HTTP/1.1" 200 OK
+INFO:     10.2.18.2:18099 - "GET /78e3b7e5-06e4-45d3-a28d-f4057d278329.jpg HTTP/1.1" 200 OK
+INFO:     10.2.18.2:6266 - "OPTIONS /api/v1/books?search=&genre=&page=1&page_size=12&language=Gujarati HTTP/1.1" 200 OK
+INFO:     10.2.18.2:6582 - "GET /api/v1/books?search=&genre=&page=1&page_size=12&language=Gujarati HTTP/1.1" 200 OK
+INFO:     10.2.18.2:64880 - "GET / HTTP/1.1" 200 OK
+INFO:     10.2.18.2:11648 - "OPTIONS /api/v1/books/library/6 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:9809 - "POST /api/v1/books/library/6 HTTP/1.1" 201 Created
+INFO:     10.2.18.2:9809 - "OPTIONS /api/v1/books?search=&genre=&page=1&page_size=12&language=Gujarati HTTP/1.1" 200 OK
+INFO:     10.2.18.2:64924 - "GET /api/v1/books?search=&genre=&page=1&page_size=12&language=Gujarati HTTP/1.1" 200 OK
+INFO:     10.2.18.2:63873 - "POST /api/v1/books/library/6 HTTP/1.1" 201 Created
+INFO:     10.2.18.2:63873 - "GET /api/v1/books?search=&genre=&page=1&page_size=12&language=Gujarati HTTP/1.1" 200 OK
+INFO:     10.2.18.2:64654 - "POST /api/v1/books/library/6 HTTP/1.1" 201 Created
+INFO:     10.2.18.2:64654 - "GET /api/v1/books?search=&genre=&page=1&page_size=12&language=Gujarati HTTP/1.1" 200 OK
+INFO:     10.2.18.2:12555 - "POST /api/v1/books/library/6 HTTP/1.1" 201 Created
+INFO:     10.2.18.2:12555 - "GET /api/v1/books?search=&genre=&page=1&page_size=12&language=Gujarati HTTP/1.1" 200 OK
+INFO:     10.2.18.2:27004 - "POST /api/v1/books/library/6 HTTP/1.1" 201 Created
+INFO:     10.2.18.2:27004 - "GET /api/v1/books?search=&genre=&page=1&page_size=12&language=Gujarati HTTP/1.1" 200 OK
+INFO:     10.2.18.2:19963 - "POST /api/v1/books/library/6 HTTP/1.1" 201 Created
+INFO:     10.2.18.2:19963 - "GET /api/v1/books?search=&genre=&page=1&page_size=12&language=Gujarati HTTP/1.1" 200 OK
+INFO:     10.2.18.2:29697 - "POST /api/v1/books/library/6 HTTP/1.1" 201 Created
+INFO:     10.2.18.2:29697 - "GET /api/v1/books?search=&genre=&page=1&page_size=12&language=Gujarati HTTP/1.1" 200 OK
+INFO:     10.2.18.2:16186 - "OPTIONS /api/v1/dashboard HTTP/1.1" 200 OK
+INFO:     10.2.18.2:16186 - "GET /api/v1/dashboard HTTP/1.1" 200 OK
+INFO:     10.2.18.2:18733 - "OPTIONS /api/v1/libraries?search=&city=&page=1&page_size=12 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:18733 - "GET /api/v1/libraries?search=&city=&page=1&page_size=12 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:17583 - "OPTIONS /api/v1/books?search=&genre=&page=1&page_size=12&library_id=8 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:17582 - "OPTIONS /api/v1/libraries/mine HTTP/1.1" 200 OK
+INFO:     10.2.18.2:17582 - "GET /api/v1/libraries/mine HTTP/1.1" 200 OK
+INFO:     10.2.18.2:17583 - "GET /api/v1/books?search=&genre=&page=1&page_size=12&library_id=8 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:17582 - "GET /e23c7908-e3c9-4203-ab8a-9d456ee88d75.jpeg HTTP/1.1" 304 Not Modified
+INFO:     10.2.18.2:17668 - "OPTIONS /api/v1/books/library/8 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:17668 - "POST /api/v1/books/library/8 HTTP/1.1" 201 Created
+INFO:     10.2.18.2:17668 - "GET /api/v1/books?search=&genre=&page=1&page_size=12&library_id=8 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:17668 - "GET /98bbde3e-5034-4bf3-bcad-b3a32b536060.jpeg HTTP/1.1" 200 OK
+INFO:     10.2.18.2:17820 - "POST /api/v1/books/library/8 HTTP/1.1" 201 Created
+INFO:     10.2.18.2:17820 - "GET /api/v1/books?search=&genre=&page=1&page_size=12&library_id=8 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:17820 - "GET /ef4b9f30-58b1-47e4-a28d-c5b353e828f2.jpeg HTTP/1.1" 200 OK
+INFO:     10.2.18.2:17990 - "POST /api/v1/books/library/8 HTTP/1.1" 201 Created
+INFO:     10.2.18.2:17990 - "GET /api/v1/books?search=&genre=&page=1&page_size=12&library_id=8 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:17990 - "GET /ef28ef4f-7f71-4315-a967-7a08ba2cadf8.png HTTP/1.1" 200 OK
+INFO:     10.2.18.2:18178 - "POST /api/v1/books/library/8 HTTP/1.1" 201 Created
+INFO:     10.2.18.2:18178 - "GET /api/v1/books?search=&genre=&page=1&page_size=12&library_id=8 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:18178 - "GET /afccfede-3a50-410d-866c-0c4ce7824e66.jpeg HTTP/1.1" 200 OK
+INFO:     10.2.18.2:18478 - "OPTIONS /api/v1/books/library/8 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:18478 - "POST /api/v1/books/library/8 HTTP/1.1" 201 Created
+INFO:     10.2.18.2:18478 - "OPTIONS /api/v1/books?search=&genre=&page=1&page_size=12&library_id=8 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:18478 - "GET /api/v1/books?search=&genre=&page=1&page_size=12&library_id=8 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:18478 - "GET /c621865f-812e-4265-a72e-4c13f5b1b39b.jpeg HTTP/1.1" 200 OK
+INFO:     10.2.18.2:18468 - "POST /api/v1/books/library/8 HTTP/1.1" 201 Created
+INFO:     10.2.18.2:18468 - "GET /api/v1/books?search=&genre=&page=1&page_size=12&library_id=8 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:18468 - "GET /c94211b9-1d13-422f-9359-916781895706.jpeg HTTP/1.1" 200 OK
+INFO:     10.2.18.2:18829 - "POST /api/v1/books/library/8 HTTP/1.1" 201 Created
+INFO:     10.2.18.2:18829 - "GET /api/v1/books?search=&genre=&page=1&page_size=12&library_id=8 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:18829 - "GET /1ca61890-61e9-4252-a5fe-0d0a47333195.jpeg HTTP/1.1" 200 OK
+INFO:     10.2.18.2:18466 - "POST /api/v1/books/library/8 HTTP/1.1" 201 Created
+INFO:     10.2.18.2:18466 - "GET /api/v1/books?search=&genre=&page=1&page_size=12&library_id=8 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:18466 - "GET /6c2f66a0-be99-4cf3-b874-f2039bc9e9ae.jpeg HTTP/1.1" 200 OK
+INFO:     10.2.18.2:19394 - "OPTIONS /api/v1/books/library/8 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:19394 - "POST /api/v1/books/library/8 HTTP/1.1" 201 Created
+INFO:     10.2.18.2:19394 - "OPTIONS /api/v1/books?search=&genre=&page=1&page_size=12&library_id=8 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:19394 - "GET /api/v1/books?search=&genre=&page=1&page_size=12&library_id=8 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:19394 - "GET /e2968e68-7334-45e7-a001-7069e07c5d4e.jpeg HTTP/1.1" 200 OK
+INFO:     10.2.18.2:19499 - "OPTIONS /api/v1/dashboard HTTP/1.1" 200 OK
+INFO:     10.2.18.2:19499 - "GET /api/v1/dashboard HTTP/1.1" 200 OK
+INFO:     10.2.18.2:19501 - "OPTIONS /api/v1/libraries?search=&city=&page=1&page_size=12 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:19501 - "GET /api/v1/libraries?search=&city=&page=1&page_size=12 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:19490 - "OPTIONS /api/v1/books?search=&genre=&page=1&page_size=12 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:19489 - "OPTIONS /api/v1/libraries/mine HTTP/1.1" 200 OK
+INFO:     10.2.18.2:19490 - "GET /api/v1/books?search=&genre=&page=1&page_size=12 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:19489 - "GET /api/v1/libraries/mine HTTP/1.1" 200 OK
+INFO:     10.2.18.2:19490 - "GET /8fe5df70-3304-4d5f-99a1-859d7e2e5310.jpeg HTTP/1.1" 304 Not Modified
+INFO:     10.2.18.2:19489 - "GET /10562ec3-e271-4619-8b6b-bdac857294ff.jpg HTTP/1.1" 304 Not Modified
+INFO:     10.2.18.2:19493 - "GET /b93ec2ab-b21c-4305-9792-55097918e72e.jpg HTTP/1.1" 304 Not Modified
+INFO:     10.2.18.2:19496 - "GET /edcd01bb-5e6e-471c-8efe-7811301553d0.jpg HTTP/1.1" 304 Not Modified
+INFO:     10.2.18.2:19497 - "GET /81637945-9191-43f7-8e91-dcdef3b7a51a.jpg HTTP/1.1" 304 Not Modified
+INFO:     10.2.18.2:19490 - "GET /679eafbf-35e6-4deb-8058-8c833a3eaa4c.jpg HTTP/1.1" 304 Not Modified
+INFO:     10.2.18.2:19504 - "GET /55835bf7-a96c-4b3f-a778-7ffa38134f40.jpeg HTTP/1.1" 304 Not Modified
+INFO:     10.2.18.2:19489 - "GET /9e41ab1d-4e25-45e4-a2f4-ba4f583df809.jpeg HTTP/1.1" 304 Not Modified
+INFO:     10.2.18.2:19496 - "GET /64a26780-4496-4bed-8d06-3bcdba94e40c.jpg HTTP/1.1" 304 Not Modified
+INFO:     10.2.18.2:19493 - "GET /89a9c763-c4ab-4a9b-8ab8-c6ae8def064c.jpg HTTP/1.1" 304 Not Modified
+INFO:     10.2.18.2:19504 - "GET /26dbdfb6-e491-49c5-af9d-a882c1340e58.jpg HTTP/1.1" 304 Not Modified
+INFO:     10.2.18.2:19495 - "OPTIONS /api/v1/books/library/8 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:19495 - "POST /api/v1/books/library/8 HTTP/1.1" 201 Created
+INFO:     10.2.18.2:19495 - "GET /api/v1/books?search=&genre=&page=1&page_size=12 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:19948 - "POST /api/v1/books/library/8 HTTP/1.1" 201 Created
+INFO:     10.2.18.2:19948 - "GET /api/v1/books?search=&genre=&page=1&page_size=12 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:20092 - "POST /api/v1/books/library/8 HTTP/1.1" 201 Created
+INFO:     10.2.18.2:20092 - "GET /api/v1/books?search=&genre=&page=1&page_size=12 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:20293 - "OPTIONS /api/v1/dashboard HTTP/1.1" 200 OK
+INFO:     10.2.18.2:20293 - "GET /api/v1/dashboard HTTP/1.1" 200 OK
+INFO:     10.2.18.2:20296 - "OPTIONS /api/v1/books?search=&genre=&page=1&page_size=12 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:20295 - "OPTIONS /api/v1/libraries/mine HTTP/1.1" 200 OK
+INFO:     10.2.18.2:20296 - "GET /api/v1/books?search=&genre=&page=1&page_size=12 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:20295 - "GET /api/v1/libraries/mine HTTP/1.1" 200 OK
+INFO:     10.2.18.2:20410 - "OPTIONS /api/v1/books/library/8 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:20410 - "POST /api/v1/books/library/8 HTTP/1.1" 201 Created
+INFO:     10.2.18.2:20410 - "GET /api/v1/books?search=&genre=&page=1&page_size=12 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:20411 - "OPTIONS /api/v1/libraries?search=&city=&page=1&page_size=12 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:20411 - "GET /api/v1/libraries?search=&city=&page=1&page_size=12 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:20414 - "OPTIONS /api/v1/books?search=&genre=&page=1&page_size=12&library_id=8 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:20413 - "GET /api/v1/libraries/mine HTTP/1.1" 200 OK
+INFO:     10.2.18.2:20414 - "GET /api/v1/books?search=&genre=&page=1&page_size=12&library_id=8 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:20414 - "GET /d602a2ba-f621-4248-8778-9c143cb8dd12.jpeg HTTP/1.1" 200 OK
+INFO:     10.2.18.2:20413 - "GET /71a452e1-9a92-47d0-a335-ca9fae10a38b.jpeg HTTP/1.1" 200 OK
+INFO:     10.2.18.2:20402 - "GET /c94211b9-1d13-422f-9359-916781895706.jpeg HTTP/1.1" 304 Not Modified
+INFO:     10.2.18.2:20401 - "GET /c621865f-812e-4265-a72e-4c13f5b1b39b.jpeg HTTP/1.1" 304 Not Modified
+INFO:     10.2.18.2:20415 - "GET /6c2f66a0-be99-4cf3-b874-f2039bc9e9ae.jpeg HTTP/1.1" 304 Not Modified
+INFO:     10.2.18.2:20416 - "GET /1ca61890-61e9-4252-a5fe-0d0a47333195.jpeg HTTP/1.1" 304 Not Modified
+INFO:     10.2.18.2:20402 - "GET /98bbde3e-5034-4bf3-bcad-b3a32b536060.jpeg HTTP/1.1" 304 Not Modified
+INFO:     10.2.18.2:20401 - "GET /ef4b9f30-58b1-47e4-a28d-c5b353e828f2.jpeg HTTP/1.1" 304 Not Modified
+INFO:     10.2.18.2:20415 - "GET /afccfede-3a50-410d-866c-0c4ce7824e66.jpeg HTTP/1.1" 304 Not Modified
+INFO:     10.2.18.2:20416 - "GET /e2968e68-7334-45e7-a001-7069e07c5d4e.jpeg HTTP/1.1" 304 Not Modified
+INFO:     10.2.18.2:20402 - "GET /ef28ef4f-7f71-4315-a967-7a08ba2cadf8.png HTTP/1.1" 304 Not Modified
+INFO:     10.2.18.2:20408 - "OPTIONS /api/v1/books?search=&genre=&page=2&page_size=12&library_id=8 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:20408 - "GET /api/v1/books?search=&genre=&page=2&page_size=12&library_id=8 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:20408 - "GET /3647f29b-ceee-4948-a2b1-1d408c816a15.jpeg HTTP/1.1" 200 OK
+INFO:     10.2.18.2:20409 - "GET /8cc9f83f-3b88-4454-b70e-794a630afbd1.jpeg HTTP/1.1" 200 OK
+INFO:     10.2.18.2:20914 - "GET /api/v1/books?search=&genre=&page=1&page_size=12&library_id=8 HTTP/1.1" 401 Unauthorized
+INFO:     10.2.18.2:20925 - "OPTIONS /api/v1/auth/login HTTP/1.1" 200 OK
+INFO:     10.2.18.2:20925 - "POST /api/v1/auth/login HTTP/1.1" 200 OK
+INFO:     10.2.18.2:20925 - "GET /api/v1/dashboard HTTP/1.1" 200 OK
+INFO:     10.2.18.2:20928 - "GET /api/v1/books?search=&genre=&page=1&page_size=12 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:20927 - "GET /api/v1/libraries/mine HTTP/1.1" 200 OK
+INFO:     10.2.18.2:20927 - "GET /api/v1/libraries?search=&city=&page=1&page_size=12 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:33452 - "GET / HTTP/1.1" 200 OK
+INFO:     10.2.18.2:33938 - "GET / HTTP/1.1" 200 OK
+INFO:     10.2.18.2:49183 - "GET / HTTP/1.1" 200 OK
+INFO:     10.2.18.2:49821 - "GET /favicon.ico HTTP/1.1" 200 OK
+INFO:     10.2.18.2:39291 - "GET /icon-192.png HTTP/1.1" 200 OK
+INFO:     10.2.18.2:58888 - "POST / HTTP/1.1" 405 Method Not Allowed
+INFO:     10.2.18.2:58900 - "POST /_next HTTP/1.1" 405 Method Not Allowed
+INFO:     10.2.18.2:41134 - "POST /api HTTP/1.1" 405 Method Not Allowed
+INFO:     10.2.18.2:41148 - "POST /_next/server HTTP/1.1" 405 Method Not Allowed
+INFO:     10.2.18.2:41152 - "POST /app HTTP/1.1" 405 Method Not Allowed
+INFO:     10.2.18.2:41162 - "POST /api/route HTTP/1.1" 405 Method Not Allowed
+INFO:     10.2.18.2:23620 - "GET / HTTP/1.1" 200 OK
+INFO:     10.2.18.2:22819 - "GET /favicon.ico HTTP/1.1" 200 OK
+INFO:     10.2.18.2:34554 - "OPTIONS /api/v1/auth/login HTTP/1.1" 200 OK
+INFO:     10.2.18.2:34552 - "POST /api/v1/auth/login HTTP/1.1" 200 OK
+INFO:     10.2.18.2:34552 - "OPTIONS /api/v1/dashboard HTTP/1.1" 200 OK
+INFO:     10.2.18.2:34554 - "GET /api/v1/dashboard HTTP/1.1" 200 OK
+INFO:     10.2.18.2:34623 - "OPTIONS /api/v1/libraries?search=&city=&page=1&page_size=12 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:34941 - "OPTIONS /api/v1/libraries/mine HTTP/1.1" 200 OK
+INFO:     10.2.18.2:34942 - "OPTIONS /api/v1/books?search=&genre=&page=1&page_size=12 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:5885 - "OPTIONS /api/v1/requests?page=1&page_size=15 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:10046 - "OPTIONS /api/v1/users/pending HTTP/1.1" 200 OK
+INFO:     10.2.18.2:35007 - "GET /api/v1/dashboard HTTP/1.1" 200 OK
+INFO:     10.2.18.2:64756 - "OPTIONS /api/v1/dashboard HTTP/1.1" 200 OK
+INFO:     10.2.18.2:64756 - "GET /api/v1/dashboard HTTP/1.1" 200 OK
+INFO:     10.2.18.2:17691 - "OPTIONS /api/v1/dashboard HTTP/1.1" 200 OK
+INFO:     10.2.18.2:14758 - "GET /api/v1/dashboard HTTP/1.1" 200 OK
+INFO:     10.2.18.2:5943 - "OPTIONS /api/v1/auth/login HTTP/1.1" 400 Bad Request
+INFO:     10.2.18.2:25633 - "OPTIONS /api/v1/auth/login HTTP/1.1" 400 Bad Request
+INFO:     10.2.18.2:12553 - "OPTIONS /api/v1/auth/login HTTP/1.1" 400 Bad Request
+INFO:     10.2.18.2:32208 - "OPTIONS /api/v1/dashboard HTTP/1.1" 200 OK
+INFO:     10.2.18.2:12809 - "GET /api/v1/dashboard HTTP/1.1" 200 OK
+INFO:     10.2.18.2:12809 - "OPTIONS /api/v1/libraries?search=&city=&page=1&page_size=12 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:17400 - "GET /api/v1/libraries?search=&city=&page=1&page_size=12 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:17400 - "OPTIONS /api/v1/books?search=&genre=&page=1&page_size=12&library_id=8 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:9994 - "OPTIONS /api/v1/libraries/mine HTTP/1.1" 200 OK
+INFO:     10.2.18.2:16370 - "GET /api/v1/books?search=&genre=&page=1&page_size=12&library_id=8 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:13124 - "GET /api/v1/libraries/mine HTTP/1.1" 200 OK
+INFO:     10.2.18.2:11107 - "GET /98bbde3e-5034-4bf3-bcad-b3a32b536060.jpeg HTTP/1.1" 200 OK
+INFO:     10.2.18.2:15197 - "GET /ef4b9f30-58b1-47e4-a28d-c5b353e828f2.jpeg HTTP/1.1" 200 OK
+INFO:     10.2.18.2:25865 - "GET /ef28ef4f-7f71-4315-a967-7a08ba2cadf8.png HTTP/1.1" 200 OK
+INFO:     10.2.18.2:20496 - "GET /e23c7908-e3c9-4203-ab8a-9d456ee88d75.jpeg HTTP/1.1" 200 OK
+INFO:     10.2.18.2:22557 - "GET /afccfede-3a50-410d-866c-0c4ce7824e66.jpeg HTTP/1.1" 200 OK
+INFO:     10.2.18.2:25988 - "GET /c621865f-812e-4265-a72e-4c13f5b1b39b.jpeg HTTP/1.1" 200 OK
+INFO:     10.2.18.2:20496 - "GET /c94211b9-1d13-422f-9359-916781895706.jpeg HTTP/1.1" 200 OK
+INFO:     10.2.18.2:11107 - "GET /1ca61890-61e9-4252-a5fe-0d0a47333195.jpeg HTTP/1.1" 200 OK
+INFO:     10.2.18.2:15197 - "GET /6c2f66a0-be99-4cf3-b874-f2039bc9e9ae.jpeg HTTP/1.1" 200 OK
+INFO:     10.2.18.2:11107 - "GET /e2968e68-7334-45e7-a001-7069e07c5d4e.jpeg HTTP/1.1" 200 OK
+INFO:     10.2.18.2:20496 - "GET /71a452e1-9a92-47d0-a335-ca9fae10a38b.jpeg HTTP/1.1" 200 OK
+INFO:     10.2.18.2:22557 - "GET /d602a2ba-f621-4248-8778-9c143cb8dd12.jpeg HTTP/1.1" 200 OK
+INFO:     10.2.18.2:13124 - "OPTIONS /api/v1/requests?page=1&page_size=15 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:16370 - "GET /api/v1/requests?page=1&page_size=15 HTTP/1.1" 200 OK
+INFO:     10.2.18.2:6875 - "OPTIONS /api/v1/auth/login HTTP/1.1" 400 Bad Request
+INFO:     10.2.18.2:23238 - "OPTIONS /api/v1/auth/login HTTP/1.1" 400 Bad Request
+INFO:     10.2.18.2:31373 - "OPTIONS /api/v1/auth/login HTTP/1.1" 400 Bad Request

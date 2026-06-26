@@ -11,6 +11,10 @@ export default function RegisterPage() {
     phone: '',
     password: '',
     role: 'READER',
+    address_line: '',
+    city: '',
+    state: '',
+    pincode: '',
   });
   const [error, setError] = useState('');
   const [submitted, setSubmitted] = useState(false);
@@ -110,6 +114,55 @@ export default function RegisterPage() {
               <option value="OWNER">Library Owner — I run a library</option>
               <option value="VOLUNTEER">Volunteer — I help with deliveries</option>
             </select>
+          </div>
+
+          <div style={{ margin: '18px 0 10px', borderTop: '1px solid var(--border)', paddingTop: 16 }}>
+            <p style={{ fontSize: '0.82rem', color: 'var(--muted)', marginBottom: 12 }}>
+              📍 <strong>Delivery Address</strong> <span style={{ fontWeight: 400 }}>(optional — needed for book delivery)</span>
+            </p>
+            <div className="form-group">
+              <label>Address Line</label>
+              <input
+                className="form-control"
+                name="address_line"
+                value={form.address_line}
+                onChange={handleChange}
+                placeholder="House / Flat / Street"
+              />
+            </div>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
+              <div className="form-group">
+                <label>City</label>
+                <input
+                  className="form-control"
+                  name="city"
+                  value={form.city}
+                  onChange={handleChange}
+                  placeholder="Surat"
+                />
+              </div>
+              <div className="form-group">
+                <label>Pincode</label>
+                <input
+                  className="form-control"
+                  name="pincode"
+                  value={form.pincode}
+                  onChange={handleChange}
+                  placeholder="395001"
+                  maxLength={6}
+                />
+              </div>
+            </div>
+            <div className="form-group">
+              <label>State</label>
+              <input
+                className="form-control"
+                name="state"
+                value={form.state}
+                onChange={handleChange}
+                placeholder="Gujarat"
+              />
+            </div>
           </div>
           <button className="btn btn-primary" type="submit" disabled={loading} style={{ width: '100%', marginTop: 8 }}>
             {loading ? 'Submitting…' : 'Register'}
