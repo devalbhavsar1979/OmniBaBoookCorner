@@ -1874,3 +1874,16 @@ INFO:     Waiting for application shutdown.
 2026-06-29 08:39:24,305 [INFO] main: Shutting down Ba Boook Corner API.
 INFO:     Application shutdown complete.
 INFO:     Finished server process [160532]
+INFO:     Started server process [164132]
+INFO:     Waiting for application startup.
+2026-06-29 08:39:28,666 [INFO] main: Starting Ba Boook Corner API...
+2026-06-29 08:39:28,704 [INFO] main: Database tables ensured. Upload dir ready.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:1000 (Press CTRL+C to quit)
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+2026-06-29 17:59:23,112 [INFO] main: Shutting down Ba Boook Corner API.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [164132]
