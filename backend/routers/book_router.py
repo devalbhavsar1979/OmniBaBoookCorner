@@ -5,7 +5,7 @@ from config.database import get_db
 from schemas.schemas import BookOut, PaginatedResponse
 from services import book_service
 from routers.dependencies import get_current_user, require_role
-from models.models import User, UserRole, BookStatus
+from models.models import User, UserRole, BookStatus, AgeGroup
 from schemas.schemas import BookIssueRequest, BookRequestOut
 
 router = APIRouter(prefix="/books", tags=["Books"])
@@ -18,6 +18,7 @@ async def create_book(
     author: str = Form(...),
     genre: str = Form(...),
     language: str = Form(...),
+    age_group: str = Form("GENERIC"),
     description: Optional[str] = Form(None),
     front_image: Optional[UploadFile] = File(None),
     back_image: Optional[UploadFile] = File(None),
@@ -26,7 +27,7 @@ async def create_book(
 ):
     """Add a book to a library. Owner only."""
     from schemas.schemas import BookCreate
-    payload = BookCreate(title=title, author=author, genre=genre, language=language, description=description)
+    payload = BookCreate(title=title, author=author, genre=genre, language=language, age_group=age_group, description=description)
     return await book_service.create_book(db, library_id, payload, current_user, front_image, back_image)
 
 
@@ -36,6 +37,7 @@ def list_books(
     search: Optional[str] = Query(None),
     genre: Optional[str] = Query(None),
     language: Optional[str] = Query(None),
+    age_group: Optional[AgeGroup] = Query(None),
     status: Optional[BookStatus] = Query(None),
     page: int = Query(1, ge=1),
     page_size: int = Query(20, ge=1, le=100),
@@ -49,7 +51,7 @@ def list_books(
     """
     owner_id = current_user.id if current_user.role == UserRole.OWNER else None
     items, total = book_service.get_books(
-        db, library_id, search, genre, language, status, page, page_size, owner_id
+        db, library_id, search, genre, language, status, page, page_size, owner_id, age_group
     )
     return PaginatedResponse(
         total=total,
@@ -76,6 +78,7 @@ async def update_book(
     author: Optional[str] = Form(None),
     genre: Optional[str] = Form(None),
     language: Optional[str] = Form(None),
+    age_group: Optional[str] = Form(None),
     description: Optional[str] = Form(None),
     front_image: Optional[UploadFile] = File(None),
     back_image: Optional[UploadFile] = File(None),
@@ -84,7 +87,7 @@ async def update_book(
 ):
     """Update book details. Owner only."""
     from schemas.schemas import BookUpdate
-    payload = BookUpdate(title=title, author=author, genre=genre, language=language, description=description)
+    payload = BookUpdate(title=title, author=author, genre=genre, language=language, age_group=age_group, description=description)
     return await book_service.update_book(db, book_id, payload, current_user, front_image, back_image)
 
 

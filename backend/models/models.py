@@ -26,6 +26,14 @@ class BookStatus(str, enum.Enum):
     RETURN_DELIVERED = "RETURN_DELIVERED"
 
 
+class AgeGroup(str, enum.Enum):
+    GENERIC   = "GENERIC"
+    TODDLER   = "TODDLER"
+    CHILDREN  = "CHILDREN"
+    TEENAGER  = "TEENAGER"
+    ADULT     = "ADULT"
+
+
 class User(Base):
     __tablename__ = "users"
 
@@ -87,6 +95,7 @@ class Book(Base):
     author = Column(String(300), nullable=False)
     genre = Column(String(100), nullable=False)
     language = Column(String(100), nullable=False)
+    age_group = Column(SAEnum(AgeGroup), default=AgeGroup.GENERIC, nullable=False)
     description = Column(Text, nullable=True)
     front_image = Column(String(500), nullable=True)
     back_image = Column(String(500), nullable=True)

@@ -1657,3 +1657,220 @@ INFO:     Waiting for application shutdown.
 2026-06-26 09:33:47,108 [INFO] main: Shutting down Ba Boook Corner API.
 INFO:     Application shutdown complete.
 INFO:     Finished server process [20716]
+INFO:     Started server process [7936]
+INFO:     Waiting for application startup.
+2026-06-26 09:33:49,348 [INFO] main: Starting Ba Boook Corner API...
+2026-06-26 09:33:49,649 [INFO] main: Database tables ensured. Upload dir ready.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:1000 (Press CTRL+C to quit)
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+2026-06-26 09:37:51,678 [INFO] main: Shutting down Ba Boook Corner API.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [7936]
+INFO:     Started server process [16044]
+INFO:     Waiting for application startup.
+2026-06-26 09:37:54,312 [INFO] main: Starting Ba Boook Corner API...
+2026-06-26 09:37:54,578 [INFO] main: Database tables ensured. Upload dir ready.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:1000 (Press CTRL+C to quit)
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+2026-06-26 09:42:53,199 [INFO] main: Shutting down Ba Boook Corner API.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [16044]
+INFO:     Started server process [12256]
+INFO:     Waiting for application startup.
+2026-06-26 09:42:56,137 [INFO] main: Starting Ba Boook Corner API...
+2026-06-26 09:42:56,208 [INFO] main: Database tables ensured. Upload dir ready.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:1000 (Press CTRL+C to quit)
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+2026-06-26 10:01:42,328 [INFO] main: Shutting down Ba Boook Corner API.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [12256]
+INFO:     Started server process [59432]
+INFO:     Waiting for application startup.
+2026-06-26 10:03:25,666 [INFO] main: Starting Ba Boook Corner API...
+2026-06-26 10:03:26,198 [INFO] main: Database tables ensured. Upload dir ready.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:1000 (Press CTRL+C to quit)
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+2026-06-26 20:53:59,297 [ERROR] asyncio: Exception in callback _ProactorBasePipeTransport._call_connection_lost()
+handle: <Handle _ProactorBasePipeTransport._call_connection_lost()>
+Traceback (most recent call last):
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\Python313\Lib\asyncio\events.py", line 89, in _run
+    self._context.run(self._callback, *self._args)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\Python313\Lib\asyncio\proactor_events.py", line 165, in _call_connection_lost
+    self._sock.shutdown(socket.SHUT_RDWR)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host
+WARNING:  Invalid HTTP request received.
+2026-06-26 21:33:11,949 [ERROR] asyncio: Exception in callback _ProactorBasePipeTransport._call_connection_lost()
+handle: <Handle _ProactorBasePipeTransport._call_connection_lost()>
+Traceback (most recent call last):
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\Python313\Lib\asyncio\events.py", line 89, in _run
+    self._context.run(self._callback, *self._args)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\Python313\Lib\asyncio\proactor_events.py", line 165, in _call_connection_lost
+    self._sock.shutdown(socket.SHUT_RDWR)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host
+2026-06-26 21:34:30,244 [ERROR] asyncio: Exception in callback _ProactorBasePipeTransport._call_connection_lost()
+handle: <Handle _ProactorBasePipeTransport._call_connection_lost()>
+Traceback (most recent call last):
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\Python313\Lib\asyncio\events.py", line 89, in _run
+    self._context.run(self._callback, *self._args)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\Python313\Lib\asyncio\proactor_events.py", line 165, in _call_connection_lost
+    self._sock.shutdown(socket.SHUT_RDWR)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+2026-06-27 20:01:23,668 [ERROR] asyncio: Exception in callback _ProactorBasePipeTransport._call_connection_lost()
+handle: <Handle _ProactorBasePipeTransport._call_connection_lost()>
+Traceback (most recent call last):
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\Python313\Lib\asyncio\events.py", line 89, in _run
+    self._context.run(self._callback, *self._args)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\Python313\Lib\asyncio\proactor_events.py", line 165, in _call_connection_lost
+    self._sock.shutdown(socket.SHUT_RDWR)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host
+2026-06-27 20:01:40,831 [ERROR] asyncio: Exception in callback _ProactorBasePipeTransport._call_connection_lost()
+handle: <Handle _ProactorBasePipeTransport._call_connection_lost()>
+Traceback (most recent call last):
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\Python313\Lib\asyncio\events.py", line 89, in _run
+    self._context.run(self._callback, *self._args)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\Python313\Lib\asyncio\proactor_events.py", line 165, in _call_connection_lost
+    self._sock.shutdown(socket.SHUT_RDWR)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host
+2026-06-27 20:02:31,244 [ERROR] asyncio: Exception in callback _ProactorBasePipeTransport._call_connection_lost()
+handle: <Handle _ProactorBasePipeTransport._call_connection_lost()>
+Traceback (most recent call last):
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\Python313\Lib\asyncio\events.py", line 89, in _run
+    self._context.run(self._callback, *self._args)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\Python313\Lib\asyncio\proactor_events.py", line 165, in _call_connection_lost
+    self._sock.shutdown(socket.SHUT_RDWR)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+c:\Relisant\BaBookCorner\backend\services\book_service.py:121: SAWarning: Coercing Subquery object into a select() for use in IN(); please pass a select() construct explicitly
+  query = query.filter(Book.library_id.in_(owner_library_ids))
+2026-06-28 03:39:11,652 [INFO] services.book_service: Book created: Ratan Tata : A Complete Biography in library 4
+2026-06-28 03:42:52,998 [INFO] services.book_service: Book created: Serve To Win in library 4
+2026-06-28 03:47:02,278 [INFO] services.book_service: Book created: Dance of Govinda in library 4
+2026-06-28 03:52:54,396 [INFO] services.book_service: Book created: Guru with Guitar in library 4
+2026-06-28 03:55:30,558 [INFO] services.book_service: Book created: Cancer Mati Shake Che in library 4
+2026-06-28 03:58:08,254 [INFO] services.book_service: Book created: THE 3 mistakes of my LIFE in library 4
+2026-06-28 03:59:26,216 [INFO] services.book_service: Book created: IKIGAI in library 4
+2026-06-28 04:03:12,774 [INFO] services.book_service: Book created: Chess Ni Rasprad Vato in library 4
+2026-06-28 04:28:52,925 [INFO] services.book_service: Book created: Flute of Vrindavan in library 4
+2026-06-28 04:32:59,096 [INFO] services.book_service: Book created: Mansen Parakrami in library 4
+2026-06-28 04:34:52,958 [INFO] services.book_service: Book created: Ramayana in library 4
+2026-06-28 04:37:31,102 [INFO] services.book_service: Book created: Jivanma Safalta Melvo 100% in library 4
+2026-06-28 04:46:27,181 [INFO] services.book_service: Book created: Balak Satheni Amulya Palo in library 4
+2026-06-28 04:50:12,468 [INFO] services.book_service: Book created: Puzzles to Puzzle You in library 4
+2026-06-28 04:52:19,213 [INFO] services.book_service: Book created: 177 Mental Toughness Secrets of the World Class in library 4
+2026-06-28 04:59:05,185 [INFO] services.book_service: Book created: Swatantrya Jang Na Shurviro : Part 5 in library 4
+2026-06-28 05:00:36,795 [INFO] services.book_service: Book created: Swatantrya Jang Na Shurviro : Part 7 in library 4
+2026-06-28 05:01:27,654 [INFO] services.book_service: Book created: Swatantrya Jang Na Shurviro : Part 3 in library 4
+2026-06-28 05:08:03,283 [INFO] services.book_service: Book created: Sukh - Set of 3 in library 4
+2026-06-28 05:12:46,209 [INFO] services.book_service: Book created: 151 Episodes of the Ramayana in library 4
+2026-06-28 05:20:50,413 [INFO] services.book_service: Book created: Ahar Eaj Aushadh in library 4
+2026-06-28 05:21:31,224 [INFO] services.book_service: Book created: Complete History Of World in library 4
+2026-06-28 05:22:28,448 [INFO] services.book_service: Book created: 1001 Science Questions Answered  in library 4
+2026-06-28 05:23:58,691 [INFO] services.book_service: Book created: 5000 Awesome Facts (About Everything!) in library 4
+2026-06-28 05:37:33,108 [INFO] services.request_service: Book request created: book 98 by reader 4
+2026-06-28 05:37:37,044 [INFO] services.email_service: Status email sent to reader@mymail.com for request 21 \u2192 REQUESTED
+2026-06-28 05:40:43,952 [INFO] services.request_service: Request 22 advanced: BookStatus.ISSUED \u2192 BookStatus.RETURN_REQUESTED by user 4
+2026-06-28 05:40:47,516 [INFO] services.email_service: Status email sent to reader@mymail.com for request 22 \u2192 RETURN_REQUESTED
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+2026-06-28 20:18:16,948 [INFO] services.auth_service: New user registered: amit.lalit.shukla@gmail.com as UserRole.READER (approved=False)
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+2026-06-28 20:35:36,381 [INFO] main: Shutting down Ba Boook Corner API.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [59432]
+INFO:     Started server process [241452]
+INFO:     Waiting for application startup.
+2026-06-28 20:35:39,905 [INFO] main: Starting Ba Boook Corner API...
+2026-06-28 20:35:39,953 [INFO] main: Database tables ensured. Upload dir ready.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:1000 (Press CTRL+C to quit)
+2026-06-28 20:37:16,930 [ERROR] asyncio: Exception in callback _ProactorBasePipeTransport._call_connection_lost()
+handle: <Handle _ProactorBasePipeTransport._call_connection_lost()>
+Traceback (most recent call last):
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\Python313\Lib\asyncio\events.py", line 89, in _run
+    self._context.run(self._callback, *self._args)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\Python313\Lib\asyncio\proactor_events.py", line 165, in _call_connection_lost
+    self._sock.shutdown(socket.SHUT_RDWR)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host
+WARNING:  Invalid HTTP request received.
+WARNING:  Invalid HTTP request received.
+2026-06-28 21:05:42,950 [INFO] services.auth_service: New user registered: anandpandya2025@gmail.com as UserRole.READER (approved=False)
+2026-06-28 21:12:05,064 [INFO] services.auth_service: New user registered: akshaygundigara1995@gmail.com as UserRole.READER (approved=False)
+2026-06-28 21:24:15,305 [INFO] services.book_service: Book created: Sapiens : A Brief History of Humankind in library 6
+c:\Relisant\BaBookCorner\backend\services\book_service.py:122: SAWarning: Coercing Subquery object into a select() for use in IN(); please pass a select() construct explicitly
+  query = query.filter(Book.library_id.in_(owner_library_ids))
+2026-06-28 22:45:09,525 [INFO] services.book_service: Book created: Mukti Bandhan - Part 1 in library 4
+2026-06-28 22:45:32,976 [INFO] services.book_service: Book created: Mukti Bandhan - Part 2 in library 4
+2026-06-28 22:52:28,667 [INFO] services.book_service: Book created: Tarasyo Sangam : Part 1 & 2 in library 4
+2026-06-28 22:54:57,126 [INFO] services.book_service: Book created: Satya Ekbijanu in library 4
+2026-06-28 23:02:09,612 [INFO] services.book_service: Book created: Kathasaritsagar Ki Kahaniyan in library 4
+2026-06-28 23:06:51,448 [INFO] services.book_service: Book created: A Treasury of Fairy Tales in library 4
+2026-06-28 23:09:04,932 [INFO] services.book_service: Book created: 108 Stories from the Vedas, the Puranas and the Upanishads in library 4
+2026-06-28 23:11:36,273 [INFO] services.book_service: Book created: Moral Stories From Panchatantra in library 4
+2026-06-28 23:14:45,527 [INFO] services.book_service: Book created: Best of Environmental Stories in library 4
+2026-06-28 23:18:00,379 [INFO] services.auth_service: New user registered: hpurohit.sql@outlook.com as UserRole.READER (approved=False)
+2026-06-28 23:19:47,152 [INFO] services.auth_service: New user registered: priyank.tcs@gmail.com as UserRole.READER (approved=False)
+2026-06-28 23:25:04,487 [INFO] services.book_service: Book created: Shrimad Bhagvatam : Dwadash (12) Skand in library 4
+WARNING:  Invalid HTTP request received.
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+2026-06-29 08:33:22,540 [INFO] main: Shutting down Ba Boook Corner API.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [241452]
+INFO:     Started server process [160532]
+INFO:     Waiting for application startup.
+2026-06-29 08:33:25,842 [INFO] main: Starting Ba Boook Corner API...
+2026-06-29 08:33:25,887 [INFO] main: Database tables ensured. Upload dir ready.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:1000 (Press CTRL+C to quit)
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+2026-06-29 08:39:24,305 [INFO] main: Shutting down Ba Boook Corner API.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [160532]

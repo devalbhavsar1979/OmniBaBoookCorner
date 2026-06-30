@@ -1,7 +1,7 @@
 from pydantic import BaseModel, EmailStr, field_validator
 from typing import Optional
 from datetime import datetime
-from models.models import UserRole, BookStatus
+from models.models import UserRole, BookStatus, AgeGroup
 
 
 # ─── Auth Schemas ────────────────────────────────────────────────────────────
@@ -129,6 +129,7 @@ class BookCreate(BaseModel):
     author: str
     genre: str
     language: str
+    age_group: AgeGroup = AgeGroup.GENERIC
     description: Optional[str] = None
 
 
@@ -137,6 +138,7 @@ class BookUpdate(BaseModel):
     author: Optional[str] = None
     genre: Optional[str] = None
     language: Optional[str] = None
+    age_group: Optional[AgeGroup] = None
     description: Optional[str] = None
 
 
@@ -146,6 +148,7 @@ class BookOut(BaseModel):
     author: str
     genre: str
     language: str
+    age_group: AgeGroup = AgeGroup.GENERIC
     description: Optional[str]
     front_image: Optional[str]
     back_image: Optional[str]

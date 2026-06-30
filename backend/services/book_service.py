@@ -7,7 +7,7 @@ from typing import Optional
 from sqlalchemy.orm import Session
 from fastapi import HTTPException, UploadFile
 
-from models.models import Book, BookRequest, Library, User, UserRole, BookStatus
+from models.models import Book, BookRequest, Library, User, UserRole, BookStatus, AgeGroup
 from schemas.schemas import BookCreate, BookUpdate
 from config.settings import get_settings
 
@@ -109,6 +109,7 @@ def get_books(
     page: int = 1,
     page_size: int = 20,
     owner_id: Optional[int] = None,  # when set, restrict to this owner's libraries only
+    age_group: Optional[AgeGroup] = None,
 ) -> tuple[list, int]:
     query = db.query(Book)
 
@@ -137,6 +138,8 @@ def get_books(
             query = query.filter(_or(*[Book.language.ilike(f"%{l}%") for l in langs]))
     if status:
         query = query.filter(Book.status == status)
+    if age_group:
+        query = query.filter(Book.age_group == age_group)
 
     total = query.count()
     items = query.offset((page - 1) * page_size).limit(page_size).all()

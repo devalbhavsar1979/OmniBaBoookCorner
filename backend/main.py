@@ -65,6 +65,8 @@ app.add_middleware(
         "http://43.249.231.181",
         "http://43.249.231.181:7000",
         "http://43.249.231.181:1000",
+        "http://app.boookcorner.in:7000",
+        "http://app.boookcorner.in:1000"
     ],
     allow_credentials=True,
     allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"],

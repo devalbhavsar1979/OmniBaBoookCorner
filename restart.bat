@@ -7,6 +7,14 @@ REM ============================================================
 
 echo Starting Ba Boook Corner...
 
+echo running npn run buil 
+
+cd .\frontend\
+npm install
+npm run build
+cd ..
+
+
 REM Start backend (FastAPI on port 2000)
 REM  start "BaBookCorner - Backend" cmd /k "cd /d %~dp0backend && uvicorn main:app --host 0.0.0.0 --port 1000 --reload"
 

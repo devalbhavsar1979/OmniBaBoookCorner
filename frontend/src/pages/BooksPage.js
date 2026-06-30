@@ -5,8 +5,10 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { Spinner, Modal, Pagination, EmptyState, Alert, StatusBadge, ConfirmModal } from '../components/common';
 import UserSearchPopup from '../components/UserSearchPopup';
 
-const GENRES = ['Fiction', 'Non-Fiction', 'Science', 'History', 'Biography', 'Self-Help', 'Children', 'Poetry', 'Philosophy', 'Religion', 'Technology', 'Other'];
+const GENRES = ['Fiction', 'Non-Fiction', 'Comedy', 'Science', 'History', 'Biography', 'Self-Help', 'Children', 'Poetry', 'Philosophy', 'Religion', 'Technology', 'Other'];
 const LANGUAGES = ['English', 'Gujarati', 'Hindi'];
+const AGE_GROUPS = ['GENERIC', 'TODDLER', 'CHILDREN', 'TEENAGER', 'ADULT'];
+const AGE_GROUP_LABELS = { GENERIC: 'All Ages', TODDLER: 'Toddler', CHILDREN: 'Children', TEENAGER: 'Teenager', ADULT: 'Adult' };
 
 function BookFormModal({ libraryId, libraries, initial, onClose, onSaved }) {
   const isEdit = !!initial;
@@ -15,6 +17,7 @@ function BookFormModal({ libraryId, libraries, initial, onClose, onSaved }) {
     author: initial?.author || '',
     genre: initial?.genre || 'Fiction',
     language: initial?.language || 'English',
+    age_group: initial?.age_group || 'GENERIC',
     description: initial?.description || '',
     library_id: libraryId || (libraries[0]?.id ?? ''),
   });
@@ -35,6 +38,7 @@ function BookFormModal({ libraryId, libraries, initial, onClose, onSaved }) {
       fd.append('author', form.author);
       fd.append('genre', form.genre);
       fd.append('language', form.language);
+      fd.append('age_group', form.age_group);
       if (form.description) fd.append('description', form.description);
       if (frontImg) fd.append('front_image', frontImg);
       if (backImg) fd.append('back_image', backImg);
@@ -85,6 +89,12 @@ function BookFormModal({ libraryId, libraries, initial, onClose, onSaved }) {
             {LANGUAGES.map((l) => <option key={l}>{l}</option>)}
           </select>
         </div>
+      </div>
+      <div className="form-group">
+        <label>Target Age Group</label>
+        <select className="form-control" name="age_group" value={form.age_group} onChange={set}>
+          {AGE_GROUPS.map((a) => <option key={a} value={a}>{AGE_GROUP_LABELS[a]}</option>)}
+        </select>
       </div>
       <div className="form-group">
         <label>Description</label>
@@ -174,6 +184,7 @@ export default function BooksPage() {
   const [search, setSearch] = useState('');
   const [genre, setGenre] = useState('');
   const [language, setLanguage] = useState([]);
+  const [ageGroup, setAgeGroup] = useState('');
   const [activeLibraryId, setActiveLibraryId] = useState(urlLibraryId);
   const [activeLibraryName, setActiveLibraryName] = useState(urlLibraryName);
   const [loading, setLoading] = useState(true);
@@ -209,6 +220,7 @@ export default function BooksPage() {
     try {
       const params = { search, genre, page, page_size: PAGE_SIZE };
       if (language.length > 0) params.language = language.join(',');
+      if (ageGroup) params.age_group = ageGroup;
       if (activeLibraryId) params.library_id = activeLibraryId;
       const res = await bookApi.list(params);
       setBooks(res.data.items);
@@ -218,7 +230,7 @@ export default function BooksPage() {
     } finally {
       setLoading(false);
     }
-  }, [search, genre, language, page, activeLibraryId]);
+  }, [search, genre, language, ageGroup, page, activeLibraryId]);
 
   useEffect(() => { load(); }, [load]);
 
@@ -297,6 +309,10 @@ export default function BooksPage() {
             <option value="">All Genres</option>
             {GENRES.map((g) => <option key={g}>{g}</option>)}
           </select>
+          <select className="form-control" value={ageGroup} onChange={(e) => { setAgeGroup(e.target.value); setPage(1); }} style={{ maxWidth: 150 }}>
+            <option value="">All Ages</option>
+            {AGE_GROUPS.map((a) => <option key={a} value={a}>{AGE_GROUP_LABELS[a]}</option>)}
+          </select>
           <div className="language-checkboxes">
             <span className="language-checkboxes-label">Language:</span>
             {LANGUAGES.map((l) => (
@@ -342,6 +358,9 @@ export default function BooksPage() {
                       <div className="book-card-meta">
                         <span className="book-card-tag">{book.genre}</span>
                         <span className="book-card-tag">{book.language}</span>
+                        {book.age_group && book.age_group !== 'GENERIC' && (
+                          <span className="book-card-tag book-card-tag-age">👶 {AGE_GROUP_LABELS[book.age_group]}</span>
+                        )}
                       </div>
                       <div>
                         <StatusBadge status={isReader ? (book.status === 'AVAILABLE' ? 'AVAILABLE' : 'ISSUED') : book.status} />
