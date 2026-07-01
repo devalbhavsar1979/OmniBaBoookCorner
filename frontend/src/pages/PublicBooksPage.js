@@ -132,7 +132,7 @@ export default function PublicBooksPage() {
             <div className="card-grid">
               {books.map((book, idx) => (
                 <div key={book.id} className="book-card">
-                  <div className={`book-card-top${idx % 2 === 1 ? ' book-card-top-reverse' : ''}`}>
+                  <div className="book-card-top">
                     <div className="book-card-body">
                       <div className="book-card-title">{book.title}</div>
                       <div className="book-card-author">by {book.author}</div>

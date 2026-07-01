@@ -7,7 +7,7 @@ from fastapi.staticfiles import StaticFiles
 
 from config.settings import get_settings
 from config.database import engine, Base
-from routers import auth_router, library_router, book_router, request_router, dashboard_router, user_router
+from routers import auth_router, library_router, book_router, request_router, dashboard_router, user_router, public_router
 from starlette.middleware.cors import CORSMiddleware
 
 
@@ -65,6 +65,12 @@ app.add_middleware(
         "http://43.249.231.181",
         "http://43.249.231.181:7000",
         "http://43.249.231.181:1000",
+        "http://app.boookcorner.in",
+        "http://app.boookcorner.in:7000",
+        "http://app.boookcorner.in:1000",
+        "https://app.boookcorner.in",
+        "https://app.boookcorner.in:7000",
+        "https://app.boookcorner.in:1000",
     ],
     allow_credentials=True,
     allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"],
@@ -79,6 +85,7 @@ app.include_router(book_router, prefix=API_PREFIX)
 app.include_router(request_router, prefix=API_PREFIX)
 app.include_router(dashboard_router, prefix=API_PREFIX)
 app.include_router(user_router, prefix=API_PREFIX)
+app.include_router(public_router, prefix=API_PREFIX)
 
 # ── Static file serving for uploaded images ───────────────────────────────────
 app.mount("/uploads", StaticFiles(directory=settings.UPLOAD_DIR), name="uploads")

@@ -9,6 +9,7 @@ import LibrariesPage from './pages/LibrariesPage';
 import BooksPage from './pages/BooksPage';
 import RequestsPage from './pages/RequestsPage';
 import PendingApprovalsPage from './pages/PendingApprovalsPage';
+import PublicBooksPage from './pages/PublicBooksPage';
 
 function PrivateRoute({ children }) {
   const { user } = useAuth();
@@ -19,6 +20,12 @@ function PublicRoute({ children }) {
   const { user } = useAuth();
   if (!user) return children;
   return <Navigate to={user.role === 'READER' ? '/books' : '/dashboard'} replace />;
+}
+
+function CatalogueRoute() {
+  const { user } = useAuth();
+  if (user) return <Navigate to="/books" replace />;
+  return <PublicBooksPage />;
 }
 
 function DefaultRedirect() {
@@ -33,6 +40,7 @@ export default function App() {
         <Routes>
           <Route path="/login" element={<PublicRoute><LoginPage /></PublicRoute>} />
           <Route path="/register" element={<PublicRoute><RegisterPage /></PublicRoute>} />
+          <Route path="/catalogue" element={<CatalogueRoute />} />
           <Route path="/" element={<PrivateRoute><Layout /></PrivateRoute>}>
             <Route index element={<DefaultRedirect />} />
             <Route path="dashboard" element={<DashboardPage />} />

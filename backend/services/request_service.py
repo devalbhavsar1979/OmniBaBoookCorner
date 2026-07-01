@@ -25,6 +25,7 @@ VOLUNTEER_TRANSITIONS = {
 
 OWNER_TRANSITIONS = {
     BookStatus.VOLUNTEER_DELIVERED: BookStatus.ISSUED,
+    BookStatus.RETURN_REQUESTED: BookStatus.AVAILABLE,
     BookStatus.RETURN_DELIVERED: BookStatus.AVAILABLE,
 }
 
@@ -120,7 +121,7 @@ def get_request_by_id(db: Session, request_id: int, user: User) -> BookRequest:
     return req
 
 
-def _update_timestamp(req: BookRequest, new_status: BookStatus) -> None:
+def _update_timestamp(req: BookRequest, new_status: BookStatus, from_status: BookStatus = None) -> None:
     now = datetime.utcnow()
     ts_map = {
         BookStatus.REQUEST_ACCEPTED: "accepted_at",
@@ -134,6 +135,10 @@ def _update_timestamp(req: BookRequest, new_status: BookStatus) -> None:
     }
     if new_status in ts_map:
         setattr(req, ts_map[new_status], now)
+    # Owner accepting return directly (skipping volunteer pickup/delivery) —
+    # also stamp return_delivered_at for a consistent audit trail
+    if new_status == BookStatus.AVAILABLE and from_status == BookStatus.RETURN_REQUESTED:
+        req.return_delivered_at = now
 
 
 def advance_request_status(
@@ -141,7 +146,9 @@ def advance_request_status(
     request_id: int,
     user: User,
 ) -> BookRequest:
-    req = db.query(BookRequest).filter(BookRequest.id == request_id).first()
+    # Lock the row so two actors (owner + volunteer) can't both accept the
+    # same RETURN_REQUESTED (or any other) request at the same time.
+    req = db.query(BookRequest).filter(BookRequest.id == request_id).with_for_update().first()
     if not req:
         raise HTTPException(status_code=404, detail="Request not found")
 
@@ -151,6 +158,12 @@ def advance_request_status(
     if user.role == UserRole.VOLUNTEER:
         if current == BookStatus.REQUESTED:
             # Auto-assign volunteer
+            req.volunteer_id = user.id
+        elif current == BookStatus.RETURN_REQUESTED:
+            # Volunteer accepting a return pickup — assign if not already
+            # claimed by another volunteer (owner may also be racing to accept)
+            if req.volunteer_id and req.volunteer_id != user.id:
+                raise HTTPException(status_code=409, detail="Already accepted by another volunteer")
             req.volunteer_id = user.id
         elif req.volunteer_id != user.id:
             raise HTTPException(status_code=403, detail="Not your assignment")
@@ -178,7 +191,7 @@ def advance_request_status(
             detail=f"Cannot transition from {current.value} with role {user.role.value}"
         )
 
-    _update_timestamp(req, new_status)
+    _update_timestamp(req, new_status, current)
     req.status = new_status
 
     # Sync book status

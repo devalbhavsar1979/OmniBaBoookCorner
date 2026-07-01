@@ -10,7 +10,7 @@ echo Starting Ba Boook Corner...
 echo running npn run buil 
 
 cd .\frontend\
-npm install
+rem npm install
 npm run build
 cd ..
 

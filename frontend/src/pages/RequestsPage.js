@@ -15,14 +15,15 @@ function getNextActionLabel(status, role) {
       REQUESTED: 'Accept Request',
       REQUEST_ACCEPTED: 'Mark Picked Up',
       VOLUNTEER_PICKED: 'Mark Delivered',
-      RETURN_REQUESTED: 'Pick Up Return',
+      RETURN_REQUESTED: 'Accept Return (Pick Up)',
       RETURN_PICKED: 'Deliver Return',
     };
     return map[status] || null;
   }
-  if (role === 'OWNER') {
+  if (role === 'OWNER' || role === 'SUPER_ADMIN') {
     const map = {
       VOLUNTEER_DELIVERED: 'Issue to Reader',
+      RETURN_REQUESTED: 'Accept Return (Mark Available)',
       RETURN_DELIVERED: 'Mark Returned (Available)',
     };
     return map[status] || null;

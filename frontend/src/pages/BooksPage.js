@@ -5,7 +5,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { Spinner, Modal, Pagination, EmptyState, Alert, StatusBadge, ConfirmModal } from '../components/common';
 import UserSearchPopup from '../components/UserSearchPopup';
 
-const GENRES = ['Fiction', 'Non-Fiction', 'Comedy', 'Science', 'History', 'Biography', 'Self-Help', 'Children', 'Poetry', 'Philosophy', 'Religion', 'Technology', 'Other'];
+const GENRES = ['Fiction', 'Non-Fiction', 'Comedy','Science', 'History', 'Biography', 'Self-Help', 'Children', 'Poetry', 'Philosophy', 'Religion', 'Technology', 'Other'];
 const LANGUAGES = ['English', 'Gujarati', 'Hindi'];
 const AGE_GROUPS = ['GENERIC', 'TODDLER', 'CHILDREN', 'TEENAGER', 'ADULT'];
 const AGE_GROUP_LABELS = { GENERIC: 'All Ages', TODDLER: 'Toddler', CHILDREN: 'Children', TEENAGER: 'Teenager', ADULT: 'Adult' };
