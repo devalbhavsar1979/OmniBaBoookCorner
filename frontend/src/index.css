@@ -603,7 +603,7 @@ tbody tr:hover { background: var(--surface); }
   gap: 14px;
   flex-wrap: wrap;
   padding: 6px 12px;
-  background: var(--card);
+  background: #FFFFFF;
   border: 1px solid var(--border);
   border-radius: var(--radius);
 }
@@ -627,7 +627,7 @@ tbody tr:hover { background: var(--surface); }
 }
 
 .language-checkbox-item input[type="checkbox"] {
-  accent-color: var(--primary);
+  accent-color: #1E4D8C;
   width: 15px;
   height: 15px;
   cursor: pointer;
@@ -1278,7 +1278,7 @@ tbody tr:hover { background: var(--surface); }
   align-items: center;
   gap: 10px;
   flex-wrap: wrap;
-  background: var(--card);
+  background: #FFFFFF;
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 14px 16px;
@@ -1326,4 +1326,257 @@ tbody tr:hover { background: var(--surface); }
   .pub-content { padding: 20px 14px 32px; }
   .pub-header-inner { padding: 0 14px; }
   .pub-brand-sub { display: none; }
+}
+
+/* ══════════════════════════════════════════════════════════════════════════════
+   PWA INSTALL MODAL
+   ══════════════════════════════════════════════════════════════════════════════ */
+
+/* Install button on login page */
+.pwa-install-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  margin-top: 14px;
+  padding: 10px 18px;
+  background: transparent;
+  border: 2px dashed #1E4D8C;
+  border-radius: var(--radius);
+  color: #1E4D8C;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+.pwa-install-btn:hover {
+  background: #1E4D8C;
+  color: #fff;
+}
+
+/* Overlay */
+.pwa-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15,31,61,0.55);
+  backdrop-filter: blur(3px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+/* Modal */
+.pwa-modal {
+  background: #FFFFFF;
+  border-radius: calc(var(--radius) * 1.5);
+  box-shadow: 0 24px 64px rgba(15,31,61,0.28);
+  width: 100%;
+  max-width: 480px;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* Header */
+.pwa-modal-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+.pwa-modal-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.pwa-modal-logo img {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  object-fit: contain;
+}
+.pwa-modal-title {
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #0F1F3D;
+  line-height: 1.3;
+}
+.pwa-modal-sub {
+  font-size: 0.78rem;
+  color: #6B7FA8;
+  margin-top: 2px;
+}
+.pwa-close-btn {
+  background: #EBF0F9;
+  border: none;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  font-size: 0.85rem;
+  cursor: pointer;
+  color: #6B7FA8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.15s;
+}
+.pwa-close-btn:hover { background: #D5E0F0; }
+
+/* Benefits pills */
+.pwa-benefits {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.pwa-benefits span {
+  background: #EFF6FF;
+  color: #1D4ED8;
+  border: 1px solid #BFDBFE;
+  border-radius: 20px;
+  padding: 4px 12px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+/* Tabs */
+.pwa-tabs {
+  display: flex;
+  gap: 8px;
+  background: #EBF0F9;
+  border-radius: var(--radius);
+  padding: 4px;
+}
+.pwa-tab {
+  flex: 1;
+  padding: 8px 12px;
+  border: none;
+  border-radius: calc(var(--radius) - 2px);
+  background: transparent;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  color: #6B7FA8;
+  transition: background 0.15s, color 0.15s;
+}
+.pwa-tab.active {
+  background: #FFFFFF;
+  color: #1E4D8C;
+  box-shadow: 0 1px 4px rgba(15,31,61,0.1);
+}
+
+/* Platform title */
+.pwa-platform-title {
+  font-family: var(--font-heading);
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: #0F1F3D;
+  margin-bottom: 12px;
+}
+
+/* Step list */
+.pwa-step-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.pwa-step-list li {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  font-size: 0.875rem;
+  color: #0F1F3D;
+  line-height: 1.55;
+}
+.pwa-step-icon {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #1E4D8C;
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+/* Visual mockups */
+.pwa-step-visual {
+  margin-top: 8px;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid #D5E0F0;
+  font-size: 0.78rem;
+}
+.pwa-mockup-bar,
+.pwa-safari-bar {
+  background: #F1F5F9;
+  display: flex;
+  align-items: center;
+  padding: 6px 10px;
+  gap: 6px;
+}
+.pwa-mockup-url { flex: 1; color: #6B7FA8; font-size: 0.75rem; }
+.pwa-mockup-dots { font-size: 1rem; color: #475569; font-weight: 700; }
+.pwa-safari-back { color: #3B82F6; font-size: 1.1rem; }
+.pwa-safari-share { color: #3B82F6; font-size: 0.85rem; font-weight: 700; }
+
+.pwa-menu-preview,
+.pwa-share-sheet {
+  background: #FFFFFF;
+}
+.pwa-menu-item,
+.pwa-share-item {
+  padding: 8px 12px;
+  border-bottom: 1px solid #D5E0F0;
+  font-size: 0.8rem;
+  color: #0F1F3D;
+}
+.pwa-menu-item:last-child,
+.pwa-share-item:last-child { border-bottom: none; }
+.pwa-menu-highlight {
+  background: #EFF6FF;
+  color: #1E4D8C;
+  font-weight: 600;
+}
+
+.pwa-url {
+  font-family: monospace;
+  background: #EBF0F9;
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-size: 0.78rem;
+  color: #1E4D8C;
+}
+
+/* Footer */
+.pwa-modal-footer {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  background: linear-gradient(135deg, #EBF3FF 0%, #EBF7F0 100%);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+}
+.pwa-footer-icon {
+  font-size: 2rem;
+  flex-shrink: 0;
+}
+
+@media (max-width: 480px) {
+  .pwa-modal { padding: 18px; }
+  .pwa-benefits span { font-size: 0.7rem; padding: 3px 9px; }
 }

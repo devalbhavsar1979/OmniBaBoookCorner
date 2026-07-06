@@ -79,8 +79,10 @@ def get_requests(
         query = query.filter(BookRequest.reader_id == user.id)
     elif user.role == UserRole.VOLUNTEER:
         # Volunteers see all open requests + their own assignments
+        # + all RETURN_REQUESTED (unassigned returns they can pick up)
         query = query.filter(
             (BookRequest.status == BookStatus.REQUESTED) |
+            (BookRequest.status == BookStatus.RETURN_REQUESTED) |
             (BookRequest.volunteer_id == user.id)
         )
     elif user.role == UserRole.OWNER:
