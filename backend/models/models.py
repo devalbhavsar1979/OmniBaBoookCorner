@@ -48,6 +48,8 @@ class User(Base):
     latitude = Column(Float, nullable=True)
     longitude = Column(Float, nullable=True)
     hashed_password = Column(String(255), nullable=False)
+    reset_token = Column(String(255), nullable=True)
+    reset_token_expires = Column(DateTime, nullable=True)
     role = Column(SAEnum(UserRole), nullable=False)
     is_active = Column(Boolean, default=False)
     is_approved = Column(Boolean, default=False)

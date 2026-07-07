@@ -9,7 +9,10 @@ import LibrariesPage from './pages/LibrariesPage';
 import BooksPage from './pages/BooksPage';
 import RequestsPage from './pages/RequestsPage';
 import PendingApprovalsPage from './pages/PendingApprovalsPage';
+import UsersPage from './pages/UsersPage';
 import PublicBooksPage from './pages/PublicBooksPage';
+import ForgotPasswordPage from './pages/ForgotPasswordPage';
+import ResetPasswordPage from './pages/ResetPasswordPage';
 
 function PrivateRoute({ children }) {
   const { user } = useAuth();
@@ -40,6 +43,8 @@ export default function App() {
         <Routes>
           <Route path="/login" element={<PublicRoute><LoginPage /></PublicRoute>} />
           <Route path="/register" element={<PublicRoute><RegisterPage /></PublicRoute>} />
+          <Route path="/forgot-password" element={<PublicRoute><ForgotPasswordPage /></PublicRoute>} />
+          <Route path="/reset-password" element={<ResetPasswordPage />} />
           <Route path="/catalogue" element={<CatalogueRoute />} />
           <Route path="/" element={<PrivateRoute><Layout /></PrivateRoute>}>
             <Route index element={<DefaultRedirect />} />
@@ -48,6 +53,7 @@ export default function App() {
             <Route path="books" element={<BooksPage />} />
             <Route path="requests" element={<RequestsPage />} />
             <Route path="approvals" element={<PendingApprovalsPage />} />
+            <Route path="users" element={<UsersPage />} />
           </Route>
           <Route path="*" element={<DefaultRedirect />} />
         </Routes>

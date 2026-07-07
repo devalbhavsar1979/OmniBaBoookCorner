@@ -86,3 +86,41 @@ def authenticate_user(db: Session, email: str, password: str) -> User:
 
 def get_user_by_id(db: Session, user_id: int) -> Optional[User]:
     return db.query(User).filter(User.id == user_id, User.is_active == True).first()
+
+
+def forgot_password(db: Session, email: str, reset_base_url: str) -> bool:
+    """Generate a reset token, save it, and email the reset link."""
+    import secrets
+    from services.email_service import send_password_reset_email
+
+    user = db.query(User).filter(User.email == email).first()
+    if not user:
+        # Return True anyway to avoid leaking whether email exists
+        return True
+
+    token = secrets.token_urlsafe(32)
+    user.reset_token = token
+    user.reset_token_expires = datetime.utcnow() + timedelta(hours=1)
+    db.commit()
+
+    reset_url = f"{reset_base_url}/reset-password?token={token}"
+    send_password_reset_email(user.email, user.full_name, reset_url)
+    logger.info(f"Password reset requested for {email} — token generated")
+    return True
+
+
+def reset_password(db: Session, token: str, new_password: str) -> User:
+    """Validate reset token and update password."""
+    user = db.query(User).filter(User.reset_token == token).first()
+    if not user:
+        raise HTTPException(status_code=400, detail="Invalid or expired reset link.")
+    if user.reset_token_expires is None or user.reset_token_expires < datetime.utcnow():
+        raise HTTPException(status_code=400, detail="Reset link has expired. Please request a new one.")
+
+    user.hashed_password = hash_password(new_password)
+    user.reset_token = None
+    user.reset_token_expires = None
+    db.commit()
+    db.refresh(user)
+    logger.info(f"Password reset successfully for {user.email}")
+    return user

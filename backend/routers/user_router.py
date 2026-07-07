@@ -11,6 +11,8 @@ from routers.dependencies import require_role
 router = APIRouter(prefix="/users", tags=["Users"])
 
 
+# ── Static routes FIRST (must be above /{user_id}) ───────────────────────────
+
 @router.get("", response_model=list[UserOut])
 def search_users(
     search: Optional[str] = Query(None, description="Search by name or email"),
@@ -18,11 +20,38 @@ def search_users(
     current_user: User = Depends(require_role(UserRole.OWNER)),
 ):
     """Search active readers by name or email (owner / super admin only)."""
-    query = db.query(User).filter(User.role == UserRole.READER, User.is_active == True, User.is_approved == True)
+    query = db.query(User).filter(
+        User.role == UserRole.READER,
+        User.is_active == True,
+        User.is_approved == True,
+    )
     if search:
         like = f"%{search}%"
         query = query.filter(or_(User.full_name.ilike(like), User.email.ilike(like)))
     return query.order_by(User.full_name.asc()).limit(20).all()
+
+
+@router.get("/all", response_model=list[UserApprovalOut])
+def get_all_users(
+    search: Optional[str] = Query(None),
+    role: Optional[str] = Query(None),
+    db: Session = Depends(get_db),
+    current_user: User = Depends(require_role(UserRole.SUPER_ADMIN)),
+):
+    """List all approved users (reader, owner, volunteer) — super admin only."""
+    query = db.query(User).filter(
+        User.role != UserRole.SUPER_ADMIN,
+        User.is_approved == True,
+    )
+    if role:
+        try:
+            query = query.filter(User.role == UserRole(role))
+        except ValueError:
+            pass
+    if search:
+        like = f"%{search}%"
+        query = query.filter(or_(User.full_name.ilike(like), User.email.ilike(like)))
+    return query.order_by(User.role.asc(), User.full_name.asc()).all()
 
 
 @router.get("/pending", response_model=list[UserApprovalOut])
@@ -37,6 +66,21 @@ def get_pending_users(
         .order_by(User.created_at.desc())
         .all()
     )
+
+
+# ── Dynamic route LAST ────────────────────────────────────────────────────────
+
+@router.get("/{user_id}", response_model=UserApprovalOut)
+def get_user_detail(
+    user_id: int,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(require_role(UserRole.SUPER_ADMIN)),
+):
+    """Get full details of a single user — super admin only."""
+    user = db.query(User).filter(User.id == user_id).first()
+    if not user:
+        raise HTTPException(status_code=404, detail="User not found")
+    return user
 
 
 @router.post("/{user_id}/approve", response_model=UserApprovalOut)

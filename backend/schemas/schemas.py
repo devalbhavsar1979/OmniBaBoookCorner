@@ -6,6 +6,22 @@ from models.models import UserRole, BookStatus, AgeGroup
 
 # ─── Auth Schemas ────────────────────────────────────────────────────────────
 
+class ForgotPasswordRequest(BaseModel):
+    email: EmailStr
+
+
+class ResetPasswordRequest(BaseModel):
+    token: str
+    new_password: str
+
+    @field_validator("new_password")
+    @classmethod
+    def password_min_length(cls, v: str) -> str:
+        if len(v) < 6:
+            raise ValueError("Password must be at least 6 characters")
+        return v
+
+
 class UserRegister(BaseModel):
     full_name: str
     email: EmailStr

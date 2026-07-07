@@ -11,7 +11,7 @@ const AGE_GROUPS = ['GENERIC', 'TODDLER', 'CHILDREN', 'TEENAGER', 'ADULT'];
 const AGE_GROUP_LABELS = { GENERIC: 'All Ages', TODDLER: 'Toddler', CHILDREN: 'Children', TEENAGER: 'Teenager', ADULT: 'Adult' };
 
 function BookFormModal({ libraryId, libraries, initial, onClose, onSaved }) {
-  const isEdit = !!initial;
+  const isEdit = !!initial; 
   const [form, setForm] = useState({
     title: initial?.title || '',
     author: initial?.author || '',
