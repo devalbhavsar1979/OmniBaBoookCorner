@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Outlet, NavLink, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import ProfileModal from './ProfileModal';
 import logoImg from '../logo.png';
 
 const NAV_ITEMS = [
@@ -20,12 +21,21 @@ function isMobileDevice() {
   );
 }
 
+const PROFILE_MENU_ITEMS = [
+  { key: 'profile',      label: 'Profile',      icon: '👤' },
+  { key: 'book_request', label: 'Book Request', icon: '📖' },
+  { key: 'my_score',     label: 'My Score',     icon: '⭐' },
+  { key: 'logout',       label: 'Logout',       icon: '⎋' },
+];
+
 export default function Layout() {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [collapsed, setCollapsed] = useState(() => localStorage.getItem('sidebarCollapsed') === '1');
+  const [profileMenuOpen, setProfileMenuOpen] = useState(false);
+  const [profileDetailOpen, setProfileDetailOpen] = useState(false);
 
   useEffect(() => {
     const check = () => setIsMobile(isMobileDevice());
@@ -44,6 +54,20 @@ export default function Layout() {
   const handleLogout = () => { logout(); navigate('/login'); };
   const visibleNav = NAV_ITEMS.filter(n => n.roles.includes(user?.role));
   const closeSidebar = () => setSidebarOpen(false);
+
+  const handleProfileMenuItem = (key) => {
+    setProfileMenuOpen(false);
+    if (key === 'logout') {
+      handleLogout();
+      return;
+    }
+    if (key === 'profile') {
+      setProfileDetailOpen(true);
+      return;
+    }
+    // Placeholder — behaviour for these items will be wired up separately.
+    console.log(`Profile menu item clicked: ${key}`);
+  };
 
   const roleColors = { SUPER_ADMIN: '#FBBF24', OWNER: '#7DD3FC', READER: '#86EFAC', VOLUNTEER: '#FCA5A5' };
   const roleColor = roleColors[user?.role] || 'rgba(255,255,255,0.5)';
@@ -146,11 +170,42 @@ export default function Layout() {
               <span className="bottom-nav-label">{item.label}</span>
             </NavLink>
           ))}
-          <button className="bottom-nav-item" onClick={handleLogout}>
-            <span className="bottom-nav-icon">⎋</span>
-            <span className="bottom-nav-label">Logout</span>
+          <button
+            className={`bottom-nav-item${profileMenuOpen ? ' active' : ''}`}
+            onClick={() => setProfileMenuOpen(prev => !prev)}
+          >
+            <span className="bottom-nav-icon">👤</span>
+            <span className="bottom-nav-label">My Profile</span>
           </button>
         </nav>
+      )}
+
+      {/* Profile popup menu (mobile) */}
+      {isMobile && profileMenuOpen && (
+        <>
+          <div className="profile-menu-overlay" onClick={() => setProfileMenuOpen(false)} />
+          <div className="profile-menu">
+            <div className="profile-menu-header">
+              <div className="name">{user?.full_name}</div>
+              <div className="role" style={{ color: roleColor }}>{user?.role}</div>
+            </div>
+            {PROFILE_MENU_ITEMS.map(item => (
+              <button
+                key={item.key}
+                className={`profile-menu-item${item.key === 'logout' ? ' danger' : ''}`}
+                onClick={() => handleProfileMenuItem(item.key)}
+              >
+                <span className="profile-menu-icon">{item.icon}</span>
+                <span>{item.label}</span>
+              </button>
+            ))}
+          </div>
+        </>
+      )}
+
+      {/* Profile detail / edit modal */}
+      {profileDetailOpen && (
+        <ProfileModal onClose={() => setProfileDetailOpen(false)} />
       )}
     </div>
   );

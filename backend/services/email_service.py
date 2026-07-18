@@ -354,3 +354,97 @@ def send_status_email(
     except Exception as e:
         # Email failure must NEVER break the main request flow
         logger.error(f"Failed to send email for request {req.id}: {e}")
+
+def send_password_reset_email(to_email: str, full_name: str, reset_url: str) -> bool:
+    """Send a password reset link email. Returns True on success, False on failure."""
+    if not settings.EMAIL_ENABLED:
+        logger.warning(f"Email disabled — reset link for {to_email}: {reset_url}")
+        return False
+
+    subject = "Reset your Ba Book Corner password"
+
+    html = f"""
+<!DOCTYPE html>
+<html>
+<body style="margin:0;padding:0;background:#F0F4F8;font-family:'Segoe UI',Arial,sans-serif;">
+  <table width="100%" cellpadding="0" cellspacing="0">
+    <tr><td align="center" style="padding:40px 16px;">
+      <table width="480" cellpadding="0" cellspacing="0"
+             style="background:#FFFFFF;border-radius:16px;overflow:hidden;
+                    box-shadow:0 4px 24px rgba(30,77,140,0.12);">
+        <!-- Header -->
+        <tr>
+          <td style="background:linear-gradient(135deg,#1E4D8C 0%,#2E8B57 100%);
+                     padding:32px 40px;text-align:center;">
+            <h1 style="margin:0;color:#FFFFFF;font-size:1.4rem;font-weight:800;">
+              📚 Ba Book Corner
+            </h1>
+            <p style="margin:6px 0 0;color:rgba(255,255,255,0.8);font-size:0.85rem;">
+              Ba Foundation Library Management
+            </p>
+          </td>
+        </tr>
+        <!-- Body -->
+        <tr>
+          <td style="padding:36px 40px;">
+            <p style="margin:0 0 8px;color:#0F1F3D;font-size:1rem;font-weight:700;">
+              Hello {full_name},
+            </p>
+            <p style="margin:0 0 24px;color:#4A5568;font-size:0.9rem;line-height:1.6;">
+              We received a request to reset your password. Click the button below to
+              choose a new password. This link is valid for <strong>1 hour</strong>.
+            </p>
+            <div style="text-align:center;margin:28px 0;">
+              <a href="{reset_url}"
+                 style="background:linear-gradient(135deg,#1E4D8C,#2E8B57);
+                        color:#FFFFFF;text-decoration:none;padding:14px 36px;
+                        border-radius:8px;font-weight:700;font-size:0.95rem;
+                        display:inline-block;">
+                Reset My Password
+              </a>
+            </div>
+            <p style="margin:24px 0 0;color:#718096;font-size:0.8rem;line-height:1.6;">
+              If you didn't request a password reset, you can safely ignore this email.
+              Your password won't change.
+            </p>
+            <hr style="border:none;border-top:1px solid #E2E8F0;margin:24px 0;">
+            <p style="margin:0;color:#A0AEC0;font-size:0.75rem;">
+              If the button doesn't work, copy and paste this link into your browser:<br>
+              <a href="{reset_url}" style="color:#1E4D8C;word-break:break-all;">
+                {reset_url}
+              </a>
+            </p>
+          </td>
+        </tr>
+        <!-- Footer -->
+        <tr>
+          <td style="background:#F7FAFC;padding:20px 40px;text-align:center;">
+            <p style="margin:0;color:#A0AEC0;font-size:0.75rem;">
+              © 2025 Ba Foundation · Ba Book Corner
+            </p>
+          </td>
+        </tr>
+      </table>
+    </td></tr>
+  </table>
+</body>
+</html>
+"""
+
+    msg = MIMEMultipart("alternative")
+    msg["Subject"] = subject
+    msg["From"] = f"{settings.EMAIL_FROM_NAME} <{settings.email_from_address}>"
+    msg["To"] = to_email
+    msg.attach(MIMEText(html, "html"))
+
+    try:
+        with smtplib.SMTP(settings.SMTP_HOST, settings.SMTP_PORT) as server:
+            server.ehlo()
+            server.starttls()
+            server.login(settings.SMTP_USER, settings.SMTP_PASSWORD)
+            server.sendmail(settings.email_from_address, to_email, msg.as_string())
+        logger.info(f"Password reset email sent to {to_email}")
+        return True
+    except Exception as e:
+        logger.error(f"Failed to send reset email to {to_email}: {e}")
+        return False

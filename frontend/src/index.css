@@ -1096,6 +1096,106 @@ tbody tr:hover { background: var(--surface); }
   font-weight: 600;
 }
 
+/* ── Mobile profile popup menu ─────────────────────────────────────────────── */
+.profile-menu-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 31, 61, 0.35);
+  z-index: 160;
+}
+
+.profile-menu {
+  position: fixed;
+  right: 12px;
+  bottom: 76px;
+  width: 220px;
+  background: var(--white);
+  border-radius: var(--radius-lg, 14px);
+  box-shadow: 0 12px 32px rgba(15, 31, 61, 0.28);
+  z-index: 170;
+  overflow: hidden;
+  animation: profile-menu-in 0.15s ease-out;
+}
+
+@keyframes profile-menu-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.profile-menu-header {
+  padding: 14px 16px;
+  background: var(--grad-header);
+}
+
+.profile-menu-header .name {
+  color: var(--white);
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.profile-menu-header .role {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-top: 2px;
+}
+
+.profile-menu-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 12px 16px;
+  background: none;
+  border: none;
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  font-weight: 500;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.profile-menu-item:last-child { border-bottom: none; }
+.profile-menu-item:hover { background: var(--surface); }
+.profile-menu-item.danger { color: var(--danger); }
+.profile-menu-icon { font-size: 1.05rem; line-height: 1; }
+
+/* ── Profile detail view ───────────────────────────────────────────────────── */
+.profile-detail-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-detail-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  padding: 11px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.profile-detail-row:last-child { border-bottom: none; }
+
+.profile-detail-label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--muted);
+  flex-shrink: 0;
+}
+
+.profile-detail-value {
+  font-size: 0.92rem;
+  color: var(--text);
+  text-align: right;
+  word-break: break-word;
+}
+
 /* ── Responsive ─────────────────────────────────────────────────────────────── */
 @media (max-width: 1024px) {
   .mobile-topbar { display: flex; }

@@ -34,6 +34,11 @@ export function AuthProvider({ children }) {
     }
   }, []);
 
+  const updateUser = useCallback((userData) => {
+    localStorage.setItem('user', JSON.stringify(userData));
+    setUser(userData);
+  }, []);
+
   const logout = useCallback(() => {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
@@ -44,7 +49,7 @@ export function AuthProvider({ children }) {
   const isSuperAdmin = user?.role === 'SUPER_ADMIN';
 
   return (
-    <AuthContext.Provider value={{ user, loading, login, register, logout, isRole, isSuperAdmin }}>
+    <AuthContext.Provider value={{ user, loading, login, register, logout, updateUser, isRole, isSuperAdmin }}>
       {children}
     </AuthContext.Provider>
   );

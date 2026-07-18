@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends, Request
 from sqlalchemy.orm import Session
 from config.database import get_db
-from schemas.schemas import UserRegister, UserLogin, Token, UserOut, ForgotPasswordRequest, ResetPasswordRequest
+from schemas.schemas import UserRegister, UserLogin, Token, UserOut, UserUpdate, ForgotPasswordRequest, ResetPasswordRequest
 from services.auth_service import register_user, authenticate_user, create_access_token, forgot_password, reset_password
 from routers.dependencies import get_current_user
 from models.models import User
@@ -26,6 +26,22 @@ def login(payload: UserLogin, db: Session = Depends(get_db)):
 @router.get("/me", response_model=UserOut)
 def get_me(current_user: User = Depends(get_current_user)):
     """Get the currently authenticated user's profile."""
+    return current_user
+
+
+@router.put("/me", response_model=UserOut)
+def update_me(
+    payload: UserUpdate,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user),
+):
+    """Update the currently authenticated user's basic profile info.
+    Email and password cannot be changed through this endpoint."""
+    data = payload.model_dump(exclude_unset=True)
+    for field, value in data.items():
+        setattr(current_user, field, value)
+    db.commit()
+    db.refresh(current_user)
     return current_user
 
 

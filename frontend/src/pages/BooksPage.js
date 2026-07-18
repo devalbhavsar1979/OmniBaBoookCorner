@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { bookApi, libraryApi, requestApi, getImageUrl } from '../services/api';
+import { bookApi, libraryApi, requestApi, getImageUrl, BASE_URL } from '../services/api';
 import { useAuth } from '../context/AuthContext';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Spinner, Modal, Pagination, EmptyState, Alert, StatusBadge, ConfirmModal } from '../components/common';
@@ -121,6 +121,70 @@ function BookFormModal({ libraryId, libraries, initial, onClose, onSaved }) {
   );
 }
 
+function ShareBookModal({ book }) {
+  const [thoughts, setThoughts] = useState('');
+  const frontUrl = getImageUrl(book.front_image);
+  const backUrl = getImageUrl(book.back_image);
+
+  // This points to a server-rendered page with Open Graph tags (title, description,
+  // image) so WhatsApp/Facebook show a rich preview card instead of a bare image link.
+  const buildShareLink = () => {
+    let link = `${BASE_URL}/public/books/${book.id}/share`;
+    if (thoughts.trim()) link += `?thoughts=${encodeURIComponent(thoughts.trim())}`;
+    return link;
+  };
+
+  const buildShareText = () => {
+    let text = `📚 ${book.title} by ${book.author}`;
+    if (thoughts.trim()) text += `\n\n"${thoughts.trim()}"`;
+    text += `\n\n${buildShareLink()}`;
+    return text;
+  };
+
+  const handleWhatsApp = () => {
+    const url = `https://wa.me/?text=${encodeURIComponent(buildShareText())}`;
+    window.open(url, '_blank', 'noopener,noreferrer');
+  };
+
+  const handleFacebook = () => {
+    const url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(buildShareLink())}&quote=${encodeURIComponent(buildShareText())}`;
+    window.open(url, '_blank', 'noopener,noreferrer');
+  };
+
+  return (
+    <div>
+      <div style={{ display: 'flex', gap: 16, marginBottom: 16 }}>
+        {frontUrl
+          ? <img src={frontUrl} alt="front cover" style={{ width: 100, height: 140, borderRadius: 6, objectFit: 'cover' }} />
+          : <div style={{ width: 100, height: 140, borderRadius: 6, background: 'var(--surface)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--muted)' }}>No front image</div>}
+        {backUrl
+          ? <img src={backUrl} alt="back cover" style={{ width: 100, height: 140, borderRadius: 6, objectFit: 'cover' }} />
+          : <div style={{ width: 100, height: 140, borderRadius: 6, background: 'var(--surface)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--muted)' }}>No back image</div>}
+      </div>
+      <h3 style={{ fontFamily: 'var(--font-display)', marginBottom: 4 }}>{book.title}</h3>
+      <p style={{ color: 'var(--muted)', marginBottom: 12 }}>by {book.author}</p>
+      <div className="form-group">
+        <label>Share your thoughts (optional)</label>
+        <textarea
+          className="form-control"
+          rows={3}
+          placeholder="What do you love about this book?"
+          value={thoughts}
+          onChange={(e) => setThoughts(e.target.value)}
+        />
+      </div>
+      <div style={{ display: 'flex', gap: 10, marginTop: 16, flexWrap: 'wrap' }}>
+        <button type="button" className="btn btn-sm" style={{ background: '#25D366', color: '#fff', border: 'none' }} onClick={handleWhatsApp}>
+          Share on WhatsApp
+        </button>
+        <button type="button" className="btn btn-sm" style={{ background: '#1877F2', color: '#fff', border: 'none' }} onClick={handleFacebook}>
+          Share on Facebook
+        </button>
+      </div>
+    </div>
+  );
+}
+
 function RequestModal({ book, onClose, onRequested }) {
   const [address, setAddress] = useState('');
   const [notes, setNotes] = useState('');
@@ -196,6 +260,7 @@ export default function BooksPage() {
   const [requestBook, setRequestBook] = useState(null);
   const [issueBook, setIssueBook] = useState(null);
   const [viewBook, setViewBook] = useState(null);
+  const [shareBook, setShareBook] = useState(null);
 
   const PAGE_SIZE = 12;
 
@@ -377,6 +442,9 @@ export default function BooksPage() {
                     <button className="btn btn-secondary btn-sm" onClick={() => setViewBook(book)}>
                       Details
                     </button>
+                    <button className="btn btn-secondary btn-sm" onClick={() => setShareBook(book)}>
+                      Share
+                    </button>
                     {isReader && book.status === 'AVAILABLE' && (
                       <button className="btn btn-primary btn-sm" onClick={() => setRequestBook(book)}>
                         Request
@@ -433,6 +501,12 @@ export default function BooksPage() {
               Request This Book
             </button>
           )}
+        </Modal>
+      )}
+
+      {shareBook && (
+        <Modal title="Share This Book" onClose={() => setShareBook(null)}>
+          <ShareBookModal book={shareBook} />
         </Modal>
       )}
 

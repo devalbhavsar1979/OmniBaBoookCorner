@@ -41,6 +41,24 @@ class UserRegister(BaseModel):
         return v
 
 
+class UserUpdate(BaseModel):
+    """Basic-info profile edit. Email and password are intentionally excluded —
+    they are not editable via this endpoint."""
+    full_name: Optional[str] = None
+    phone: Optional[str] = None
+    address_line: Optional[str] = None
+    city: Optional[str] = None
+    state: Optional[str] = None
+    pincode: Optional[str] = None
+
+    @field_validator("full_name")
+    @classmethod
+    def full_name_not_blank(cls, v):
+        if v is not None and not v.strip():
+            raise ValueError("Full name cannot be blank")
+        return v
+
+
 class UserLogin(BaseModel):
     email: EmailStr
     password: str
