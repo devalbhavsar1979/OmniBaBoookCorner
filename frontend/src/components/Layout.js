@@ -9,6 +9,7 @@ const NAV_ITEMS = [
   { to: '/libraries', label: 'Libraries',  icon: '🏛️', roles: ['SUPER_ADMIN','OWNER','READER','VOLUNTEER'] },
   { to: '/books',     label: 'Books',      icon: '📚', roles: ['SUPER_ADMIN','OWNER','READER','VOLUNTEER'] },
   { to: '/requests',  label: 'Requests',   icon: '📋', roles: ['SUPER_ADMIN','OWNER','READER','VOLUNTEER'] },
+  { to: '/book-requests', label: 'Book Requests', icon: '📖', roles: ['SUPER_ADMIN','OWNER','READER','VOLUNTEER'], sidebarOnly: true },
   { to: '/approvals', label: 'Approvals',  icon: '✅', roles: ['SUPER_ADMIN'] },
   { to: '/users',     label: 'Users',      icon: '👥', roles: ['SUPER_ADMIN'] },
 ];
@@ -63,6 +64,10 @@ export default function Layout() {
     }
     if (key === 'profile') {
       setProfileDetailOpen(true);
+      return;
+    }
+    if (key === 'book_request') {
+      navigate('/book-requests');
       return;
     }
     // Placeholder — behaviour for these items will be wired up separately.
@@ -160,7 +165,7 @@ export default function Layout() {
       {/* Mobile bottom nav */}
       {isMobile && (
         <nav className="bottom-nav" style={{ display: 'flex' }}>
-          {visibleNav.map(item => (
+          {visibleNav.filter(item => !item.sidebarOnly).map(item => (
             <NavLink
               key={item.to}
               to={item.to}

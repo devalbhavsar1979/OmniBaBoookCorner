@@ -1,7 +1,7 @@
 from pydantic import BaseModel, EmailStr, field_validator
 from typing import Optional
 from datetime import datetime
-from models.models import UserRole, BookStatus, AgeGroup
+from models.models import UserRole, BookStatus, AgeGroup, WishRequestType, WishRequestStatus, BookCondition
 
 
 # ─── Auth Schemas ────────────────────────────────────────────────────────────
@@ -236,6 +236,90 @@ class BookRequestOut(BaseModel):
     book: Optional[BookOut] = None
     reader: Optional[UserOut] = None
     volunteer: Optional[UserOut] = None
+
+    model_config = {"from_attributes": True}
+
+
+# ─── Wish Request Schemas ─────────────────────────────────────────────────────
+# "Wish Request" = a request for a book NOT in the catalogue yet (want to read)
+# or an offer to contribute/donate a book (want to contribute). Distinct from
+# BookRequestOut above, which is the borrow-an-existing-catalogue-book workflow.
+
+class WishRequestCreate(BaseModel):
+    type: WishRequestType
+    title: str
+    author: str
+    language: str
+    notes: Optional[str] = None
+    age_group: Optional[AgeGroup] = None          # WANT_TO_READ only
+    condition: Optional[BookCondition] = None     # WANT_TO_CONTRIBUTE only
+    quantity: int = 1                             # WANT_TO_CONTRIBUTE only
+    target_library_id: Optional[int] = None
+
+    @field_validator("title", "author", "language")
+    @classmethod
+    def not_blank(cls, v):
+        if not v or not v.strip():
+            raise ValueError("This field cannot be blank")
+        return v
+
+    @field_validator("quantity")
+    @classmethod
+    def quantity_at_least_one(cls, v):
+        if v < 1:
+            raise ValueError("Quantity must be at least 1")
+        return v
+
+
+class WishRequestUpdate(BaseModel):
+    """Edits allowed only while status is PENDING. Type is immutable after creation."""
+    title: Optional[str] = None
+    author: Optional[str] = None
+    language: Optional[str] = None
+    notes: Optional[str] = None
+    age_group: Optional[AgeGroup] = None
+    condition: Optional[BookCondition] = None
+    quantity: Optional[int] = None
+    target_library_id: Optional[int] = None
+
+
+class WishRequestReject(BaseModel):
+    admin_note: Optional[str] = None
+
+
+class WishRequestAccept(BaseModel):
+    """Fields the Super Admin fills in to turn a WishRequest into a real catalogue Book."""
+    library_id: int
+    genre: str
+    age_group: AgeGroup = AgeGroup.GENERIC
+    description: Optional[str] = None
+
+
+class WishRequestOut(BaseModel):
+    id: int
+    type: WishRequestType
+    requester_id: int
+    requester_name: Optional[str] = None
+    title: str
+    author: str
+    language: str
+    notes: Optional[str]
+    age_group: Optional[AgeGroup]
+    condition: Optional[BookCondition]
+    quantity: int
+    front_image: Optional[str]
+    back_image: Optional[str]
+    target_library_id: Optional[int]
+    target_library_name: Optional[str] = None
+    status: WishRequestStatus
+    admin_note: Optional[str]
+    reviewed_by_id: Optional[int]
+    reviewed_by_name: Optional[str] = None
+    reviewed_at: Optional[datetime]
+    book_id: Optional[int]
+    book: Optional[BookOut] = None
+    created_at: datetime
+    updated_at: datetime
 
     model_config = {"from_attributes": True}
 

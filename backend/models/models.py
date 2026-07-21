@@ -34,6 +34,25 @@ class AgeGroup(str, enum.Enum):
     ADULT     = "ADULT"
 
 
+class WishRequestType(str, enum.Enum):
+    WANT_TO_READ = "WANT_TO_READ"
+    WANT_TO_CONTRIBUTE = "WANT_TO_CONTRIBUTE"
+
+
+class WishRequestStatus(str, enum.Enum):
+    PENDING = "PENDING"
+    IN_PROGRESS = "IN_PROGRESS"
+    FULFILLED = "FULFILLED"
+    REJECTED = "REJECTED"
+
+
+class BookCondition(str, enum.Enum):
+    NEW = "NEW"
+    GOOD = "GOOD"
+    FAIR = "FAIR"
+    WORN = "WORN"
+
+
 class User(Base):
     __tablename__ = "users"
 
@@ -148,4 +167,57 @@ class BookRequest(Base):
         Index("idx_request_volunteer", "volunteer_id"),
         Index("idx_request_book", "book_id"),
         Index("idx_request_status", "status"),
+    )
+
+
+class WishRequest(Base):
+    """A user-initiated request that is NOT tied to an existing catalogue book —
+    either 'I want to read a book that isn't in BoookCorner yet' or
+    'I want to contribute/donate a book to a library'.
+
+    Deliberately named WishRequest (not BookRequest) to avoid clashing with the
+    existing BookRequest model above, which handles borrowing an already-catalogued book."""
+    __tablename__ = "wish_requests"
+
+    id = Column(Integer, primary_key=True, index=True)
+    type = Column(SAEnum(WishRequestType), nullable=False)
+    requester_id = Column(Integer, ForeignKey("users.id"), nullable=False)
+
+    title = Column(String(500), nullable=False)
+    author = Column(String(300), nullable=False)
+    language = Column(String(100), nullable=False)
+    notes = Column(Text, nullable=True)
+
+    # WANT_TO_READ only
+    age_group = Column(SAEnum(AgeGroup), nullable=True)
+
+    # WANT_TO_CONTRIBUTE only
+    condition = Column(SAEnum(BookCondition), nullable=True)
+    quantity = Column(Integer, default=1, nullable=False)
+    front_image = Column(String(500), nullable=True)
+    back_image = Column(String(500), nullable=True)
+
+    # Requester's suggested library (optional — "any library" if left blank)
+    target_library_id = Column(Integer, ForeignKey("libraries.id"), nullable=True)
+
+    status = Column(SAEnum(WishRequestStatus), default=WishRequestStatus.PENDING, nullable=False)
+    admin_note = Column(Text, nullable=True)
+    reviewed_by_id = Column(Integer, ForeignKey("users.id"), nullable=True)
+    reviewed_at = Column(DateTime, nullable=True)
+
+    # Set when accepted — points at the (first, if multiple copies) Book created in the catalogue
+    book_id = Column(Integer, ForeignKey("books.id"), nullable=True)
+
+    created_at = Column(DateTime, default=datetime.utcnow)
+    updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+
+    requester = relationship("User", foreign_keys=[requester_id])
+    target_library = relationship("Library", foreign_keys=[target_library_id])
+    reviewed_by = relationship("User", foreign_keys=[reviewed_by_id])
+    book = relationship("Book", foreign_keys=[book_id])
+
+    __table_args__ = (
+        Index("idx_wishreq_requester", "requester_id"),
+        Index("idx_wishreq_status", "status"),
+        Index("idx_wishreq_type", "type"),
     )

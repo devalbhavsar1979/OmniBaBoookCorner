@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:8000/api/v1';
+export const BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:8000/api/v1';
 
 const api = axios.create({
   baseURL: BASE_URL,
@@ -85,6 +85,20 @@ export const requestApi = {
 // ── Dashboard ─────────────────────────────────────────────────────────────────
 export const dashboardApi = {
   stats: () => api.get('/dashboard'),
+};
+
+// ── Wish Requests ("Book Request" feature) ────────────────────────────────────
+export const wishRequestApi = {
+  create: (formData) =>
+    api.post('/wish-requests', formData, { headers: { 'Content-Type': 'multipart/form-data' } }),
+  listMine: (params) => api.get('/wish-requests/me', { params }),
+  listAll: (params) => api.get('/wish-requests', { params }),
+  get: (id) => api.get(`/wish-requests/${id}`),
+  update: (id, formData) =>
+    api.put(`/wish-requests/${id}`, formData, { headers: { 'Content-Type': 'multipart/form-data' } }),
+  accept: (id, formData) =>
+    api.post(`/wish-requests/${id}/accept`, formData, { headers: { 'Content-Type': 'multipart/form-data' } }),
+  reject: (id, admin_note) => api.post(`/wish-requests/${id}/reject`, { admin_note }),
 };
 
 export const getImageUrl = (filename) => {

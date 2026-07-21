@@ -1,17 +1,21 @@
 from .schemas import (
-    UserRegister, UserLogin, Token, UserOut,
+    ForgotPasswordRequest, ResetPasswordRequest,
+    UserRegister, UserUpdate, UserLogin, Token, UserOut, UserApprovalOut,
     LibraryCreate, LibraryUpdate, LibraryOut,
     BookCreate, BookUpdate, BookOut, BookWithLibrary,
-    BookRequestCreate, BookRequestOut,
+    BookRequestCreate, BookIssueRequest, BookRequestOut,
+    WishRequestCreate, WishRequestUpdate, WishRequestReject, WishRequestAccept, WishRequestOut,
     DashboardStats, StatusCount, GenreCount, LanguageCount, AuthorCount,
-    PaginatedResponse
+    PaginatedResponse,
 )
 
 __all__ = [
-    "UserRegister", "UserLogin", "Token", "UserOut",
+    "ForgotPasswordRequest", "ResetPasswordRequest",
+    "UserRegister", "UserUpdate", "UserLogin", "Token", "UserOut", "UserApprovalOut",
     "LibraryCreate", "LibraryUpdate", "LibraryOut",
     "BookCreate", "BookUpdate", "BookOut", "BookWithLibrary",
-    "BookRequestCreate", "BookRequestOut",
+    "BookRequestCreate", "BookIssueRequest", "BookRequestOut",
+    "WishRequestCreate", "WishRequestUpdate", "WishRequestReject", "WishRequestAccept", "WishRequestOut",
     "DashboardStats", "StatusCount", "GenreCount", "LanguageCount", "AuthorCount",
-    "PaginatedResponse"
+    "PaginatedResponse",
 ]

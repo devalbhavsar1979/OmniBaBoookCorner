@@ -9,7 +9,8 @@ import LibrariesPage from './pages/LibrariesPage';
 import BooksPage from './pages/BooksPage';
 import RequestsPage from './pages/RequestsPage';
 import PendingApprovalsPage from './pages/PendingApprovalsPage';
-import UsersPage from './pages/UsersPage';
+import UsersPage from './pages/UserPage';
+import BookRequestsPage from './pages/BookRequestsPage';
 import PublicBooksPage from './pages/PublicBooksPage';
 import ForgotPasswordPage from './pages/ForgotPasswordPage';
 import ResetPasswordPage from './pages/ResetPasswordPage';
@@ -54,6 +55,7 @@ export default function App() {
             <Route path="requests" element={<RequestsPage />} />
             <Route path="approvals" element={<PendingApprovalsPage />} />
             <Route path="users" element={<UsersPage />} />
+            <Route path="book-requests" element={<BookRequestsPage />} />
           </Route>
           <Route path="*" element={<DefaultRedirect />} />
         </Routes>

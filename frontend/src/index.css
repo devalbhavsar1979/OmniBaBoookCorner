@@ -476,6 +476,12 @@ textarea.form-control { resize: vertical; min-height: 80px; }
 .badge-return_requested  { background: #FFE4E6; color: #BE123C; }
 .badge-return_picked     { background: #EDE9FE; color: #6D28D9; }
 .badge-return_delivered  { background: #CCFBF1; color: #0F766E; }
+.badge-pending           { background: #FEF3C7; color: #92400E; }
+.badge-in_progress       { background: #DBEAFE; color: #1D4ED8; }
+.badge-fulfilled         { background: #DCFCE7; color: #15803D; }
+.badge-rejected          { background: #FEE2E2; color: #B91C1C; }
+.badge-want_to_read      { background: #EDE9FE; color: #6D28D9; }
+.badge-want_to_contribute { background: #FFEDD5; color: #C2410C; }
 
 /* ── Stats ──────────────────────────────────────────────────────────────────── */
 .stats-grid {
