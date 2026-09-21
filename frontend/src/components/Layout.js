@@ -4,6 +4,13 @@ import { useAuth } from '../context/AuthContext';
 import ProfileModal from './ProfileModal';
 import logoImg from '../logo.png';
 
+const ROLE_LABELS = {
+  SUPER_ADMIN: 'Super Admin',
+  OWNER: 'Library Owner',
+  READER: 'Reader',
+  VOLUNTEER: 'Volunteer',
+};
+
 const NAV_ITEMS = [
   { to: '/dashboard', label: 'Dashboard',  icon: '📊', roles: ['SUPER_ADMIN','OWNER','READER','VOLUNTEER'] },
   { to: '/libraries', label: 'Libraries',  icon: '🏛️', roles: ['SUPER_ADMIN','OWNER','READER','VOLUNTEER'] },
@@ -23,15 +30,17 @@ function isMobileDevice() {
 }
 
 const PROFILE_MENU_ITEMS = [
-  { key: 'profile',      label: 'Profile',      icon: '👤' },
-  { key: 'book_request', label: 'Book Request', icon: '📖' },
-  { key: 'my_score',     label: 'My Score',     icon: '⭐' },
-  { key: 'logout',       label: 'Logout',       icon: '⎋' },
+  { key: 'profile',         label: 'Profile',         icon: '👤' },
+  { key: 'book_request',    label: 'Wishlist',        icon: '📖' },
+  { key: 'my_score',        label: 'My Score',        icon: '⭐' },
+  { key: 'issue_register',  label: 'Issue Register',  icon: '📋', roles: ['SUPER_ADMIN', 'READER'] },
+  { key: 'logout',          label: 'Logout',          icon: '⎋' },
 ];
 
 export default function Layout() {
-  const { user, logout } = useAuth();
+  const { user, logout, switchRole, userRoles } = useAuth();
   const navigate = useNavigate();
+  const [switching, setSwitching] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [collapsed, setCollapsed] = useState(() => localStorage.getItem('sidebarCollapsed') === '1');
@@ -56,6 +65,19 @@ export default function Layout() {
   const visibleNav = NAV_ITEMS.filter(n => n.roles.includes(user?.role));
   const closeSidebar = () => setSidebarOpen(false);
 
+  const handleRoleSwitch = async (role) => {
+    if (role === user?.role || switching) return;
+    setSwitching(true);
+    try {
+      await switchRole(role);
+      navigate('/dashboard');
+    } catch (e) {
+      console.error('Role switch failed', e);
+    } finally {
+      setSwitching(false);
+    }
+  };
+
   const handleProfileMenuItem = (key) => {
     setProfileMenuOpen(false);
     if (key === 'logout') {
@@ -70,8 +92,14 @@ export default function Layout() {
       navigate('/book-requests');
       return;
     }
-    // Placeholder — behaviour for these items will be wired up separately.
-    console.log(`Profile menu item clicked: ${key}`);
+    if (key === 'my_score') {
+      navigate('/my-score');
+      return;
+    }
+    if (key === 'issue_register') {
+      navigate('/issue-register');
+      return;
+    }
   };
 
   const roleColors = { SUPER_ADMIN: '#FBBF24', OWNER: '#7DD3FC', READER: '#86EFAC', VOLUNTEER: '#FCA5A5' };
@@ -141,9 +169,44 @@ export default function Layout() {
             {(!collapsed || isMobile) && (
               <>
                 <div className="name">{user?.full_name}</div>
-                <div className="role" style={{ color: roleColor }}>{user?.role}</div>
+                <div className="role" style={{ color: roleColor }}>{ROLE_LABELS[user?.role] || user?.role}</div>
               </>
             )}
+
+            {/* Role switcher — only shown when user has multiple approved roles */}
+            {(!collapsed || isMobile) && userRoles.length > 1 && (
+              <div style={{ margin: '8px 0 4px' }}>
+                <div style={{ fontSize: '0.65rem', color: 'rgba(255,255,255,0.45)', marginBottom: 4, letterSpacing: '0.05em', textTransform: 'uppercase' }}>
+                  Switch Role
+                </div>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
+                  {userRoles.map(role => (
+                    <button
+                      key={role}
+                      disabled={switching}
+                      onClick={() => handleRoleSwitch(role)}
+                      style={{
+                        background: role === user?.role ? roleColor : 'rgba(255,255,255,0.08)',
+                        color: role === user?.role ? '#0F1F3D' : 'rgba(255,255,255,0.75)',
+                        border: 'none',
+                        borderRadius: 6,
+                        padding: '4px 10px',
+                        fontSize: '0.75rem',
+                        fontWeight: role === user?.role ? 700 : 400,
+                        cursor: role === user?.role ? 'default' : 'pointer',
+                        textAlign: 'left',
+                        transition: 'background 0.15s',
+                      }}
+                    >
+                      {role === user?.role ? '● ' : '○ '}
+                      {ROLE_LABELS[role] || role}
+                      {switching && role !== user?.role ? ' …' : ''}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+
             <button className="logout-btn" onClick={handleLogout} title={collapsed && !isMobile ? 'Sign out' : undefined}>
               <span>⎋</span> {(!collapsed || isMobile) && 'Sign out'}
             </button>
@@ -192,9 +255,38 @@ export default function Layout() {
           <div className="profile-menu">
             <div className="profile-menu-header">
               <div className="name">{user?.full_name}</div>
-              <div className="role" style={{ color: roleColor }}>{user?.role}</div>
+              <div className="role" style={{ color: roleColor }}>{ROLE_LABELS[user?.role] || user?.role}</div>
             </div>
-            {PROFILE_MENU_ITEMS.map(item => (
+            {/* Mobile role switcher */}
+            {userRoles.length > 1 && (
+              <div style={{ padding: '8px 16px 4px', borderBottom: '1px solid rgba(255,255,255,0.1)' }}>
+                <div style={{ fontSize: '0.65rem', color: 'var(--muted)', marginBottom: 6, textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                  Switch Role
+                </div>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
+                  {userRoles.map(role => (
+                    <button
+                      key={role}
+                      disabled={switching}
+                      onClick={() => { setProfileMenuOpen(false); handleRoleSwitch(role); }}
+                      style={{
+                        padding: '5px 12px',
+                        borderRadius: 99,
+                        border: `2px solid ${role === user?.role ? 'var(--primary)' : 'var(--border)'}`,
+                        background: role === user?.role ? 'var(--primary)' : 'transparent',
+                        color: role === user?.role ? '#fff' : 'var(--charcoal)',
+                        fontSize: '0.78rem',
+                        fontWeight: role === user?.role ? 700 : 400,
+                        cursor: role === user?.role ? 'default' : 'pointer',
+                      }}
+                    >
+                      {ROLE_LABELS[role] || role}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+            {PROFILE_MENU_ITEMS.filter(item => !item.roles || item.roles.includes(user?.role)).map(item => (
               <button
                 key={item.key}
                 className={`profile-menu-item${item.key === 'logout' ? ' danger' : ''}`}

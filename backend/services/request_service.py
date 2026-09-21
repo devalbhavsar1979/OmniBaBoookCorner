@@ -1,12 +1,13 @@
 import logging
 from datetime import datetime
 from typing import Optional
-from sqlalchemy.orm import Session
+from sqlalchemy.orm import Session, aliased
 from fastapi import HTTPException
 
 from models.models import BookRequest, Book, Library, User, UserRole, BookStatus
 from schemas.schemas import BookRequestCreate
 from services.email_service import send_status_email
+from services import gamification_service
 
 logger = logging.getLogger(__name__)
 
@@ -24,10 +25,21 @@ VOLUNTEER_TRANSITIONS = {
 }
 
 OWNER_TRANSITIONS = {
+    BookStatus.REQUESTED: BookStatus.ISSUED,       # direct issue (no volunteer delivery)
     BookStatus.VOLUNTEER_DELIVERED: BookStatus.ISSUED,
     BookStatus.RETURN_REQUESTED: BookStatus.AVAILABLE,
     BookStatus.RETURN_DELIVERED: BookStatus.AVAILABLE,
 }
+
+
+MAX_ACTIVE_REQUESTS = 3
+
+
+def _count_active_requests(db: Session, reader_id: int) -> int:
+    return db.query(BookRequest).filter(
+        BookRequest.reader_id == reader_id,
+        BookRequest.status != BookStatus.AVAILABLE,
+    ).count()
 
 
 def create_request(db: Session, payload: BookRequestCreate, reader: User) -> BookRequest:
@@ -39,6 +51,13 @@ def create_request(db: Session, payload: BookRequestCreate, reader: User) -> Boo
         raise HTTPException(status_code=404, detail="Book not found")
     if book.status != BookStatus.AVAILABLE:
         raise HTTPException(status_code=400, detail="Book is not available for request")
+
+    active = _count_active_requests(db, reader.id)
+    if active >= MAX_ACTIVE_REQUESTS:
+        raise HTTPException(
+            status_code=400,
+            detail=f"You already have {active} active book requests. Please return a book before requesting another.",
+        )
 
     # Update book status
     book.status = BookStatus.REQUESTED
@@ -69,29 +88,43 @@ def create_request(db: Session, payload: BookRequestCreate, reader: User) -> Boo
 def get_requests(
     db: Session,
     user: User,
-    status: Optional[BookStatus] = None,
+    statuses: Optional[list[BookStatus]] = None,
+    search: Optional[str] = None,
     page: int = 1,
     page_size: int = 20,
 ) -> tuple[list, int]:
-    query = db.query(BookRequest)
+    ReaderUser = aliased(User)
+    VolunteerUser = aliased(User)
+
+    query = (
+        db.query(BookRequest)
+        .join(Book, BookRequest.book_id == Book.id)
+        .outerjoin(ReaderUser, BookRequest.reader_id == ReaderUser.id)
+        .outerjoin(VolunteerUser, BookRequest.volunteer_id == VolunteerUser.id)
+    )
 
     if user.role == UserRole.READER:
         query = query.filter(BookRequest.reader_id == user.id)
     elif user.role == UserRole.VOLUNTEER:
-        # Volunteers see all open requests + their own assignments
-        # + all RETURN_REQUESTED (unassigned returns they can pick up)
         query = query.filter(
             (BookRequest.status == BookStatus.REQUESTED) |
             (BookRequest.status == BookStatus.RETURN_REQUESTED) |
             (BookRequest.volunteer_id == user.id)
         )
     elif user.role == UserRole.OWNER:
-        # Owners see requests for books in their libraries
-        query = query.join(Book).join(Library).filter(Library.owner_id == user.id)
-    # SUPER_ADMIN: no filter — sees all requests across all libraries
+        query = query.join(Library, Book.library_id == Library.id).filter(Library.owner_id == user.id)
+    # SUPER_ADMIN: no filter — sees all requests
 
-    if status:
-        query = query.filter(BookRequest.status == status)
+    if statuses:
+        query = query.filter(BookRequest.status.in_(statuses))
+
+    if search:
+        like = f"%{search}%"
+        query = query.filter(
+            Book.title.ilike(like) |
+            ReaderUser.full_name.ilike(like) |
+            VolunteerUser.full_name.ilike(like)
+        )
 
     total = query.count()
     items = (
@@ -203,6 +236,11 @@ def advance_request_status(
     else:
         book.status = new_status
 
+    if new_status == BookStatus.ISSUED:
+        gamification_service.award_points(
+            db, req.reader_id, 20, "BOOK_ISSUED", f"Borrowed: {book.title}"
+        )
+
     db.commit()
     db.refresh(req)
     logger.info(f"Request {req.id} advanced: {current} → {new_status} by user {user.id}")
@@ -222,17 +260,62 @@ def advance_request_status(
     return req
 
 
-def cancel_request(db: Session, request_id: int, reader: User) -> None:
-    if reader.role != UserRole.READER:
-        raise HTTPException(status_code=403, detail="Only readers can cancel requests")
+def direct_return_by_admin(db: Session, request_id: int, user: User) -> BookRequest:
+    req = db.query(BookRequest).filter(BookRequest.id == request_id).with_for_update().first()
+    if not req:
+        raise HTTPException(status_code=404, detail="Request not found")
 
+    if req.status != BookStatus.ISSUED:
+        raise HTTPException(status_code=400, detail="Direct return is only allowed for ISSUED books")
+
+    book = db.query(Book).filter(Book.id == req.book_id).first()
+    lib = db.query(Library).filter(Library.id == book.library_id).first()
+
+    if user.role == UserRole.OWNER:
+        if lib.owner_id != user.id:
+            raise HTTPException(status_code=403, detail="Not your library")
+    elif user.role != UserRole.SUPER_ADMIN:
+        raise HTTPException(status_code=403, detail="Only library owners and super admin can perform a direct return")
+
+    now = datetime.utcnow()
+    req.status = BookStatus.AVAILABLE
+    req.return_delivered_at = now
+    req.closed_at = now
+    book.status = BookStatus.AVAILABLE
+
+    db.commit()
+    db.refresh(req)
+    logger.info(f"Request {req.id} direct-returned by admin user {user.id}")
+
+    try:
+        owner = db.query(User).filter(User.id == lib.owner_id).first()
+        reader = db.query(User).filter(User.id == req.reader_id).first()
+        volunteer = db.query(User).filter(User.id == req.volunteer_id).first() if req.volunteer_id else None
+        send_status_email(req, book, lib, owner, reader, volunteer, "AVAILABLE")
+    except Exception as e:
+        logger.error(f"Email trigger failed after direct_return_by_admin: {e}")
+
+    return req
+
+
+def cancel_request(db: Session, request_id: int, user: User) -> None:
     req = db.query(BookRequest).filter(BookRequest.id == request_id).first()
     if not req:
         raise HTTPException(status_code=404, detail="Request not found")
-    if req.reader_id != reader.id:
-        raise HTTPException(status_code=403, detail="Not your request")
-    if req.status not in (BookStatus.REQUESTED,):
+
+    if req.status != BookStatus.REQUESTED:
         raise HTTPException(status_code=400, detail="Can only cancel a REQUESTED status book")
+
+    if user.role == UserRole.READER:
+        if req.reader_id != user.id:
+            raise HTTPException(status_code=403, detail="Not your request")
+    elif user.role == UserRole.OWNER:
+        book = db.query(Book).filter(Book.id == req.book_id).first()
+        lib = db.query(Library).filter(Library.id == book.library_id).first()
+        if lib.owner_id != user.id:
+            raise HTTPException(status_code=403, detail="Not your library")
+    elif user.role != UserRole.SUPER_ADMIN:
+        raise HTTPException(status_code=403, detail="Not authorized to cancel requests")
 
     book = db.query(Book).filter(Book.id == req.book_id).first()
     book.status = BookStatus.AVAILABLE

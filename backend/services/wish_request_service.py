@@ -68,14 +68,14 @@ async def create_wish_request(
 
 
 def get_my_wish_requests(
-    db: Session, requester: User, type_: Optional[WishRequestType], status: Optional[WishRequestStatus],
+    db: Session, requester: User, type_: Optional[list], status: Optional[list],
     page: int, page_size: int,
 ) -> tuple[list, int]:
     query = db.query(WishRequest).filter(WishRequest.requester_id == requester.id)
     if type_:
-        query = query.filter(WishRequest.type == type_)
+        query = query.filter(WishRequest.type.in_(type_))
     if status:
-        query = query.filter(WishRequest.status == status)
+        query = query.filter(WishRequest.status.in_(status))
     total = query.count()
     items = (
         query.order_by(WishRequest.created_at.desc())
@@ -88,15 +88,15 @@ def get_my_wish_requests(
 
 def get_all_wish_requests(
     db: Session,
-    type_: Optional[WishRequestType], status: Optional[WishRequestStatus],
+    type_: Optional[list], status: Optional[list],
     library_id: Optional[int], requester_id: Optional[int],
     page: int, page_size: int,
 ) -> tuple[list, int]:
     query = db.query(WishRequest)
     if type_:
-        query = query.filter(WishRequest.type == type_)
+        query = query.filter(WishRequest.type.in_(type_))
     if status:
-        query = query.filter(WishRequest.status == status)
+        query = query.filter(WishRequest.status.in_(status))
     if library_id:
         query = query.filter(WishRequest.target_library_id == library_id)
     if requester_id:

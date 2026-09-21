@@ -1,4 +1,5 @@
 import React from 'react';
+import 'leaflet/dist/leaflet.css';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import Layout from './components/Layout';
@@ -14,6 +15,8 @@ import BookRequestsPage from './pages/BookRequestsPage';
 import PublicBooksPage from './pages/PublicBooksPage';
 import ForgotPasswordPage from './pages/ForgotPasswordPage';
 import ResetPasswordPage from './pages/ResetPasswordPage';
+import MyScorePage from './pages/MyScorePage';
+import IssueRegisterPage from './pages/IssueRegisterPage';
 
 function PrivateRoute({ children }) {
   const { user } = useAuth();
@@ -56,6 +59,8 @@ export default function App() {
             <Route path="approvals" element={<PendingApprovalsPage />} />
             <Route path="users" element={<UsersPage />} />
             <Route path="book-requests" element={<BookRequestsPage />} />
+            <Route path="my-score" element={<MyScorePage />} />
+            <Route path="issue-register" element={<IssueRegisterPage />} />
           </Route>
           <Route path="*" element={<DefaultRedirect />} />
         </Routes>

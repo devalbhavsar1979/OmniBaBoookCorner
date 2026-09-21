@@ -25,6 +25,12 @@ class Settings(BaseSettings):
     EMAIL_FROM: str = ""         # defaults to SMTP_USER if blank
     EMAIL_ENABLED: bool = False  # set True once SMTP is configured
 
+    # ── Gemini (cover scan) ───────────────────────────────────
+    GEMINI_API_KEY: str = ""
+
+    # ── Issue Register ────────────────────────────────────────
+    OVERDUE_DAYS: int = 14  # days after which an issued book is flagged as overdue
+
     class Config:
         env_file = ".env"
 

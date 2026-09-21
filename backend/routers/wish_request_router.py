@@ -40,17 +40,32 @@ async def create_wish_request(
     return await wish_request_service.create_wish_request(db, payload, current_user, front_image, back_image)
 
 
+def _parse_enum_list(raw: Optional[str], enum_cls):
+    if not raw:
+        return None
+    result = []
+    for s in raw.split(','):
+        s = s.strip()
+        try:
+            result.append(enum_cls(s))
+        except ValueError:
+            pass
+    return result or None
+
+
 @router.get("/me", response_model=PaginatedResponse)
 def list_my_wish_requests(
-    type: Optional[WishRequestType] = Query(None),
-    status: Optional[WishRequestStatus] = Query(None),
+    type: Optional[str] = Query(None),
+    status: Optional[str] = Query(None),
     page: int = Query(1, ge=1),
     page_size: int = Query(20, ge=1, le=100),
     db: Session = Depends(get_db),
     current_user: User = Depends(get_current_user),
 ):
     """List the current user's own wish requests."""
-    items, total = wish_request_service.get_my_wish_requests(db, current_user, type, status, page, page_size)
+    types = _parse_enum_list(type, WishRequestType)
+    statuses = _parse_enum_list(status, WishRequestStatus)
+    items, total = wish_request_service.get_my_wish_requests(db, current_user, types, statuses, page, page_size)
     return PaginatedResponse(
         total=total, page=page, page_size=page_size,
         items=[WishRequestOut.model_validate(i) for i in items],
@@ -59,8 +74,8 @@ def list_my_wish_requests(
 
 @router.get("", response_model=PaginatedResponse)
 def list_all_wish_requests(
-    type: Optional[WishRequestType] = Query(None),
-    status: Optional[WishRequestStatus] = Query(None),
+    type: Optional[str] = Query(None),
+    status: Optional[str] = Query(None),
     library_id: Optional[int] = Query(None),
     requester_id: Optional[int] = Query(None),
     page: int = Query(1, ge=1),
@@ -69,8 +84,10 @@ def list_all_wish_requests(
     current_user: User = Depends(require_role(UserRole.SUPER_ADMIN)),
 ):
     """Super Admin: list every user's wish requests, with optional filters."""
+    types = _parse_enum_list(type, WishRequestType)
+    statuses = _parse_enum_list(status, WishRequestStatus)
     items, total = wish_request_service.get_all_wish_requests(
-        db, type, status, library_id, requester_id, page, page_size
+        db, types, statuses, library_id, requester_id, page, page_size
     )
     return PaginatedResponse(
         total=total, page=page, page_size=page_size,

@@ -29,9 +29,9 @@ function fmtDate(ts) {
 }
 
 // ── Create / Edit Form ──────────────────────────────────────────────────────
-function WishRequestFormModal({ initial, onClose, onSaved }) {
+function WishRequestFormModal({ initial, defaultType, onClose, onSaved }) {
   const isEdit = !!initial;
-  const [type, setType] = useState(initial?.type || 'WANT_TO_READ');
+  const [type, setType] = useState(initial?.type || defaultType || 'WANT_TO_READ');
   const [title, setTitle] = useState(initial?.title || '');
   const [author, setAuthor] = useState(initial?.author || '');
   const [language, setLanguage] = useState(initial?.language || 'English');
@@ -90,7 +90,7 @@ function WishRequestFormModal({ initial, onClose, onSaved }) {
   };
 
   return (
-    <Modal title={isEdit ? 'Edit Book Request' : 'New Book Request'} onClose={onClose}>
+    <Modal title={isEdit ? 'Edit Wish Request' : type === 'WANT_TO_CONTRIBUTE' ? '🎁 Want to Contribute a Book' : '📖 Want to Read a Book'} onClose={onClose}>
       <Alert type="error" message={error} />
       <form onSubmit={handleSubmit}>
 
@@ -382,8 +382,8 @@ export default function BookRequestsPage() {
   const [items, setItems] = useState([]);
   const [total, setTotal] = useState(0);
   const [page, setPage] = useState(1);
-  const [typeFilter, setTypeFilter] = useState('');
-  const [statusFilter, setStatusFilter] = useState('');
+  const [typeFilter, setTypeFilter] = useState([]);
+  const [statusFilter, setStatusFilter] = useState([]);
   const [loading, setLoading] = useState(true);
 
   const [formTarget, setFormTarget] = useState(null);   // { } for new, or wr object for edit
@@ -398,8 +398,8 @@ export default function BookRequestsPage() {
     setLoading(true);
     try {
       const params = { page, page_size: PAGE_SIZE };
-      if (typeFilter) params.type = typeFilter;
-      if (statusFilter) params.status = statusFilter;
+      if (typeFilter.length > 0) params.type = typeFilter.join(',');
+      if (statusFilter.length > 0) params.status = statusFilter.join(',');
       const res = isAdmin ? await wishRequestApi.listAll(params) : await wishRequestApi.listMine(params);
       setItems(res.data.items);
       setTotal(res.data.total);
@@ -412,7 +412,8 @@ export default function BookRequestsPage() {
 
   useEffect(() => { load(); }, [load]);
 
-  const openNew = () => { setFormTarget(null); setShowForm(true); };
+  const [formDefaultType, setFormDefaultType] = useState('WANT_TO_READ');
+  const openNew = (defaultType = 'WANT_TO_READ') => { setFormDefaultType(defaultType); setFormTarget(null); setShowForm(true); };
   const openEdit = (wr) => { setFormTarget(wr); setShowForm(true); };
   const closeForm = () => setShowForm(false);
   const handleSaved = () => { setShowForm(false); load(); };
@@ -423,37 +424,144 @@ export default function BookRequestsPage() {
 
   return (
     <>
-      <div className="page-header">
-        <h2>Book Requests</h2>
-        <p>
-          {isAdmin
-            ? 'Review and act on every reader, owner, and volunteer book request across the network.'
-            : 'Request a book you\'d like to read, or offer to contribute one to a library.'}
-        </p>
+      {/* ── Hero header ── */}
+      <div style={{
+        background: 'linear-gradient(135deg, #1E4D8C 0%, #16376A 60%, #0F2347 100%)',
+        padding: '32px 32px 28px',
+        position: 'relative',
+        overflow: 'hidden',
+      }}>
+        {/* Decorative background circles */}
+        <div style={{ position: 'absolute', top: -40, right: -40, width: 180, height: 180, borderRadius: '50%', background: 'rgba(255,255,255,0.04)', pointerEvents: 'none' }} />
+        <div style={{ position: 'absolute', bottom: -30, right: 120, width: 120, height: 120, borderRadius: '50%', background: 'rgba(255,255,255,0.03)', pointerEvents: 'none' }} />
+        <div style={{ position: 'absolute', top: 20, right: 60, width: 60, height: 60, borderRadius: '50%', background: 'rgba(255,255,255,0.05)', pointerEvents: 'none' }} />
+
+        <div style={{ position: 'relative', zIndex: 1, maxWidth: 640 }}>
+          {/* Icon + label row */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 10 }}>
+            <span style={{ fontSize: '2rem', lineHeight: 1 }}>✨</span>
+            <span style={{ fontSize: '0.72rem', fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.55)' }}>
+              {isAdmin ? 'Admin View' : 'My Wishlist'}
+            </span>
+          </div>
+
+          {/* Title */}
+          <h2 style={{ fontSize: '1.75rem', fontWeight: 800, color: '#FFFFFF', margin: '0 0 8px', lineHeight: 1.2 }}>
+            {isAdmin ? 'Wishlist — All Requests' : 'My Reading Wishlist'}
+          </h2>
+
+          {/* Tagline */}
+          <p style={{ fontSize: '0.92rem', color: 'rgba(255,255,255,0.70)', margin: 0, lineHeight: 1.6 }}>
+            {isAdmin
+              ? 'Every dream, every offer — review and fulfil book wishes across the entire network.'
+              : 'Dream it. Request it. Read it. — Tell us which books you\'d love to read, or share one from your shelf.'}
+          </p>
+
+          {/* Action buttons — only shown to non-admin readers */}
+          {!isAdmin && (
+            <div style={{ display: 'flex', gap: 10, marginTop: 18, flexWrap: 'wrap' }}>
+              {[
+                { icon: '📖', label: 'Want to Read', type: 'WANT_TO_READ', desc: 'Request a book for our library' },
+                { icon: '🎁', label: 'Want to Contribute', type: 'WANT_TO_CONTRIBUTE', desc: 'Donate a book from your shelf' },
+              ].map(btn => (
+                <button
+                  key={btn.type}
+                  onClick={() => openNew(btn.type)}
+                  style={{
+                    display: 'flex', alignItems: 'center', gap: 10,
+                    padding: '10px 18px', borderRadius: 10, cursor: 'pointer',
+                    background: 'rgba(255,255,255,0.12)',
+                    border: '1.5px solid rgba(255,255,255,0.30)',
+                    backdropFilter: 'blur(4px)',
+                    transition: 'background 0.15s, border-color 0.15s',
+                  }}
+                  onMouseEnter={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.22)'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.55)'; }}
+                  onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.12)'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.30)'; }}
+                >
+                  <span style={{ fontSize: '1.2rem', lineHeight: 1 }}>{btn.icon}</span>
+                  <div style={{ textAlign: 'left' }}>
+                    <div style={{ fontSize: '0.85rem', fontWeight: 700, color: '#FFFFFF', lineHeight: 1.2 }}>{btn.label}</div>
+                    <div style={{ fontSize: '0.72rem', color: 'rgba(255,255,255,0.60)', marginTop: 2 }}>{btn.desc}</div>
+                  </div>
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
       </div>
 
       <div className="page-content">
-        <div className="search-bar" style={{ marginBottom: 16 }}>
-          <select className="form-control" value={typeFilter} onChange={(e) => { setTypeFilter(e.target.value); setPage(1); }} style={{ maxWidth: 220 }}>
-            <option value="">All Types</option>
-            <option value="WANT_TO_READ">Want to Read</option>
-            <option value="WANT_TO_CONTRIBUTE">Want to Contribute</option>
-          </select>
-          <select className="form-control" value={statusFilter} onChange={(e) => { setStatusFilter(e.target.value); setPage(1); }} style={{ maxWidth: 180 }}>
-            <option value="">All Statuses</option>
-            <option value="PENDING">Pending</option>
-            <option value="IN_PROGRESS">In Progress</option>
-            <option value="FULFILLED">Fulfilled</option>
-            <option value="REJECTED">Rejected</option>
-          </select>
-          <span style={{ fontSize: '0.8rem', color: 'var(--muted)', alignSelf: 'center' }}>
-            {total} {total === 1 ? 'request' : 'requests'}
-          </span>
-          {!isAdmin && (
-            <button className="btn btn-primary" style={{ marginLeft: 'auto' }} onClick={openNew}>
-              + New Request
-            </button>
-          )}
+        <div style={{ marginBottom: 16, background: '#FFFFFF', border: '1px solid #D5E0F0', borderRadius: 10, padding: '12px 16px', boxShadow: '0 2px 8px rgba(30,77,140,0.06)' }}>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 16, alignItems: 'flex-start' }}>
+            {/* Type checkboxes */}
+            <div>
+              <div style={{ fontSize: '0.72rem', fontWeight: 700, color: 'var(--muted)', letterSpacing: '0.06em', textTransform: 'uppercase', marginBottom: 6 }}>Type</div>
+              <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+                {[
+                  { value: 'WANT_TO_READ', label: 'Want to Read' },
+                  { value: 'WANT_TO_CONTRIBUTE', label: 'Want to Contribute' },
+                ].map(({ value, label }) => (
+                  <label key={value} style={{ display: 'flex', alignItems: 'center', gap: 6, padding: '5px 10px', borderRadius: 20, cursor: 'pointer', fontSize: '0.82rem', fontWeight: 500, border: `1.5px solid ${typeFilter.includes(value) ? 'var(--navy)' : '#D5E0F0'}`, background: typeFilter.includes(value) ? 'rgba(30,77,140,0.08)' : '#F8FAFC', color: typeFilter.includes(value) ? 'var(--navy)' : 'var(--muted)', transition: 'all 0.15s' }}>
+                    <input
+                      type="checkbox"
+                      checked={typeFilter.includes(value)}
+                      onChange={(e) => {
+                        setPage(1);
+                        setTypeFilter(prev => e.target.checked ? [...prev, value] : prev.filter(v => v !== value));
+                      }}
+                      style={{ accentColor: 'var(--navy)', width: 13, height: 13 }}
+                    />
+                    {label}
+                  </label>
+                ))}
+              </div>
+            </div>
+
+            {/* Divider */}
+            <div style={{ width: 1, background: '#D5E0F0', alignSelf: 'stretch', margin: '0 4px' }} />
+
+            {/* Status checkboxes */}
+            <div>
+              <div style={{ fontSize: '0.72rem', fontWeight: 700, color: 'var(--muted)', letterSpacing: '0.06em', textTransform: 'uppercase', marginBottom: 6 }}>Status</div>
+              <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+                {[
+                  { value: 'PENDING', label: 'Pending' },
+                  { value: 'IN_PROGRESS', label: 'In Progress' },
+                  { value: 'FULFILLED', label: 'Fulfilled' },
+                  { value: 'REJECTED', label: 'Rejected' },
+                ].map(({ value, label }) => (
+                  <label key={value} style={{ display: 'flex', alignItems: 'center', gap: 6, padding: '5px 10px', borderRadius: 20, cursor: 'pointer', fontSize: '0.82rem', fontWeight: 500, border: `1.5px solid ${statusFilter.includes(value) ? 'var(--navy)' : '#D5E0F0'}`, background: statusFilter.includes(value) ? 'rgba(30,77,140,0.08)' : '#F8FAFC', color: statusFilter.includes(value) ? 'var(--navy)' : 'var(--muted)', transition: 'all 0.15s' }}>
+                    <input
+                      type="checkbox"
+                      checked={statusFilter.includes(value)}
+                      onChange={(e) => {
+                        setPage(1);
+                        setStatusFilter(prev => e.target.checked ? [...prev, value] : prev.filter(v => v !== value));
+                      }}
+                      style={{ accentColor: 'var(--navy)', width: 13, height: 13 }}
+                    />
+                    {label}
+                  </label>
+                ))}
+              </div>
+            </div>
+
+            {/* Count + clear */}
+            <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
+              {(typeFilter.length > 0 || statusFilter.length > 0) && (
+                <button
+                  type="button"
+                  className="btn btn-secondary btn-sm"
+                  onClick={() => { setTypeFilter([]); setStatusFilter([]); setPage(1); }}
+                >
+                  Clear filters
+                </button>
+              )}
+              <span style={{ fontSize: '0.8rem', color: 'var(--muted)' }}>
+                {total} {total === 1 ? 'request' : 'requests'}
+              </span>
+            </div>
+          </div>
         </div>
 
         {loading ? <Spinner /> : items.length === 0 ? (
@@ -495,7 +603,7 @@ export default function BookRequestsPage() {
       </div>
 
       {showForm && (
-        <WishRequestFormModal initial={formTarget} onClose={closeForm} onSaved={handleSaved} />
+        <WishRequestFormModal initial={formTarget} defaultType={formDefaultType} onClose={closeForm} onSaved={handleSaved} />
       )}
 
       {viewTarget && (

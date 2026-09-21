@@ -355,6 +355,154 @@ def send_status_email(
         # Email failure must NEVER break the main request flow
         logger.error(f"Failed to send email for request {req.id}: {e}")
 
+def send_overdue_reminder_email(
+    reader_name: str,
+    reader_email: str,
+    book_title: str,
+    book_author: str,
+    library_name: str,
+    owner_name: str,
+    owner_email: str,
+    owner_phone: Optional[str],
+    issued_at: datetime,
+    days_issued: int,
+) -> bool:
+    """Send an overdue reminder to the reader. Returns True on success."""
+    if not settings.EMAIL_ENABLED:
+        logger.warning(f"Email disabled — overdue reminder skipped for {reader_email}")
+        return False
+
+    issued_str = issued_at.strftime("%d %b %Y")
+    subject = f"Friendly Reminder — Please Return Your Book | {book_title}"
+
+    owner_contact_html = f"<br><strong>{owner_name}</strong>"
+    if owner_email:
+        owner_contact_html += f'<br><a href="mailto:{owner_email}" style="color:#1E4D8C;">{owner_email}</a>'
+    if owner_phone:
+        owner_contact_html += f"<br>📞 {owner_phone}"
+
+    html = f"""
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
+<body style="margin:0;padding:0;background:#F5F5F0;font-family:Arial,sans-serif;">
+  <div style="max-width:580px;margin:32px auto;background:#FFFFFF;border-radius:10px;
+              overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,0.10);">
+
+    <!-- Header -->
+    <div style="background:#1E4D8C;padding:28px 32px;">
+      <div style="font-family:Georgia,serif;font-style:italic;font-size:22px;color:#FFFFFF;">
+        Ba Book Corner
+      </div>
+      <div style="font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:#A8C8FF;margin-top:4px;">
+        Ba Foundation · Share · Read · Return
+      </div>
+    </div>
+
+    <!-- Overdue banner -->
+    <div style="background:#EF4444;padding:16px 32px;">
+      <div style="font-size:13px;text-transform:uppercase;letter-spacing:0.08em;color:rgba(255,255,255,0.85);">
+        Book Return Reminder
+      </div>
+      <div style="font-size:20px;font-weight:700;color:#FFFFFF;margin-top:4px;">
+        📚 Please return your book
+      </div>
+    </div>
+
+    <!-- Body -->
+    <div style="padding:24px 32px 0;">
+      <p style="font-size:15px;color:#1A1A2E;margin:0 0 6px;">
+        Dear <strong>{reader_name}</strong>,
+      </p>
+      <p style="font-size:14px;color:#555;margin:0 0 20px;line-height:1.6;">
+        We hope you enjoyed reading the book! This is a friendly reminder that your borrowed
+        book is now <strong>{days_issued} days</strong> since it was issued, and we kindly
+        request you to initiate the return at your earliest convenience so other readers
+        can enjoy it too.
+      </p>
+    </div>
+
+    <!-- Book details -->
+    <div style="margin:0 32px 20px;background:#FAF7F2;border:1px solid #E0D5C0;
+                border-left:4px solid #EF4444;border-radius:8px;padding:18px;">
+      <table style="width:100%;border-collapse:collapse;">
+        <tr>
+          <td style="padding:5px 0;font-size:12px;text-transform:uppercase;
+                     letter-spacing:0.06em;color:#8B7D6B;width:110px;">Book</td>
+          <td style="padding:5px 0;font-size:14px;font-weight:700;color:#1A1A2E;">{book_title}</td>
+        </tr>
+        <tr>
+          <td style="padding:5px 0;font-size:12px;text-transform:uppercase;
+                     letter-spacing:0.06em;color:#8B7D6B;">Author</td>
+          <td style="padding:5px 0;font-size:14px;color:#3D3228;">{book_author}</td>
+        </tr>
+        <tr>
+          <td style="padding:5px 0;font-size:12px;text-transform:uppercase;
+                     letter-spacing:0.06em;color:#8B7D6B;">Library</td>
+          <td style="padding:5px 0;font-size:14px;color:#3D3228;">{library_name}</td>
+        </tr>
+        <tr>
+          <td style="padding:5px 0;font-size:12px;text-transform:uppercase;
+                     letter-spacing:0.06em;color:#8B7D6B;">Issued On</td>
+          <td style="padding:5px 0;font-size:14px;color:#3D3228;">{issued_str}</td>
+        </tr>
+        <tr>
+          <td style="padding:5px 0;font-size:12px;text-transform:uppercase;
+                     letter-spacing:0.06em;color:#8B7D6B;">Days Issued</td>
+          <td style="padding:5px 0;font-size:14px;font-weight:700;color:#EF4444;">
+            {days_issued} days
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- Call to action -->
+    <div style="padding:0 32px 24px;">
+      <p style="font-size:14px;color:#555;margin:0 0 16px;line-height:1.6;">
+        To return the book, please use the Ba Book Corner app and tap
+        <strong>Request Return</strong> on your active request, or contact your
+        librarian directly:
+      </p>
+      <div style="background:#F0F4FF;border:1px solid #C5D0E8;border-radius:8px;
+                  padding:14px 18px;font-size:14px;color:#1E4D8C;">
+        {owner_contact_html}
+      </div>
+      <p style="font-size:13px;color:#888;margin:16px 0 0;line-height:1.6;">
+        Thank you for being part of the Ba Book Corner community. Happy reading! 📖
+      </p>
+    </div>
+
+    <!-- Footer -->
+    <div style="background:#1A1208;padding:20px 32px;text-align:center;">
+      <div style="font-size:12px;color:#8B7D6B;">
+        Ba Book Corner · Ba Foundation<br>
+        This is an automated notification. Please do not reply to this email.
+      </div>
+    </div>
+  </div>
+</body>
+</html>
+"""
+
+    msg = MIMEMultipart("alternative")
+    msg["Subject"] = subject
+    msg["From"] = f"{settings.EMAIL_FROM_NAME} <{settings.email_from_address}>"
+    msg["To"] = reader_email
+    msg.attach(MIMEText(html, "html"))
+
+    try:
+        with smtplib.SMTP(settings.SMTP_HOST, settings.SMTP_PORT) as server:
+            server.ehlo()
+            server.starttls()
+            server.login(settings.SMTP_USER, settings.SMTP_PASSWORD)
+            server.sendmail(settings.email_from_address, reader_email, msg.as_string())
+        logger.info(f"Overdue reminder sent to {reader_email} ({days_issued}d overdue)")
+        return True
+    except Exception as e:
+        logger.error(f"Failed to send overdue reminder to {reader_email}: {e}")
+        return False
+
+
 def send_password_reset_email(to_email: str, full_name: str, reset_url: str) -> bool:
     """Send a password reset link email. Returns True on success, False on failure."""
     if not settings.EMAIL_ENABLED:

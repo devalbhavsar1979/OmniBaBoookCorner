@@ -20,6 +20,18 @@ def get_current_user(
     user = get_user_by_id(db, int(user_id))
     if not user:
         raise HTTPException(status_code=401, detail="User not found or inactive")
+
+    # Override role from JWT's active_role (supports role switching)
+    active_role = payload.get("active_role")
+    if active_role:
+        try:
+            user.role = UserRole(active_role)
+        except ValueError:
+            pass
+
+    # Stash roles list from JWT on the user object for routers that need it
+    user._jwt_roles = payload.get("roles", [user.role.value])
+
     return user
 
 

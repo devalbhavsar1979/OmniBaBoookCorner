@@ -1,6 +1,8 @@
 import axios from 'axios';
 
 export const BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:8000/api/v1';
+// Used only for building public share links — should be the HTTPS public domain.
+export const SHARE_BASE_URL = process.env.REACT_APP_SHARE_BASE_URL || BASE_URL.replace('/api/v1', '');
 
 const api = axios.create({
   baseURL: BASE_URL,
@@ -45,6 +47,7 @@ export const authApi = {
   updateMe: (data) => api.put('/auth/me', data),
   forgotPassword: (email) => api.post('/auth/forgot-password', { email }),
   resetPassword: (token, new_password) => api.post('/auth/reset-password', { token, new_password }),
+  switchRole: (role) => api.post('/auth/switch-role', { role }),
 };
 
 // ── Libraries ─────────────────────────────────────────────────────────────────
@@ -71,6 +74,11 @@ export const bookApi = {
     }),
   delete: (id) => api.delete(`/books/${id}`),
   issue: (id, data) => api.post(`/books/${id}/issue`, data),
+  scanCover: (formData) =>
+    api.post('/books/scan-cover', formData, {
+      headers: { 'Content-Type': 'multipart/form-data' },
+    }),
+  lookupIsbn: (isbn) => api.get('/books/lookup-isbn', { params: { isbn } }),
 };
 
 // ── Requests ──────────────────────────────────────────────────────────────────
@@ -80,6 +88,8 @@ export const requestApi = {
   create: (data) => api.post('/requests', data),
   advance: (id) => api.post(`/requests/${id}/advance`),
   cancel: (id) => api.delete(`/requests/${id}`),
+  activeCount: () => api.get('/requests/my/active-count'),
+  directReturn: (id) => api.post(`/requests/${id}/direct-return`),
 };
 
 // ── Dashboard ─────────────────────────────────────────────────────────────────
@@ -99,6 +109,27 @@ export const wishRequestApi = {
   accept: (id, formData) =>
     api.post(`/wish-requests/${id}/accept`, formData, { headers: { 'Content-Type': 'multipart/form-data' } }),
   reject: (id, admin_note) => api.post(`/wish-requests/${id}/reject`, { admin_note }),
+};
+
+// ── Gamification ──────────────────────────────────────────────────────────────
+export const gamificationApi = {
+  myScore: () => api.get('/gamification/me'),
+};
+
+// ── Admin ─────────────────────────────────────────────────────────────────────
+export const adminApi = {
+  issueRegister: (params) => api.get('/admin/issue-register', { params }),
+  sendOverdueReminder: (requestId) => api.post(`/admin/issue-register/${requestId}/remind`),
+  pendingRoleRequests: () => api.get('/users/role-requests/pending'),
+  approveRoleRequest: (id) => api.post(`/users/role-requests/${id}/approve`),
+  rejectRoleRequest: (id, rejection_note) =>
+    api.post(`/users/role-requests/${id}/reject`, { rejection_note }),
+};
+
+// ── User (self-service roles) ─────────────────────────────────────────────────
+export const userApi = {
+  myRoles: () => api.get('/users/me/roles'),
+  requestRoles: (roles) => api.post('/users/me/role-requests', { roles }),
 };
 
 export const getImageUrl = (filename) => {

@@ -70,7 +70,13 @@ def share_book(
         page_url += f"?thoughts={quote(thoughts)}"
 
     title = f"{book.title} by {book.author}"
-    description = thoughts.strip() if thoughts and thoughts.strip() else (book.description or "Check out this book on Ba Boook Corner!")
+    # Fix #2: combine book description AND reader thoughts so both appear in the OG card
+    desc_parts = []
+    if book.description and book.description.strip():
+        desc_parts.append(book.description.strip())
+    if thoughts and thoughts.strip():
+        desc_parts.append(f'"{thoughts.strip()}"')
+    description = "\n\n".join(desc_parts) if desc_parts else "Check out this book on Ba Boook Corner!"
 
     html = f"""<!DOCTYPE html>
 <html>
@@ -86,7 +92,7 @@ def share_book(
   <meta name="twitter:title" content="{escape(title)}" />
   <meta name="twitter:description" content="{escape(description)}" />
   <meta name="twitter:image" content="{escape(front_image_url)}" />
-  <meta http-equiv="refresh" content="0; url={escape(base)}/books" />
+  <meta http-equiv="refresh" content="0; url={escape(base)}/catalogue" />
 </head>
 <body>
   <p>Redirecting to <a href="{escape(base)}/books">Ba Boook Corner</a>…</p>

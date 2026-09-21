@@ -2,7 +2,7 @@ import enum
 from datetime import datetime
 from sqlalchemy import (
     Column, Integer, String, Text, Float, DateTime, ForeignKey,
-    Enum as SAEnum, Boolean, Index
+    Enum as SAEnum, Boolean, Index, UniqueConstraint
 )
 from sqlalchemy.orm import relationship
 from config.database import Base
@@ -13,6 +13,12 @@ class UserRole(str, enum.Enum):
     OWNER = "OWNER"
     READER = "READER"
     VOLUNTEER = "VOLUNTEER"
+
+
+class RoleRequestStatus(str, enum.Enum):
+    PENDING = "PENDING"
+    APPROVED = "APPROVED"
+    REJECTED = "REJECTED"
 
 class BookStatus(str, enum.Enum):
     AVAILABLE = "AVAILABLE"
@@ -70,6 +76,8 @@ class User(Base):
     reset_token = Column(String(255), nullable=True)
     reset_token_expires = Column(DateTime, nullable=True)
     role = Column(SAEnum(UserRole), nullable=False)
+    last_active_role = Column(SAEnum(UserRole), nullable=True)
+    heard_from = Column(String(255), nullable=True)
     is_active = Column(Boolean, default=False)
     is_approved = Column(Boolean, default=False)
     created_at = Column(DateTime, default=datetime.utcnow)
@@ -78,6 +86,7 @@ class User(Base):
     libraries = relationship("Library", back_populates="owner")
     book_requests = relationship("BookRequest", foreign_keys="BookRequest.reader_id", back_populates="reader")
     volunteer_requests = relationship("BookRequest", foreign_keys="BookRequest.volunteer_id", back_populates="volunteer")
+    role_assignments = relationship("UserRoleAssignment", foreign_keys="UserRoleAssignment.user_id", back_populates="user")
 
 
 class Library(Base):
@@ -170,6 +179,23 @@ class BookRequest(Base):
     )
 
 
+class PointTransaction(Base):
+    __tablename__ = "point_transactions"
+
+    id = Column(Integer, primary_key=True, index=True)
+    user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
+    points = Column(Integer, nullable=False)
+    reason = Column(String(100), nullable=False)
+    description = Column(String(500), nullable=True)
+    created_at = Column(DateTime, default=datetime.utcnow)
+
+    user = relationship("User", foreign_keys=[user_id])
+
+    __table_args__ = (
+        Index("idx_pt_user", "user_id"),
+    )
+
+
 class WishRequest(Base):
     """A user-initiated request that is NOT tied to an existing catalogue book —
     either 'I want to read a book that isn't in BoookCorner yet' or
@@ -220,4 +246,45 @@ class WishRequest(Base):
         Index("idx_wishreq_requester", "requester_id"),
         Index("idx_wishreq_status", "status"),
         Index("idx_wishreq_type", "type"),
+    )
+
+
+class UserRoleAssignment(Base):
+    """Approved roles held by a user. Many-to-many between users and roles."""
+    __tablename__ = "user_role_assignments"
+
+    id = Column(Integer, primary_key=True, index=True)
+    user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
+    role = Column(SAEnum(UserRole), nullable=False)
+    granted_at = Column(DateTime, default=datetime.utcnow)
+    granted_by_id = Column(Integer, ForeignKey("users.id"), nullable=True)
+
+    user = relationship("User", foreign_keys=[user_id], back_populates="role_assignments")
+    granted_by = relationship("User", foreign_keys=[granted_by_id])
+
+    __table_args__ = (
+        UniqueConstraint("user_id", "role", name="uq_user_role"),
+        Index("idx_ura_user", "user_id"),
+    )
+
+
+class RoleRequest(Base):
+    """A user's request for a role that requires admin approval."""
+    __tablename__ = "role_requests"
+
+    id = Column(Integer, primary_key=True, index=True)
+    user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
+    role = Column(SAEnum(UserRole), nullable=False)
+    status = Column(SAEnum(RoleRequestStatus), default=RoleRequestStatus.PENDING, nullable=False)
+    requested_at = Column(DateTime, default=datetime.utcnow)
+    reviewed_at = Column(DateTime, nullable=True)
+    reviewed_by_id = Column(Integer, ForeignKey("users.id"), nullable=True)
+    rejection_note = Column(Text, nullable=True)
+
+    user = relationship("User", foreign_keys=[user_id])
+    reviewed_by = relationship("User", foreign_keys=[reviewed_by_id])
+
+    __table_args__ = (
+        Index("idx_rr_user", "user_id"),
+        Index("idx_rr_status", "status"),
     )

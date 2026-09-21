@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
+import React, { createContext, useContext, useState, useCallback } from 'react';
 import { authApi } from '../services/api';
 
 const AuthContext = createContext(null);
@@ -10,14 +10,18 @@ export function AuthProvider({ children }) {
   });
   const [loading, setLoading] = useState(false);
 
+  const _storeSession = (access_token, userData) => {
+    localStorage.setItem('token', access_token);
+    localStorage.setItem('user', JSON.stringify(userData));
+    setUser(userData);
+  };
+
   const login = useCallback(async (email, password) => {
     setLoading(true);
     try {
       const res = await authApi.login({ email, password });
       const { access_token, user: userData } = res.data;
-      localStorage.setItem('token', access_token);
-      localStorage.setItem('user', JSON.stringify(userData));
-      setUser(userData);
+      _storeSession(access_token, userData);
       return userData;
     } finally {
       setLoading(false);
@@ -29,6 +33,18 @@ export function AuthProvider({ children }) {
     try {
       const res = await authApi.register(data);
       return res.data;
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
+  const switchRole = useCallback(async (role) => {
+    setLoading(true);
+    try {
+      const res = await authApi.switchRole(role);
+      const { access_token, user: userData } = res.data;
+      _storeSession(access_token, userData);
+      return userData;
     } finally {
       setLoading(false);
     }
@@ -47,9 +63,14 @@ export function AuthProvider({ children }) {
 
   const isRole = useCallback((role) => user?.role === role, [user]);
   const isSuperAdmin = user?.role === 'SUPER_ADMIN';
+  // All approved roles: fallback to [role] for tokens issued before multi-role
+  const userRoles = user?.roles?.length ? user.roles : (user?.role ? [user.role] : []);
 
   return (
-    <AuthContext.Provider value={{ user, loading, login, register, logout, updateUser, isRole, isSuperAdmin }}>
+    <AuthContext.Provider value={{
+      user, loading, login, register, logout, updateUser,
+      switchRole, isRole, isSuperAdmin, userRoles,
+    }}>
       {children}
     </AuthContext.Provider>
   );

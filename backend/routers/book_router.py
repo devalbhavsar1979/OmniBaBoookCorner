@@ -1,7 +1,9 @@
+import os
 from typing import Optional
-from fastapi import APIRouter, Depends, Query, UploadFile, File, Form
+from fastapi import APIRouter, Depends, Query, UploadFile, File, Form, HTTPException
 from sqlalchemy.orm import Session
 from config.database import get_db
+from config.settings import get_settings
 from schemas.schemas import BookOut, PaginatedResponse
 from services import book_service
 from routers.dependencies import get_current_user, require_role
@@ -9,6 +11,33 @@ from models.models import User, UserRole, BookStatus, AgeGroup
 from schemas.schemas import BookIssueRequest, BookRequestOut
 
 router = APIRouter(prefix="/books", tags=["Books"])
+
+
+@router.post("/scan-cover")
+async def scan_cover(
+    image: UploadFile = File(...),
+    current_user: User = Depends(require_role(UserRole.OWNER)),
+):
+    """Scan a book cover photo with Gemini Vision to extract title, author, genre, language, age group."""
+    settings = get_settings()
+    if not settings.GEMINI_API_KEY:
+        raise HTTPException(status_code=503, detail="Cover scan is not configured (GEMINI_API_KEY missing)")
+
+    if not image.filename:
+        raise HTTPException(status_code=400, detail="No file provided")
+
+    ext = os.path.splitext(image.filename)[1].lower()
+    if ext not in {".jpg", ".jpeg", ".png"}:
+        raise HTTPException(status_code=400, detail="Image must be JPG or PNG")
+
+    image_bytes = await image.read()
+    if len(image_bytes) > 5 * 1024 * 1024:
+        raise HTTPException(status_code=400, detail="Image must be smaller than 5 MB")
+
+    mime_type = "image/jpeg" if ext in {".jpg", ".jpeg"} else "image/png"
+
+    from services.scan_service import scan_book_cover
+    return scan_book_cover(image_bytes, mime_type, settings.GEMINI_API_KEY)
 
 
 @router.post("/library/{library_id}", response_model=BookOut, status_code=201)
@@ -31,13 +60,23 @@ async def create_book(
     return await book_service.create_book(db, library_id, payload, current_user, front_image, back_image)
 
 
+@router.get("/lookup-isbn")
+def lookup_isbn_endpoint(
+    isbn: str = Query(..., min_length=10, max_length=17),
+    current_user: User = Depends(require_role(UserRole.OWNER)),
+):
+    """Look up book metadata from Open Library by ISBN (10 or 13 digits)."""
+    from services.isbn_service import lookup_isbn
+    return lookup_isbn(isbn)
+
+
 @router.get("", response_model=PaginatedResponse)
 def list_books(
     library_id: Optional[int] = Query(None),
     search: Optional[str] = Query(None),
     genre: Optional[str] = Query(None),
     language: Optional[str] = Query(None),
-    age_group: Optional[AgeGroup] = Query(None),
+    age_group: Optional[str] = Query(None),
     status: Optional[BookStatus] = Query(None),
     page: int = Query(1, ge=1),
     page_size: int = Query(20, ge=1, le=100),

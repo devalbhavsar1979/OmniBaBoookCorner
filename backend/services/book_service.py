@@ -10,6 +10,7 @@ from fastapi import HTTPException, UploadFile
 from models.models import Book, BookRequest, Library, User, UserRole, BookStatus, AgeGroup
 from schemas.schemas import BookCreate, BookUpdate
 from config.settings import get_settings
+from services import gamification_service
 
 logger = logging.getLogger(__name__)
 settings = get_settings()
@@ -109,7 +110,7 @@ def get_books(
     page: int = 1,
     page_size: int = 20,
     owner_id: Optional[int] = None,  # when set, restrict to this owner's libraries only
-    age_group: Optional[AgeGroup] = None,
+    age_group: Optional[str] = None,
 ) -> tuple[list, int]:
     query = db.query(Book)
 
@@ -139,10 +140,14 @@ def get_books(
     if status:
         query = query.filter(Book.status == status)
     if age_group:
-        query = query.filter(Book.age_group == age_group)
+        groups = [g.strip() for g in age_group.split(',') if g.strip()]
+        if len(groups) == 1:
+            query = query.filter(Book.age_group == groups[0])
+        elif len(groups) > 1:
+            query = query.filter(Book.age_group.in_(groups))
 
     total = query.count()
-    items = query.offset((page - 1) * page_size).limit(page_size).all()
+    items = query.order_by(Book.updated_at.desc()).offset((page - 1) * page_size).limit(page_size).all()
     _attach_display_fields(db, items)
     return items, total
 
@@ -231,6 +236,10 @@ def issue_book(db: Session, book_id: int, payload, owner: User):
 
     # Update book status
     book.status = BookStatus.ISSUED
+
+    gamification_service.award_points(
+        db, reader.id, 20, "BOOK_ISSUED", f"Borrowed: {book.title}"
+    )
 
     db.commit()
     db.refresh(br)

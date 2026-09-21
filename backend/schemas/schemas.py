@@ -1,7 +1,7 @@
 from pydantic import BaseModel, EmailStr, field_validator
-from typing import Optional
+from typing import Optional, List
 from datetime import datetime
-from models.models import UserRole, BookStatus, AgeGroup, WishRequestType, WishRequestStatus, BookCondition
+from models.models import UserRole, BookStatus, AgeGroup, WishRequestType, WishRequestStatus, BookCondition, RoleRequestStatus
 
 
 # ─── Auth Schemas ────────────────────────────────────────────────────────────
@@ -31,7 +31,8 @@ class UserRegister(BaseModel):
     city: Optional[str] = None
     state: Optional[str] = None
     pincode: Optional[str] = None
-    role: UserRole
+    heard_from: Optional[str] = None
+    roles: List[UserRole]
 
     @field_validator("password")
     @classmethod
@@ -39,6 +40,15 @@ class UserRegister(BaseModel):
         if len(v) < 6:
             raise ValueError("Password must be at least 6 characters")
         return v
+
+    @field_validator("roles")
+    @classmethod
+    def roles_valid(cls, v: list) -> list:
+        if not v:
+            raise ValueError("At least one role must be selected")
+        if UserRole.SUPER_ADMIN in v:
+            raise ValueError("SUPER_ADMIN role cannot be self-registered")
+        return list(set(v))  # deduplicate
 
 
 class UserUpdate(BaseModel):
@@ -50,6 +60,7 @@ class UserUpdate(BaseModel):
     city: Optional[str] = None
     state: Optional[str] = None
     pincode: Optional[str] = None
+    heard_from: Optional[str] = None
 
     @field_validator("full_name")
     @classmethod
@@ -82,6 +93,7 @@ class UserOut(BaseModel):
     latitude: Optional[float] = None
     longitude: Optional[float] = None
     role: UserRole
+    roles: List[str] = []  # all approved roles; populated manually in routers
     is_active: bool
     is_approved: bool = False
     created_at: datetime
@@ -98,12 +110,37 @@ class UserApprovalOut(BaseModel):
     city: Optional[str] = None
     state: Optional[str] = None
     pincode: Optional[str] = None
+    heard_from: Optional[str] = None
     role: UserRole
+    roles: List[str] = []
     is_active: bool
     is_approved: bool
     created_at: datetime
 
     model_config = {"from_attributes": True}
+
+
+# ─── Role Request Schemas ──────────────────────────────────────────────────────
+
+class SwitchRoleRequest(BaseModel):
+    role: UserRole
+
+
+class RoleRequestCreate(BaseModel):
+    roles: List[UserRole]
+
+    @field_validator("roles")
+    @classmethod
+    def roles_valid(cls, v: list) -> list:
+        if not v:
+            raise ValueError("At least one role must be selected")
+        if UserRole.SUPER_ADMIN in v:
+            raise ValueError("SUPER_ADMIN role cannot be requested")
+        return list(set(v))
+
+
+class RoleApprovalReject(BaseModel):
+    rejection_note: Optional[str] = None
 
 
 # ─── Library Schemas ──────────────────────────────────────────────────────────
@@ -322,6 +359,48 @@ class WishRequestOut(BaseModel):
     updated_at: datetime
 
     model_config = {"from_attributes": True}
+
+
+# ─── Gamification Schemas ─────────────────────────────────────────────────────
+
+class PointTransactionOut(BaseModel):
+    id: int
+    user_id: int
+    points: int
+    reason: str
+    description: Optional[str]
+    created_at: datetime
+
+    model_config = {"from_attributes": True}
+
+
+class LevelInfo(BaseModel):
+    level: int
+    name: str
+    emoji: str
+    color: str
+    points_in_level: int
+    points_for_level: Optional[int]
+    progress_pct: int
+    next_level_name: Optional[str]
+    next_level_at: Optional[int]
+
+
+class LevelDef(BaseModel):
+    level: int
+    name: str
+    emoji: str
+    color: str
+    min_points: int
+    next_at: Optional[int]
+
+
+class UserScoreOut(BaseModel):
+    user_id: int
+    total_points: int
+    level_info: LevelInfo
+    all_levels: list[LevelDef]
+    recent_transactions: list[PointTransactionOut]
 
 
 # ─── Dashboard Schemas ────────────────────────────────────────────────────────

@@ -14,7 +14,7 @@ function PWAInstallModal({ onClose }) {
         {/* Header */}
         <div className="pwa-modal-header">
           <div className="pwa-modal-logo">
-            <img src={logoImg} alt="Ba Book Corner" />
+            <img src={logoImg} alt="Bo0ok Corner" />
             <div>
               <div className="pwa-modal-title">Install the Ba Boook Corner App</div>
               <div className="pwa-modal-sub">Read more, live better.</div>
@@ -191,10 +191,16 @@ export default function LoginPage() {
 
       <div className="auth-card">
         <div className="auth-logo">
-          <img src={logoImg} alt="Ba Book Corner" />
-          <h1>Ba Book Corner</h1>
-          <p>Ba Foundation · Library Network</p>
+          <img src={logoImg} alt="Boook Corner" />
+          <h1>Boook Corner</h1>
+          <p>Reading in your space, at your pace</p>
+          <p>           
+            <span class="location-icon">📍</span>
+            <span>SERVING ONLY IN <strong>GANDHINAGAR</strong></span>
+          </p>
         </div>
+        
+
 
         <Alert type="error" message={error} />
 

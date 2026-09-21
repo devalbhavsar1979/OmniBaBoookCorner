@@ -8,7 +8,15 @@
       "Bash(npm run *)",
       "PowerShell(powershell -ExecutionPolicy Bypass -File \"c:\\\\Relisant\\\\BaBookCorner\\\\install-services.ps1\" 2>&1)",
       "PowerShell(Get-Service BaBookCorner-Backend, BaBookCorner-Frontend)",
-      "PowerShell(Get-ChildItem \"c:\\\\Relisant\\\\BaBookCorner\\\\.venv\\\\Scripts\\\\\" -ErrorAction SilentlyContinue; Write-Host \"exit: $LASTEXITCODE\")"
+      "PowerShell(Get-ChildItem \"c:\\\\Relisant\\\\BaBookCorner\\\\.venv\\\\Scripts\\\\\" -ErrorAction SilentlyContinue; Write-Host \"exit: $LASTEXITCODE\")",
+      "PowerShell(nssm restart BaBookCorner-Backend)",
+      "PowerShell(nssm restart BaBookCorner-Frontend)",
+      "Bash(nssm restart *)",
+      "Bash(Start-Sleep -Seconds 5)",
+      "Bash(Get-Content logs/backend-stderr.log -Tail 25)",
+      "PowerShell($env:PGPASSWORD = \"Deval197979\"; & \"C:\\\\Program Files\\\\PostgreSQL\\\\18\\\\bin\\\\psql.exe\" -U baboook_deval -d baboook_db -h localhost -c \"ALTER TABLE users ADD COLUMN IF NOT EXISTS last_active_role VARCHAR\\(20\\) NULL; SELECT column_name FROM information_schema.columns WHERE table_name='users' AND column_name='last_active_role';\" 2>&1)",
+      "Bash(node -e \"const p=require\\('./package.json'\\); console.log\\('react:', p.dependencies.react, 'react-leaflet:', p.dependencies['react-leaflet'] || 'not installed'\\)\")",
+      "Bash(npm install *)"
     ]
   }
 }

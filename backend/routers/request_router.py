@@ -20,9 +20,20 @@ def create_request(
     return request_service.create_request(db, payload, current_user)
 
 
+@router.get("/my/active-count")
+def get_active_request_count(
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user),
+):
+    """Return the reader's active request count and the per-reader limit."""
+    count = request_service._count_active_requests(db, current_user.id)
+    return {"count": count, "limit": request_service.MAX_ACTIVE_REQUESTS}
+
+
 @router.get("", response_model=PaginatedResponse)
 def list_requests(
-    status: Optional[BookStatus] = Query(None),
+    status: Optional[str] = Query(None, description="Comma-separated statuses, e.g. REQUESTED,ISSUED"),
+    search: Optional[str] = Query(None, description="Search book title, reader or volunteer name"),
     page: int = Query(1, ge=1),
     page_size: int = Query(20, ge=1, le=100),
     db: Session = Depends(get_db),
@@ -34,7 +45,21 @@ def list_requests(
     - Volunteer: open + assigned requests
     - Owner: requests for books in their libraries
     """
-    items, total = request_service.get_requests(db, current_user, status, page, page_size)
+    statuses = None
+    if status:
+        parsed = []
+        for s in status.split(","):
+            s = s.strip()
+            if s:
+                try:
+                    parsed.append(BookStatus(s))
+                except ValueError:
+                    pass
+        statuses = parsed or None
+
+    items, total = request_service.get_requests(
+        db, current_user, statuses, search or None, page, page_size
+    )
     return PaginatedResponse(
         total=total,
         page=page,
@@ -67,6 +92,16 @@ def advance_status(
     - Reader: ISSUED → RETURN_REQUESTED
     """
     return request_service.advance_request_status(db, request_id, current_user)
+
+
+@router.post("/{request_id}/direct-return", response_model=BookRequestOut)
+def direct_return(
+    request_id: int,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user),
+):
+    """Library owner or super admin marks an ISSUED book as directly returned (skips volunteer return flow)."""
+    return request_service.direct_return_by_admin(db, request_id, current_user)
 
 
 @router.delete("/{request_id}", status_code=204)
